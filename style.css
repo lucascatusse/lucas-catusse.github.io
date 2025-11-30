@@ -166,12 +166,15 @@ section h2 {
 .skill-block,
 .languages,
 .interests {
-    flex: 1 1 calc(50% - 20px); /* ⬅ Permet d’en mettre 2 par ligne */
+    /* Mise en page en colonnes : 50% de la largeur du conteneur, moins le "gap" */
+    flex: 1 1 calc(50% - 20px); 
+    box-sizing: border-box; 
+    
+    /* Styles visuels appliqués à tous les conteneurs */
     background: #f0f8ff;
     padding: 18px;
     border-radius: 10px;
     border-left: 4px solid #0077cc;
-    box-sizing: border-box; /* ⬅ Évite les débordements */
 }
 
 /* Styles spécifiques aux titres dans les blocs */
