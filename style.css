@@ -160,12 +160,12 @@ section h2 {
 }
 
 .skill-block {
-    flex: 1 1 calc(50% - 20px);    /* ⬅ Permet d’en mettre 2 par ligne */
+    flex: 1 1 calc(50% - 20px);
     background: #f0f8ff;
     padding: 18px;
     border-radius: 10px;
     border-left: 4px solid #0077cc;
-    box-sizing: border-box;        /* ⬅ Évite les débordements */
+    box-sizing: border-box;
 }
 
 .skill-block h3 {
@@ -179,14 +179,6 @@ section h2 {
     margin: 0;
 }
 
-/* Responsive: 1 colonne sur petit écran */
-@media (max-width: 768px) {
-    .skill-block {
-        flex: 1 1 100%;
-    }
-}
-
-
 /* LANGUAGES & INTERESTS */
 .languages-interests-columns {
     display: flex;
@@ -194,7 +186,7 @@ section h2 {
     gap: 20px;
 }
 
-/* Utilisation des mêmes règles de style et de flex que skill-block */
+/* Applique la même mise en page et le même style visuel que .skill-block */
 .languages,
 .interests {
     flex: 1 1 calc(50% - 20px);
@@ -211,13 +203,14 @@ section h2 {
     color: #0077cc;
 }
 
+/* Responsive: 1 colonne sur petit écran pour toutes les sections 2x2 */
 @media (max-width: 768px) {
+    .skill-block,
     .languages,
     .interests {
         flex: 1 1 100%;
     }
 }
-
 
 /* FOOTER */
 footer {
