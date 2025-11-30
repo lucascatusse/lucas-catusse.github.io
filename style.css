@@ -152,65 +152,48 @@ section h2 {
     }
 }
 
-/* SKILLS SECTION */
-.skills-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
+/* --- SECTIONS EN COLONNES (SKILLS / LANGUAGES & INTERESTS) --- */
 
-.skill-block {
-    flex: 1 1 calc(50% - 20px);   /* ⬅ Permet d’en mettre 2 par ligne */
-    background: #f0f8ff;
-    padding: 18px;
-    border-radius: 10px;
-    border-left: 4px solid #0077cc;
-    box-sizing: border-box;       /* ⬅ Évite les débordements */
-}
-
-.skill-block h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #0077cc;
-}
-
-.skill-block ul {
-    padding-left: 20px;
-    margin: 0;
-}
-
-/* Responsive: 1 colonne sur petit écran */
-@media (max-width: 768px) {
-    .skill-block {
-        flex: 1 1 100%;
-    }
-}
-
-
-/* LANGUAGES & INTERESTS */
+/* Conteneurs Flex pour les colonnes */
+.skills-columns,
 .languages-interests-columns {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
+/* Style et Taille pour tous les blocs de contenu (Compétences, Langues, Intérêts) */
+.skill-block,
 .languages,
 .interests {
-    flex: 1 1 calc(50% - 20px);
+    flex: 1 1 calc(50% - 20px); /* ⬅ Permet d’en mettre 2 par ligne */
     background: #f0f8ff;
     padding: 18px;
     border-radius: 10px;
     border-left: 4px solid #0077cc;
-    box-sizing: border-box;
+    box-sizing: border-box; /* ⬅ Évite les débordements */
 }
 
+/* Styles spécifiques aux titres dans les blocs */
+.skill-block h3,
 .languages h3,
 .interests h3 {
     margin-top: 0;
+    margin-bottom: 10px;
     color: #0077cc;
 }
 
+/* Styles pour les listes dans les blocs */
+.skill-block ul,
+.languages ul,
+.interests ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* Responsive: 1 colonne sur petit écran */
 @media (max-width: 768px) {
+    .skill-block,
     .languages,
     .interests {
         flex: 1 1 100%;
@@ -226,6 +209,3 @@ footer {
     padding: 15px;
     margin-top: 40px;
 }
-
-
-
