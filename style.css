@@ -88,12 +88,86 @@ section h2 {
 }
 
 /* EDUCATIONAL PROJECT CARDS */
-.edu {
-    background: #f0f8ff;
-    padding: 18px;
-    border-radius: 10px;
-    border-left: 4px solid #4db8ff;
+/* PROJECT CARD */
+
+<section>
+    <h2>Images & Résultats</h2>
+    <img src="images/valvacao.JPG" alt="Résultats CFD" style="width: 80%; display: block; margin: auto; border-radius: 8px;">
+</section>
+
+#projects h3 {
+    margin-left: 5px;
 }
+
+.project-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eef6ff;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid #d2e6ff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.project-info {
+    flex: 1 1 50%;
+}
+
+.project-info h3 {
+    margin-top: 0;
+    text-align: center;
+    color: #003f88;
+}
+
+.project-info p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.details-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #4d9dff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.details-btn:hover {
+    background: #1c74e9;
+}
+
+.project-image {
+    flex: 1 1 45%;
+    text-align: right;
+}
+
+.project-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+}
+
+/* Responsive for project card */
+@media (max-width: 900px) {
+    .project-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .project-image {
+        text-align: center;
+        margin-top: 15px;
+    }
+    .project-image img {
+        max-width: 80%;
+    }
+}
+
 
 /* SKILLS SECTION */
 .skills-columns {
