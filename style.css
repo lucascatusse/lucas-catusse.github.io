@@ -5,7 +5,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f5f7fa;
     color: #333;
-    line-height: 3;
+    line-height: 1.6;
 }
 
 h2 {
@@ -135,7 +135,7 @@ section h2 {
     border-radius: 10px;
 }
 
-/* Responsive */
+/* Responsive Projects */
 @media (max-width: 900px) {
     .project-card {
         flex-direction: column;
@@ -179,6 +179,13 @@ section h2 {
     margin: 0;
 }
 
+/* Responsive Skills */
+@media (max-width: 768px) {
+    .skill-block {
+        flex: 1 1 100%;
+    }
+}
+
 /* LANGUAGES & INTERESTS */
 .languages-interests-columns {
     display: flex;
@@ -186,7 +193,6 @@ section h2 {
     gap: 20px;
 }
 
-/* Applique la même mise en page et le même style visuel que .skill-block */
 .languages,
 .interests {
     flex: 1 1 calc(50% - 20px);
@@ -203,9 +209,7 @@ section h2 {
     color: #0077cc;
 }
 
-/* Responsive: 1 colonne sur petit écran pour toutes les sections 2x2 */
 @media (max-width: 768px) {
-    .skill-block,
     .languages,
     .interests {
         flex: 1 1 100%;
@@ -220,3 +224,4 @@ footer {
     padding: 15px;
     margin-top: 40px;
 }
+
