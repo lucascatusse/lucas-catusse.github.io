@@ -141,7 +141,7 @@ section h2 {
 
 .project-image img {
     width: 100%;                         /* Occupe toute la largeur du bloc */
-    max-width: 250px;                    /* Taille maximale */
+    max-width: 450px;                    /* Taille maximale */
     border-radius: 10px;                 /* Coins arrondis */
 }
 
