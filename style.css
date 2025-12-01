@@ -1,144 +1,154 @@
-/* GLOBAL */
+/* ======================= */
+/*        GLOBAL           */
+/* ======================= */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
-    color: #333;
-    line-height: 1.6;
+    margin: 0;                  /* Supprime les marges par défaut du navigateur */
+    padding: 0;                 /* Supprime le padding par défaut */
+    font-family: Arial, Helvetica, sans-serif; /* Police globale du site */
+    background: #f5f7fa;        /* Couleur de fond globale */
+    color: #333;                /* Couleur du texte par défaut */
+    line-height: 1.6;           /* Hauteur de ligne pour améliorer la lisibilité */
 }
 
 h2 {
-    color: #0077cc;
+    color: #0077cc;             /* Couleur bleue pour tous les titres de niveau 2 */
 }
 
-/* HEADER */
+/* ======================= */
+/*        HEADER           */
+/* ======================= */
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #1e1e1e;
-    color: white;
-    padding: 40px 30px;
-    flex-wrap: wrap;
+    display: flex;              /* Utilisation de Flexbox pour aligner le contenu */
+    align-items: center;        /* Centre verticalement les éléments */
+    justify-content: space-between; /* Espace entre les blocs gauche et droite */
+    background: #1e1e1e;        /* Fond sombre pour l’en-tête */
+    color: white;               /* Couleur du texte dans l’en-tête */
+    padding: 40px 30px;         /* Espacement interne */
+    flex-wrap: wrap;            /* Permet aux éléments de passer à la ligne si l’écran est petit */
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2.3rem;
+    margin: 0;                  /* Supprime la marge par défaut */
+    font-size: 2.3rem;          /* Taille du titre principal */
 }
 
 header h2 {
-    margin: 5px 0 15px;
-    font-size: 1.2rem;
-    font-weight: 300;
+    margin: 5px 0 15px;         /* Marge spécifique autour du sous-titre */
+    font-size: 1.2rem;          /* Taille plus petite que le h1 */
+    font-weight: 300;           /* Police fine */
 }
 
 .header-left {
-    flex: 1 1 60%;
+    flex: 1 1 60%;              /* Prend 60% de la largeur disponible */
 }
 
 .header-left a {
-    color: #4db8ff;
-    text-decoration: none;
+    color: #4db8ff;             /* Couleur des liens dans la partie gauche */
+    text-decoration: none;      /* Supprime le soulignement */
 }
 
 .header-right {
-    flex: 1 1 30%;
-    text-align: right;
+    flex: 1 1 30%;              /* Prend 30% de la largeur disponible */
+    text-align: right;          /* Aligne le contenu à droite */
 }
 
 .header-right img {
-    max-width: 150px;
-    border-radius: 50%;
-    border: 3px solid #4db8ff;
+    max-width: 150px;           /* Taille maximale de l’image */
+    border-radius: 50%;         /* Rend l’image circulaire */
+    border: 3px solid #4db8ff; /* Bordure bleue autour de l’image */
 }
 
-/* SECTIONS */
+/* ======================= */
+/*        SECTIONS         */
+/* ======================= */
 section {
-    background: white;
-    max-width: 1000px;
-    margin: 25px auto;
-    padding: 25px 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    background: white;          /* Fond blanc pour chaque section */
+    max-width: 1000px;          /* Largeur maximale */
+    margin: 25px auto;          /* Centre horizontalement et ajoute un espace vertical */
+    padding: 25px 30px;         /* Padding interne de la section */
+    border-radius: 12px;        /* Coins arrondis */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08); /* Ombre légère */
 }
 
 section h2 {
-    border-bottom: 2px solid #4db8ff;
-    padding-bottom: 8px;
-    margin-bottom: 18px;
+    border-bottom: 2px solid #4db8ff; /* Ligne bleue sous le titre */
+    padding-bottom: 8px;              /* Espace entre la ligne et le texte */
+    margin-bottom: 18px;              /* Espace sous le titre */
 }
 
-/* INTRO */
+/* ======================= */
+/*        INTRO            */
+/* ======================= */
 #intro {
-    background: #e8f4ff;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    background: #e8f4ff;               /* Fond légèrement bleu pour l’intro */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1); /* Ombre un peu plus marquée */
 }
 
-/* PROJECT CARD */
+/* ======================= */
+/*      PROJECT CARD       */
+/* ======================= */
 #projects h3 {
-    margin-left: 5px;
+    margin-left: 5px;                  /* Petit décalage à gauche */
 }
 
 .project-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #eef6ff;
-    padding: 25px;
-    border-radius: 15px;
-    margin-top: 20px;
-    border: 1px solid #d2e6ff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;                     /* Flexbox pour aligner image et texte */
+    justify-content: space-between;    /* Espace entre les blocs */
+    align-items: center;               /* Centre verticalement */
+    background: #eef6ff;               /* Fond légèrement bleu */
+    padding: 25px;                     /* Espacement interne */
+    border-radius: 15px;               /* Coins arrondis */
+    margin-top: 20px;                  /* Espace entre chaque projet */
+    border: 1px solid #d2e6ff;        /* Bordure légère */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Ombre légère */
 }
 
 .project-info {
-    flex: 1 1 50%;
+    flex: 1 1 50%;                      /* Prend environ 50% de la largeur */
 }
 
 .project-info h3 {
-    margin-top: 0;
-    text-align: center;
-    color: #003f88;
+    margin-top: 0;                      /* Supprime la marge par défaut */
+    text-align: center;                 /* Centre le titre */
+    color: #003f88;                     /* Couleur du titre */
 }
 
 .project-info p {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: center;                 /* Centre le texte */
+    margin-bottom: 20px;                /* Espace sous le paragraphe */
 }
 
 .details-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #4d9dff;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-    transition: 0.2s;
+    display: inline-block;              /* Bloc inline qui peut avoir padding */
+    padding: 10px 20px;                 /* Espacement interne */
+    background: #4d9dff;                /* Fond bleu */
+    color: white;                       /* Texte blanc */
+    text-decoration: none;              /* Supprime le soulignement */
+    border-radius: 8px;                 /* Coins arrondis */
+    font-weight: bold;                   /* Texte gras */
+    text-align: center;                 /* Centre le texte */
+    transition: 0.2s;                   /* Transition douce pour l’effet hover */
 }
 
 .details-btn:hover {
-    background: #1c74e9;
+    background: #1c74e9;                /* Change la couleur au survol */
 }
 
 .project-image {
-    flex: 1 1 45%;
-    text-align: right;
+    flex: 1 1 45%;                      /* Prend environ 45% de la largeur */
+    text-align: right;                   /* Image alignée à droite */
 }
 
 .project-image img {
-    width: 100%;
-    max-width: 450px;
-    border-radius: 10px;
+    width: 100%;                         /* Occupe toute la largeur du bloc */
+    max-width: 450px;                    /* Taille maximale */
+    border-radius: 10px;                 /* Coins arrondis */
 }
 
-/* Responsive */
+/* Responsive pour Project Card */
 @media (max-width: 900px) {
     .project-card {
-        flex-direction: column;
+        flex-direction: column;          /* Les éléments passent en colonne sur petit écran */
         text-align: center;
     }
 
@@ -148,24 +158,26 @@ section h2 {
     }
 
     .project-image img {
-        max-width: 80%;
+        max-width: 80%;                  /* Image plus petite sur petit écran */
     }
 }
 
-/* SKILLS SECTION */
+/* ======================= */
+/*      SKILLS SECTION     */
+/* ======================= */
 .skills-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: flex;                        /* Flexbox pour les colonnes de skills */
+    flex-wrap: wrap;                      /* Permet aux blocs de passer à la ligne */
+    gap: 20px;                            /* Espace entre les blocs */
 }
 
 .skill-block {
-    flex: 1 1 calc(50% - 20px);   /* ⬅ Permet d’en mettre 2 par ligne */
-    background: #f0f8ff;
-    padding: 18px;
-    border-radius: 10px;
-    border-left: 4px solid #0077cc;
-    box-sizing: border-box;       /* ⬅ Évite les débordements */
+    flex: 1 1 calc(50% - 20px);          /* Chaque bloc prend environ 50% de largeur moins le gap */
+    background: #f0f8ff;                  /* Fond bleu très clair */
+    padding: 18px;                         /* Espacement interne */
+    border-radius: 10px;                   /* Coins arrondis */
+    border-left: 4px solid #0077cc;       /* Bande bleue à gauche */
+    box-sizing: border-box;                /* Inclut padding et border dans la largeur totale */
 }
 
 .skill-block h3 {
@@ -175,32 +187,34 @@ section h2 {
 }
 
 .skill-block ul {
-    padding-left: 20px;
-    margin: 0;
+    padding-left: 20px; /* Décalage du texte de la liste */
+    margin: 0;          /* Supprime la marge par défaut */
 }
 
-/* Responsive: 1 colonne sur petit écran */
+/* Responsive : 1 colonne sur petit écran */
 @media (max-width: 768px) {
     .skill-block {
         flex: 1 1 100%;
     }
 }
 
-/* LANGUAGES & INTERESTS SECTION */
+/* ======================= */
+/* LANGUAGES & INTERESTS   */
+/* ======================= */
 .languages-interests-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between; 
+    display: flex;                        /* Flexbox pour les 2 colonnes */
+    flex-wrap: wrap;                      /* Passe en colonne si écran petit */
+    gap: 20px;                            /* Espace entre les blocs */
+    justify-content: space-between;       /* Aligne les blocs sur toute la largeur */
 }
 
 .languages, 
 .interests {
-    flex: 1 1 calc(50% - 20px); 
-    background: #f0f8ff;
+    flex: 1 1 calc(50% - 20px);          /* Chaque bloc prend 50% de la largeur */
+    background: #f0f8ff;                 /* Fond bleu clair */
     padding: 18px;
     border-radius: 10px;
-    border-left: 4px solid #0077cc;
+    border-left: 4px solid #0077cc;      /* Bande bleue à gauche */
     box-sizing: border-box;
 }
 
@@ -217,7 +231,7 @@ section h2 {
     margin: 0;
 }
 
-/* Responsive : 1 colonne */
+/* Responsive : 1 colonne sur petit écran */
 @media (max-width: 768px) {
     .languages,
     .interests {
@@ -225,16 +239,17 @@ section h2 {
     }
 }
 
-
-
-/* FOOTER */
+/* ======================= */
+/*        FOOTER           */
+/* ======================= */
 footer {
-    background: #1e1e1e;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 40px;
+    background: #1e1e1e;            /* Fond sombre */
+    color: white;                    /* Texte blanc */
+    text-align: center;              /* Centre le texte */
+    padding: 15px;                   /* Espacement interne */
+    margin-top: 40px;                /* Espace au-dessus du footer */
 }
+
 
 
 
