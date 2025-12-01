@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> <!-- Encodage UTF-8 pour les caractères spéciaux -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucas Catusse — Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Permet une mise en page responsive sur mobiles et tablettes -->
+  <title>Lucas Catusse — Portfolio</title> <!-- Titre affiché dans l’onglet du navigateur -->
+  <link rel="stylesheet" href="style.css"> <!-- Lien vers le fichier CSS externe -->
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- ===================== -->
+  <!--        HEADER         -->
+  <!-- ===================== -->
   <header>
     <div class="header-left">
-      <h1>Lucas Catusse</h1>
-      <h2>Mechanical Engineering Student</h2>
-      <p>Email : <a href="mailto:lucas6catusse6@gmail.com">lucas6catusse6@gmail.com</a> | Mobile : <a href="tel:+33640489482">06 40 48 94 82</a> | <a href="https://www.linkedin.com/in/lucas-catusse-9b38662bb">LinkedIn</a></p>
+      <h1>Lucas Catusse</h1> <!-- Nom principal du portfolio -->
+      <h2>Mechanical Engineering Student</h2> <!-- Sous-titre / rôle -->
+      
+      <!-- Coordonnées de contact -->
+      <p>
+        Email : <a href="mailto:lucas6catusse6@gmail.com">lucas6catusse6@gmail.com</a> | 
+        Mobile : <a href="tel:+33640489482">06 40 48 94 82</a> | 
+        <a href="https://www.linkedin.com/in/lucas-catusse-9b38662bb">LinkedIn</a>
+      </p>
+
+      <!-- Info sur la recherche de stage -->
       <p><strong>Looking for a 5–6 month end-of-study internship starting from 15/03/2026</strong></p>
     </div>
+
     <div class="header-right">
-      <img src="image3.png" alt="Lucas Catusse">
+      <img src="image3.png" alt="Lucas Catusse"> <!-- Photo du portfolio -->
     </div>
   </header>
 
-  <!-- Intro -->
+  <!-- ===================== -->
+  <!--        INTRO          -->
+  <!-- ===================== -->
   <section id="intro">
-    <h2>Introduction</h2>
+    <h2>Introduction</h2> <!-- Titre de section -->
+    
+    <!-- Présentation personnelle -->
     <p>Mechanical Engineering student – passionate about fluid mechanics and challenging technical problems.</p>
     <p>Welcome to my portfolio! Here you will find some of my projects, my skills, and my academic journey.</p>
     <p>Currently studying at Polytech Lyon, I specialize in mechanical engineering, focusing on geometry optimization, vibration analysis, and numerical simulation.</p>
@@ -32,7 +48,9 @@
     <p>Thank you for visiting and see you soon!</p>
   </section>
 
-  <!-- Profile -->
+  <!-- ===================== -->
+  <!--        PROFILE        -->
+  <!-- ===================== -->
   <section id="profile">
     <h2>Profile</h2>
     <p>
@@ -40,9 +58,13 @@
     </p>
   </section>
 
-  <!-- Work Experience -->
+  <!-- ===================== -->
+  <!--     WORK EXPERIENCE    -->
+  <!-- ===================== -->
   <section id="work">
     <h2>Work Experience</h2>
+
+    <!-- Exemple de job -->
     <div class="job">
       <h3>February 2025 – July 2025 : Engineering Analysis Upgrades Intern – Dedienne Aerospace (FRA)</h3>
       <ul>
@@ -54,51 +76,38 @@
     </div>
   </section>
 
+  <!-- ===================== -->
+  <!--        PROJECTS       -->
+  <!-- ===================== -->
+  <section id="projects">
+    <h2>Projets</h2>
+    <h3>Lors de Stage</h3>
 
-
-  
-<!-- PROJECTS -->
-<section id="projects">
-  <h2>Projets</h2>
-
-  <h3>Lors de Stage</h3>
-
-  <div class="project-card">
+    <!-- Exemple de projet avec texte et image -->
+    <div class="project-card">
+      
+      <!-- Informations texte du projet -->
       <div class="project-info">
-          <h3>Création d'une valve en CAO - CREO</h3>
-          <p>
-              Création et assemblage de pièces en CAO sur Creo Parametric.
-          </p>
-          <a href="projet-cao-valve.html" class="details-btn">Détails</a>
+        <h3>Création d'une valve en CAO - CREO</h3>
+        <p>Création et assemblage de pièces en CAO sur Creo Parametric.</p>
+        <a href="projet-cao-valve.html" class="details-btn">Détails</a> <!-- Bouton pour détails -->
       </div>
 
+      <!-- Image associée au projet -->
       <div class="project-image">
-          <img src="valvacao.JPG" alt="assemblage-valve">
+        <img src="valvacao.JPG" alt="assemblage-valve">
       </div>
-  </div>
-</section>
+    </div>
+  </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <!-- SKILLS -->
+  <!-- ===================== -->
+  <!--        SKILLS         -->
+  <!-- ===================== -->
   <section id="skills">
     <h2>Technical Skills</h2>
 
     <div class="skills-columns">
-
+      <!-- Chaque skill-block correspond à un bloc de compétences -->
       <div class="skill-block">
         <h3>Programming</h3>
         <ul>
@@ -135,41 +144,47 @@
           <li>MS Office — Advanced</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== -->
+  <!--  LANGUAGES & INTERESTS -->
+  <!-- ===================== -->
+  <section id="languages-interests">
+    <h2>Languages & Interests</h2>
+
+    <div class="languages-interests-columns">
+      
+      <!-- Bloc langues -->
+      <div class="languages">
+        <h3>Languages</h3>
+        <ul>
+          <li>French: Native</li>
+          <li>English: B2-C1 (TOEIC 920)</li>
+          <li>Spanish: A2</li>
+        </ul>
+      </div>
+
+      <!-- Bloc centres d’intérêts -->
+      <div class="interests">
+        <h3>Interests</h3>
+        <ul>
+          <li>Tennis/Padel – Head of the Tennis Sports Association</li>
+          <li>Traveling and world discovery</li>
+          <li>Competitive Chess (1698 FIDE Elo)</li>
+        </ul>
+      </div>
 
     </div>
   </section>
 
- <section id="languages-interests">
-    <h2>Languages & Interests</h2>
-
-    <div class="languages-interests-columns">
-
-        <div class="languages">
-            <h3>Languages</h3>
-            <ul>
-                <li>French: Native</li>
-                <li>English: B2-C1 (TOEIC 920)</li>
-                <li>Spanish: A2</li>
-            </ul>
-        </div>
-
-        <div class="interests">
-            <h3>Interests</h3>
-            <ul>
-                <li>Tennis/Padel – Head of the Tennis Sports Association</li>
-                <li>Traveling and world discovery</li>
-                <li>Competitive Chess (1698 FIDE Elo)</li>
-            </ul>
-        </div>
-
-    </div>
-</section>
-
-
-  <!-- Footer -->
+  <!-- ===================== -->
+  <!--        FOOTER         -->
+  <!-- ===================== -->
   <footer>
     <p>© Lucas Catusse 2025</p>
   </footer>
 
 </body>
 </html>
+
