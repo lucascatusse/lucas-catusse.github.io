@@ -186,6 +186,45 @@ section h2 {
     }
 }
 
+/* LANGUAGES & INTERESTS SECTION */
+.languages-interests-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.languages, 
+.interests {
+    flex: 1 1 calc(50% - 20px);   /* 2 blocs par ligne */
+    background: #f0f8ff;
+    padding: 18px;
+    border-radius: 10px;
+    border-left: 4px solid #0077cc;
+    box-sizing: border-box;
+}
+
+.languages h3,
+.interests h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #0077cc;
+}
+
+.languages ul,
+.interests ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* Responsive : 1 colonne */
+@media (max-width: 768px) {
+    .languages,
+    .interests {
+        flex: 1 1 100%;
+    }
+}
+
+
 /* FOOTER */
 footer {
     background: #1e1e1e;
