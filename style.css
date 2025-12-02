@@ -163,6 +163,26 @@ section h2 {
 }
 
 /* ======================= */
+/*   GRID ORGANISATION     */
+/* ======================= */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    gap: 25px; /* espace horizontal et vertical */
+    margin-top: 20px;
+}
+
+/* Responsive : 1 seule colonne sur mobile */
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* ======================= */
 /*      SKILLS SECTION     */
 /* ======================= */
 .skills-columns {
