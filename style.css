@@ -98,7 +98,7 @@ section h2 {
     background: #eef6ff;               /* Fond légèrement bleu */
     padding: 25px;                     /* Espacement interne */
     border-radius: 15px;               /* Coins arrondis */
-    margin-top: 20px;                  /* Espace entre chaque projet */
+    margin: 0;                         /* pas d'espacement individuel */
     border: 1px solid #d2e6ff;        /* Bordure légère */
     box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Ombre légère */
 }
