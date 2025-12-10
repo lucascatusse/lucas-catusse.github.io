@@ -16,20 +16,42 @@
 </header>
 
 <section>
-    <h2>Résumé du projet</h2>
-    <p>
-        Description complète du quatrième projet, son contexte, ses enjeux et ses objectifs.
-    </p>
-</section>
+    <h2>Résumé des Réalisations du Projet de Mécanique des Structures</h2>
 
-<section>
-    <h2>Objectifs</h2>
+    <p>L'ensemble de ces travaux pratiques a permis de <strong>modéliser, simuler et analyser</strong> divers problèmes de mécanique des structures complexes à l'aide de la méthode des éléments finis (MEF) dans l'environnement <strong>MSC PATRAN/NASTRAN</strong>.</p>
+
+    <h3>Réalisations Clés :</h3>
     <ul>
-        <li>Objectif 1</li>
-        <li>Objectif 2</li>
-        <li>Objectif 3</li>
+        <li>
+            <strong>Modélisation d'une barre composée (TP1)</strong> : Construction du modèle 2D d'une barre indéterminée comportant trois sections de matériaux et de sections différentes (Acier et Aluminium), encastrée aux deux extrémités et soumise à une force concentrée. La réalisation a permis de déterminer les contraintes et les déplacements, puis de comparer les résultats MEF avec les solutions analytiques.
+        </li>
+        <li>
+            <strong>Analyse d'une structure en treillis (TP2)</strong> : Modélisation d'une structure en treillis <em>(truss)</em> composée de neuf barres, en définissant des conditions aux limites spécifiques (appui simple, appui à rouleau) et en appliquant une charge verticale. L'étude a inclus l'analyse de la redondance structurelle et l'impact du changement de direction de la charge.
+        </li>
+        <li>
+            <strong>Modélisation d'une poutre console (TP3)</strong> : Création du modèle d'une poutre en console <em>(cantilevered beam)</em> soumise à une charge ponctuelle à son extrémité libre, en utilisant des éléments 2D (plaque/coque). Des études de convergence de maillage et l'influence de la distorsion des éléments (parallélogrammes, trapézoïdes) sur la précision des résultats (déplacements et contraintes) ont été réalisées, notamment pour des cas de flexion et de torsion.
+        </li>
+        <li>
+            <strong>Simulation d'une structure en portique/cadre (TP4)</strong> : Modélisation d'une structure de type cadre (un banc de musculation), en utilisant des <strong>éléments poutres <em>(Beam elements)</em></strong> pour représenter les jambes et la structure horizontale. La simulation a permis d'évaluer la déflexion de la travée centrale et les contraintes de Von Mises sous une charge distribuée et des charges concentrées.
+        </li>
     </ul>
-</section>
+
+    <h2>Objectifs Pédagogiques</h2>
+    <p>Les objectifs généraux de ces projets étaient les suivants :</p>
+
+    <h3>Objectifs Techniques et Logiciels</h3>
+    <ul>
+        <li><strong>Maîtrise du Logiciel :</strong> Acquérir une compétence approfondie dans la construction de modèles, l'application des propriétés matériaux, la définition des conditions aux limites, le maillage et l'analyse post-traitement des résultats dans <strong>MSC PATRAN/NASTRAN</strong>.</li>
+        <li><strong>Types d'Éléments :</strong> Savoir choisir et appliquer correctement les types d'éléments finis appropriés (barre/rod, treillis/truss, poutre/beam, plaque/shell) pour différentes configurations structurelles.</li>
+        <li><strong>Procédures d'Analyse :</strong> Mettre en œuvre des analyses statiques, déterminer les réactions d'appui, et calculer les champs de contraintes et de déplacements.</li>
+    </ul>
+
+    <h3>Objectifs Mécaniques et Théoriques</h3>
+    <ul>
+        <li><strong>Corrélation MEF/Analytique :</strong> Vérifier la validité des résultats par éléments finis en les comparant aux solutions analytiques ou aux bornes théoriques pour s'assurer du bon ordre de grandeur.</li>
+        <li><strong>Comportement Structurel :</strong> Développer une intuition sur le comportement mécanique des systèmes, notamment pour identifier les phénomènes non pris en compte par la modélisation simplifiée (ex. : effets du coefficient de Poisson, flambement).</li>
+        <li><strong>Fiabilité du Modèle :</strong> Évaluer l'impact des paramètres de modélisation (nombre d'éléments, qualité du maillage, type d'élément) sur la précision des résultats.</li>
+    </ul>
 
 <section>
     <h2>Images & Résultats</h2>
