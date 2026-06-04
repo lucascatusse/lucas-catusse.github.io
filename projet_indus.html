@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Projet industriel</title>
+    <title>Étude de design d'une éolienne à axe vertical — Projet Industriel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,36 +10,71 @@
 
 <header>
     <div class="header-left">
-        <h1>Projet industriel </h1>
-        <h2>Détails du projet</h2>
+        <h1>Projet Industriel — Éolienne à Axe Vertical</h1>
+        <h2>Conception CAO & Simulation de Performance CFD (Ansys Fluent)</h2>
     </div>
 </header>
 
 <section>
     <h2>Résumé du projet</h2>
-    <p> Ce projet industriel de 5A Mécanique porte sur l'<strong>étude et la conception</strong> d'un modèle réduit d'<strong>éolienne à axe vertical</strong>.
-    Il combine une <strong>étude bibliographique</strong> approfondie avec la <strong>modélisation numérique (CAO/CFD)</strong> de la configuration choisie.
-    L'objectif final est la <strong>réalisation d'un prototype</strong> destiné à une <strong>étude de performance en soufflerie</strong>.
+    <p>
+        Ce projet industriel de fin d'études porte sur l'<strong>étude de performance aérodynamique et le design</strong> d'un modèle réduit d'éolienne à axe vertical. L'innovation majeure repose sur l'implémentation d'un <strong>modèle hybride</strong> combinant deux technologies :
+    </p>
+    <ul>
+        <li><strong>Une éolienne de type Savonius :</strong> constituée de demi-cylindres décalés, idéale pour l'auto-démarrage et performante à faibles vents.</li>
+        <li><strong>Une éolienne de type Darrieus :</strong> dotée de profils aérodynamiques offrant un bien meilleur rendement à vitesse nominale, mais souffrant d'un démarrage difficile.</li>
+    </ul>
+    <p>
+        L'association hybride vise à coupler le couple de démarrage du Savonius avec l'efficacité à haut rendement du Darrieus afin d'optimiser le coefficient de puissance global dans des conditions de vents réalistes et complexes.
     </p>
 </section>
 
 <section>
-    <h2>Objectifs</h2>
+    <h2>Objectifs du Projet</h2>
     <ul>
-        <li>Objectif 1</li>
-        <li>Objectif 2</li>
-        <li>Objectif 3</li>
+        <li><strong>Conception Mécanique (CAO) :</strong> Modéliser et ajuster la géométrie de l'éolienne hybride réduite adaptée au domaine des énergies renouvelables et de l'aéronautique.</li>
+        <li><strong>Génération de Maillage :</strong> Relever le défi de l'optimisation du maillage numérique (réduction de 3 millions à environ 665 000 éléments) pour garantir des temps de calcul acceptables tout en préservant la précision aux parois via l'insertion de couches d'inflation.</li>
+        <li><strong>Analyse de Performance (CFD) :</strong> Évaluer le couple total généré, le comportement transitoire de l'écoulement et le coefficient de puissance ($\lambda$ ou TSR - Tip Speed Ratio) selon plusieurs configurations de fonctionnement (phase de démarrage, régime nominal, zone de survitesse).</li>
     </ul>
 </section>
 
 <section>
-    <h2>Images & Résultats</h2>
-    <img src="Screen_eolienne_hybride.png" alt="Description image projet 2" 
-         style="width: 80%; display: block; margin: auto; border-radius: 8px;">
+    <h2>Cas d'Études & Scénarios de Vent</h2>
+    <p>L'analyse CFD sous <strong>Ansys Fluent</strong> a été menée sur deux configurations de vent distinctes afin de simuler des contraintes environnementales réelles :</p>
+    <ul>
+        <li><strong>Cas 1 — Vent Oscillant :</strong> Simulation du comportement de l'éolienne face à des fluctuations périodiques de la vitesse du flux d'air entrant.</li>
+        <li><strong>Cas 2 — Vent Cisaillant :</strong> Modélisation d'un profil de vent non uniforme (gradient de vitesse selon la hauteur), représentatif des couches limites atmosphériques terrestres au niveau du sol.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Images, Résultats & Analyse Critique</h2>
+    <p>
+        L'analyse fine des résultats numériques a permis de mettre en évidence un <strong>dysfonctionnement majeur du système hybride</strong> lors de l'augmentation du TSR (vitesse de rotation de l'éolienne par rapport à la vitesse du vent) :
+    </p>
+    <blockquote style="background: #f9f9f9; border-left: 5px solid #4d9dff; margin: 1.5em 10px; padding: 0.5em 10px;">
+        <strong>Le phénomène de "Bouchon Aérodynamique" :</strong> Lorsque le paramètre &lambda; augmente, la rotation rapide du module Savonius central finit par faire obstacle à l'écoulement de l'air au lieu de capter son énergie. Ce blocage crée une zone de sillage morte qui pénalise le Darrieus périphérique. Dans certaines zones de survitesse, l'éolienne commence ainsi à consommer de l'énergie pour maintenir sa propre rotation au lieu d'en produire.
+    </blockquote>
+
+    <div style="text-align: center; margin: 25px 0;">
+        <img src="Screen_eolienne_hybride.png" alt="Visualisation CFD de la vitesse de l'écoulement autour de l'éolienne hybride" 
+             style="width: 80%; display: block; margin: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+        <em style="display: block; margin-top: 10px; font-size: 0.9rem; color: #555;">Visualisation de la magnitude de vitesse (Velocity Magnitude) mettant en évidence les interactions aérodynamiques entre les profils Savonius et Darrieus.</em>
+    </div>
+</section>
+
+<section>
+    <h2>Compétences Développées</h2>
+    <ul>
+        <li><strong>Modélisation CAO :</strong> Conception de systèmes mécaniques tournants complexes à géométries imbriquées.</li>
+        <li><strong>Calcul de Dynamique des Fluides (CFD) :</strong> Paramétrage de calculs de flux instationnaires (Transient flow-time) et traitement de données de couples aérodynamiques.</li>
+        <li><strong>Maillage Numérique :</strong> Maîtrise des techniques de réduction de taille de maillage (éléments tétraédriques linéaires) et création de couches d'inflation aux interfaces fluides/parois pour capter les gradients de vitesse.</li>
+        <li><strong>Interprétation Physique d'Ingénierie :</strong> Diagnostic de phénomènes de pertes de rendement (bouchon aérodynamique, consommation d'énergie en survitesse) et proposition d'axes d'amélioration de design.</li>
+    </ul>
 </section>
 
 <section style="text-align:center; margin: 30px 0;">
-    <a href="index.html" class="details-btn">⬅ Retour</a>
+    <a href="index.html" class="details-btn">⬅ Retour à l'accueil</a>
 </section>
 
 </body>
