@@ -85,6 +85,23 @@ section h2 {
 }
 
 /* ======================= */
+/*       JOB HEADER        */
+/* ======================= */
+.job-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.job-header h3 {
+    margin: 0;
+    flex: 1;
+}
+
+/* ======================= */
 /*      PROJECT CARD       */
 /* ======================= */
 #projects h3 {
