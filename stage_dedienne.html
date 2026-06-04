@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage Dedienne Aerospace — Lucas Catusse</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .back-btn {
+      display: inline-block;
+      margin: 20px 0 0 0;
+      padding: 10px 20px;
+      background: #4d9dff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .back-btn:hover { background: #1c74e9; }
+
+    .stage-hero {
+      background: #1e1e1e;
+      color: white;
+      padding: 40px 30px;
+    }
+    .stage-hero h1 { margin: 0 0 8px; font-size: 1.8rem; }
+    .stage-hero .subtitle { color: #4db8ff; font-size: 1rem; margin: 0; }
+
+    .detail-section {
+      background: white;
+      max-width: 1000px;
+      margin: 25px auto;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .detail-section h2 {
+      color: #0077cc;
+      border-bottom: 2px solid #4db8ff;
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+    }
+    .detail-section h3 { color: #003f88; }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+    .tag-list li {
+      background: #e8f4ff;
+      border: 1px solid #4db8ff;
+      color: #0055aa;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+    .mission-card {
+      background: #f0f8ff;
+      border-left: 4px solid #0077cc;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .mission-card h4 { margin: 0 0 8px; color: #003f88; }
+    .mission-card p { margin: 0; font-size: 0.95rem; }
+
+    .kpi-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .kpi-box {
+      flex: 1 1 140px;
+      background: #003f88;
+      color: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .kpi-box .number { font-size: 2rem; font-weight: bold; color: #4db8ff; }
+    .kpi-box .label { font-size: 0.85rem; margin-top: 4px; }
+
+    @media (max-width: 700px) {
+      .mission-grid { grid-template-columns: 1fr; }
+    }
+
+    .nav-bar {
+      background: #1e1e1e;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .nav-bar a { color: #4db8ff; text-decoration: none; font-size: 0.95rem; }
+    .nav-bar a:hover { text-decoration: underline; }
+    .nav-bar span { color: #888; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="nav-bar">
+    <a href="index.html">← Retour au portfolio</a>
+    <span>/</span>
+    <span style="color:white">Stage Dedienne Aerospace</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="stage-hero">
+    <h1>Stage Ingénieur — Analyses d'Upgrades</h1>
+    <p class="subtitle">Dedienne Aerospace — Février 2025 → Juillet 2025</p>
+  </div>
+
+  <!-- Contexte -->
+  <section class="detail-section">
+    <h2>Contexte & Entreprise</h2>
+    <p>
+      <strong>Dedienne Aerospace</strong> est un équipementier aéronautique spécialisé dans la fabrication d'outillages de maintenance pour moteurs d'avion (outils de montage/démontage, bancs d'essai, gabarits). Ses clients incluent les grands motoristes mondiaux (CFM, Safran, GE, Rolls-Royce…) ainsi que les MRO (Maintenance, Repair & Overhaul).
+    </p>
+    <p>
+      L'objectif du stage était d'analyser les possibilités de mise à niveau (<em>upgrades</em>) de l'outillage existant chez les clients, en comparant les versions en service avec les versions actuelles du catalogue Dedienne, afin de proposer des solutions de conformité et développer le chiffre d'affaires aftermarket.
+    </p>
+  </section>
+
+  <!-- KPIs -->
+  <section class="detail-section">
+    <h2>Résultats Clés</h2>
+    <div class="kpi-row">
+      <div class="kpi-box">
+        <div class="number">100+</div>
+        <div class="label">Plans techniques analysés</div>
+      </div>
+      <div class="kpi-box">
+        <div class="number">54</div>
+        <div class="label">Versions d'outillage comparées</div>
+      </div>
+      <div class="kpi-box">
+        <div class="number">34</div>
+        <div class="label">Upgrades proposés et validés</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Missions -->
+  <section class="detail-section">
+    <h2>Missions réalisées</h2>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <h4>Gestion des achats techniques</h4>
+        <p>Prise en charge des achats techniques liés aux projets d'upgrade : identification des besoins, consultation fournisseurs, suivi des commandes.</p>
+      </div>
+      <div class="mission-card">
+        <h4>Analyse de plans & comparaison de versions</h4>
+        <p>Analyse de plus de 100 plans techniques et comparaison de 54 versions d'outillage pour identifier les écarts et proposer des solutions de mise en conformité.</p>
+      </div>
+      <div class="mission-card">
+        <h4>Bases de données Excel</h4>
+        <p>Maintenance et mise à jour de bases de données Excel pour structurer l'offre d'upgrades et élargir la base clients. Développement d'outils de suivi automatisés.</p>
+      </div>
+      <div class="mission-card">
+        <h4>Suivi de performance sous-traitants</h4>
+        <p>Conception d'outils de monitoring pour mesurer l'efficacité des sous-traitants (usinage, tests, fabrication) et identifier les axes d'amélioration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compétences mobilisées -->
+  <section class="detail-section">
+    <h2>Compétences & Outils</h2>
+    <ul class="tag-list">
+      <li>Lecture de plans techniques</li>
+      <li>Excel (avancé)</li>
+      <li>Gestion de bases de données</li>
+      <li>Achats techniques</li>
+      <li>Analyse comparative</li>
+      <li>Outillage aéronautique</li>
+      <li>Suivi sous-traitants</li>
+      <li>Sage (ERP)</li>
+      <li>Développement commercial aftermarket</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© Lucas Catusse 2025</p>
+  </footer>
+
+</body>
+</html>
