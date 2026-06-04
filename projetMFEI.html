@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Création d'une valve en CAO - CREO</title>
+    <title>Modélisation de Panaches et Fontaines Non-Boussinesq - MFEI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,25 +10,93 @@
 
 <header>
     <div class="header-left">
-        <h1>Création d'une valve en CAO - CREO</h1>
-        <h2>Détails du projet</h2>
+        <h1>Modélisation de Panaches et Fontaines Non-Boussinesq</h1>
+        <h2>Projet Numérique & Théorique | Mécanique des Fluides Environnementaux et Industriels</h2>
     </div>
 </header>
 
 <section>
     <h2>Résumé du projet</h2>
     <p>
-        Ce projet consiste à concevoir 8 pièces différentes (voir ci-dessous) pour ensuite les assembler et obtenir une valve. 
-        J'ai réalisé ce projet sur Creo Parametric.
+        Ce mini-project est dédié à l'étude approfondie de la dynamique des panaches (plumes) et fontaines turbulentes d'un point de vue analytique et numérique. L'enjeu principal consiste à évaluer l'impact et à identifier les limites de l'approximation classique de Boussinesq (qui suppose de faibles variations de densité) lorsque le fluide éjecté présente un fort contraste de densité avec le milieu ambiant. 
+    </p>
+    <p>
+        Pour s'affranchir de cette approximation dans les régimes fortement instables, nous avons formulé et couplé les équations de conservation de volume, de masse et de quantité de mouvement. Les modèles ont ensuite été résolus numériquement sur <strong>Python</strong> afin de simuler des cas académiques et des scénarios géophysiques réels majeurs.
     </p>
 </section>
 
 <section>
-    <h2>Objectifs</h2>
+    <h2>Objectifs du Projet</h2>
     <ul>
-        <li>Se familiariser avec Creo</li>
-        <li>Acquérir les bases de la CAO</li>
-        <li>Développer des compétences en modélisation 3D</li>
+        <li><strong>Analyse Théorique :</strong> Maîtriser la formulation intégrale des équations Navier-Stokes (modèle <i>Top-Hat</i> et profils Gaussiens) appliquées aux jets et écoulements turbulents libres.</li>
+        <li><strong>Développement Numérique :</strong> Implémenter des algorithmes de résolution d'équations différentielles ordinaires (EDO) non-linéaires sous Python (méthodes d'Euler Explicite et de Runge-Kutta d'ordre 4 - RK4).</li>
+        <li><strong>Étude Paramétrique :</strong> Quantifier l'évolution des flux physiques (masse, impulsion, flottabilité), de la vitesse verticale et de l'élargissement des panaches en milieux homogènes et stratifiés.</li>
+        <li><strong>Application aux Cas Réels :</strong> Valider et confronter les modèles numériques avec des données de catastrophes industrielles ou d'événements géophysiques.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Scénarios & Phénomènes Physiques Simulés</h2>
+    <p>Le projet s'est articulé autour de la modélisation et de la simulation de 7 configurations spécifiques :</p>
+    
+    <table border="1" style="width:100%; border-collapse: collapse; margin: 20px 0; text-align: left;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 10px;">Catégorie</th>
+                <th style="padding: 10px;">Scénario / Cas d'étude</th>
+                <th style="padding: 10px;">Fluides & Milieux</th>
+                <th style="padding: 10px;">Phénomène physique mis en évidence</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4" style="padding: 10px; font-weight: bold;">Bancs d'essai théoriques</td>
+                <td style="padding: 10px;">1. Panache Simple (Boussinesq)</td>
+                <td style="padding: 10px;">Air chaud dans Air ambiant</td>
+                <td style="padding: 10px;">Validation du code par superposition parfaite avec la solution analytique de Morton-Taylor-Turner (1956). Expansion conique linéaire.</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">2. Panache Léger (Non-Boussinesq)</td>
+                <td style="padding: 10px;">Hélium pur injecté dans l'Air</td>
+                <td style="padding: 10px;">Mise en évidence de l'effet de striction (<i>necking effect</i>) et forte accélération initiale due à la faible masse inertielle de la source.</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">3. Fontaine de Gaz Lourd</td>
+                <td style="padding: 10px;">Hexafluorure de soufre (SF6) dans l'Air</td>
+                <td style="padding: 10px;">Régime Non-Boussinesq strict (rapport de densité &approx; 5). Décélération du fluide sous son propre poids jusqu'à une hauteur maximale.</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">4. Fontaine d'Eau Salée</td>
+                <td style="padding: 10px;">Eau salée injectée dans l'Eau douce</td>
+                <td style="padding: 10px;">Évaluation de la convergence et des limites des approximations (critère d'écart de densité &approx; 3%).</td>
+            </tr>
+            <tr>
+                <td rowspan="3" style="padding: 10px; font-weight: bold;">Applications Réelles</td>
+                <td style="padding: 10px;">5. Marée noire "Deepwater Horizon" (2010)</td>
+                <td style="padding: 10px;">Pétrole brut léger dans un Océan stratifié</td>
+                <td style="padding: 10px;">Modélisation du phénomène de piégeage du fluide (<i>trapping</i>) dans les profondeurs du golfe du Mexique dû à la stratification de l'océan (Fréquence de Brunt-Väisälä).</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">6.1 Éruption de l'Eyjafjallajökull (Impulsion haute)</td>
+                <td style="padding: 10px;">Mélange magmatique / Gaz à 1200K dans Atmosphère</td>
+                <td style="padding: 10px;">Couplage thermodynamique complet (loi des gaz parfaits). Succès du panache grâce à une vitesse initiale suffisante pour entraîner l'air ambiant et monter en altitude.</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">6.2 Éruption de l'Eyjafjallajökull (Impulsion basse)</td>
+                <td style="padding: 10px;">Mélange magmatique / Gaz à 1200K dans Atmosphère</td>
+                <td style="padding: 10px;">Effondrement de la colonne éruptive (<i>column collapse</i>). La faible vitesse dissipe l'impulsion initiale avant réchauffement de l'air, formant une fontaine dense dangereuse.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Compétences Développées</h2>
+    <ul>
+        <li><strong>Génie d'Action / Mécanique des Fluides :</strong> Compréhension fine des transferts de quantité de mouvement, des processus d'entraînement turbulents (<i>entrainment mechanism</i>) et des instabilités gravitationnelles de flottabilité négative.</li>
+        <li><strong>Physique Thermodynamique :</strong> Formulations d'équations d'état couplées (Modélisation de l'évolution de l'enthalpie, de la capacité thermique spécifique de mélanges et de la densité locale basée sur la loi des gaz parfaits).</li>
+        <li><strong>Calcul Scientifique & Programmation :</strong> Écriture de scripts structurés et robustes en Python (utilisation intensive de <i>NumPy</i> et <i>Matplotlib</i>), discrétisation de domaines spatiaux, gestion des boucles de calcul itératives et critères d'arrêt physiques (vitesse s'annulant au sommet z<sub>max</sub>).</li>
+        <li><strong>Analyse Critique d'Ingénierie :</strong> Aptitude à confronter des modèles de simulation simplifiés (Boussinesq) à des modèles réalistes à forts contrastes pour juger de la précision des prédictions requises en bureau d'études.</li>
     </ul>
 </section>
 
@@ -44,5 +112,3 @@
 
 </body>
 </html>
-
-
