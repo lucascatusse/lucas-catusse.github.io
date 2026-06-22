@@ -53,9 +53,11 @@ header h2 {
 }
 
 .header-right img {
-    max-width: 150px;           /* Taille maximale de l’image */
-    border-radius: 50%;         /* Rend l’image circulaire */
-    border: 3px solid #4db8ff;  /* Bordure bleue autour de l’image */
+    width: 150px;               /* Largeur fixe */
+    height: 150px;              /* Hauteur fixe identique */
+    object-fit: cover;          /* Centre et recadre la photo sans la déformer */
+    border-radius: 8px;         /* Donne un angle légèrement arrondi plus esthétique qu'un carré brut */
+    border: 3px solid #4db8ff;  /* Ta bordure bleue */
 }
 
 /* ======================= */
