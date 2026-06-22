@@ -54,9 +54,9 @@ header h2 {
 
 .header-right img {
     width: 150px;               /* Largeur fixe */
-    height: 150px;              /* Hauteur fixe identique */
-    object-fit: cover;          /* Centre et recadre la photo sans la déformer */
-    border-radius: 8px;         /* Donne un angle légèrement arrondi plus esthétique qu'un carré brut */
+    height: 150px;              /* Hauteur fixe identique pour créer un carré parfait */
+    object-fit: cover;          /* Centre et recadre la photo automatiquement sans la déformer */
+    border-radius: 50%;         /* Rend le carré parfaitement circulaire */
     border: 3px solid #4db8ff;  /* Ta bordure bleue */
 }
 
