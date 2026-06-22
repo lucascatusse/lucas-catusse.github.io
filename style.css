@@ -55,7 +55,7 @@ header h2 {
 .header-right img {
     max-width: 150px;           /* Taille maximale de l’image */
     border-radius: 50%;         /* Rend l’image circulaire */
-    border: 3px solid #4db8ff; /* Bordure bleue autour de l’image */
+    border: 3px solid #4db8ff;  /* Bordure bleue autour de l’image */
 }
 
 /* ======================= */
@@ -73,7 +73,7 @@ section {
 section h2 {
     border-bottom: 2px solid #4db8ff; /* Ligne bleue sous le titre */
     padding-bottom: 8px;              /* Espace entre la ligne et le texte */
-    margin-bottom: 18px;              /* Espace sous le titre */
+    margin-bottom: 25px;              /* Espace sous le titre */
 }
 
 /* ======================= */
@@ -116,23 +116,23 @@ section h2 {
     padding: 25px;                     /* Espacement interne */
     border-radius: 15px;               /* Coins arrondis */
     margin: 0;                         /* pas d'espacement individuel */
-    border: 1px solid #d2e6ff;        /* Bordure légère */
+    border: 1px solid #d2e6ff;         /* Bordure légère */
     box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Ombre légère */
 }
 
 .project-info {
-    flex: 1 1 50%;                      /* Prend environ 50% de la largeur */
+    flex: 1 1 50%;                     /* Prend environ 50% de la largeur */
 }
 
 .project-info h3 {
-    margin-top: 0;                      /* Supprime la marge par défaut */
-    text-align: center;                 /* Centre le titre */
-    color: #003f88;                     /* Couleur du titre */
+    margin-top: 0;                     /* Supprime la marge par défaut */
+    text-align: center;                /* Centre le titre */
+    color: #003f88;                    /* Couleur du titre */
 }
 
 .project-info p {
-    text-align: center;                 /* Centre le texte */
-    margin-bottom: 20px;                /* Espace sous le paragraphe */
+    text-align: center;                /* Centre le texte */
+    margin-bottom: 20px;               /* Espace sous le paragraphe */
 }
 
 .details-btn {
@@ -142,7 +142,7 @@ section h2 {
     color: white;                       /* Texte blanc */
     text-decoration: none;              /* Supprime le soulignement */
     border-radius: 8px;                 /* Coins arrondis */
-    font-weight: bold;                   /* Texte gras */
+    font-weight: bold;                  /* Texte gras */
     text-align: center;                 /* Centre le texte */
     transition: 0.2s;                   /* Transition douce pour l’effet hover */
 }
@@ -153,13 +153,13 @@ section h2 {
 
 .project-image {
     flex: 1 1 45%;                      /* Prend environ 45% de la largeur */
-    text-align: right;                   /* Image alignée à droite */
+    text-align: right;                  /* Image alignée à droite */
 }
 
 .project-image img {
-    width: 100%;                         /* Occupe toute la largeur du bloc */
-    max-width: 450px;                    /* Taille maximale */
-    border-radius: 10px;                 /* Coins arrondis */
+    width: 100%;                        /* Occupe toute la largeur du bloc */
+    max-width: 450px;                   /* Taille maximale */
+    border-radius: 10px;                /* Coins arrondis */
 }
 
 /* Responsive pour Project Card */
@@ -182,7 +182,6 @@ section h2 {
 /* ======================= */
 /*   GRID ORGANISATION     */
 /* ======================= */
-
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
@@ -197,82 +196,111 @@ section h2 {
     }
 }
 
+/* ========================================= */
+/*   NOUVELLES SECTIONS SKILLS & INTÉRÊTS    */
+/* ========================================= */
 
-
-/* ======================= */
-/*      SKILLS SECTION     */
-/* ======================= */
-.skills-columns {
-    display: flex;                        /* Flexbox pour les colonnes de skills */
-    flex-wrap: wrap;                      /* Permet aux blocs de passer à la ligne */
-    gap: 20px;                            /* Espace entre les blocs */
+/* Grille principale des compétences et intérêts */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-.skill-block {
-    flex: 1 1 calc(50% - 20px);          /* Chaque bloc prend environ 50% de largeur moins le gap */
-    background: #f0f8ff;                  /* Fond bleu très clair */
-    padding: 18px;                         /* Espacement interne */
-    border-radius: 10px;                   /* Coins arrondis */
-    border-left: 4px solid #0077cc;       /* Bande bleue à gauche */
-    box-sizing: border-box;                /* Inclut padding et border dans la largeur totale */
+.grid-container-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
 }
 
-.skill-block h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
+/* Bloc de catégories (Sous-titres) */
+.category-block {
+    background: transparent;
+}
+
+.category-title {
+    font-size: 1.2rem;
     color: #0077cc;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #d2e6ff;
+    padding-bottom: 8px;
 }
 
-.skill-block ul {
-    padding-left: 20px; /* Décalage du texte de la liste */
-    margin: 0;          /* Supprime la marge par défaut */
-}
-
-/* Responsive : 1 colonne sur petit écran */
-@media (max-width: 768px) {
-    .skill-block {
-        flex: 1 1 100%;
-    }
-}
-
-/* ======================= */
-/* LANGUAGES & INTERESTS   */
-/* ======================= */
-.languages-interests-columns {
-    display: flex;                        /* Flexbox pour les 2 colonnes */
-    flex-wrap: wrap;                      /* Passe en colonne si écran petit */
-    gap: 20px;                            /* Espace entre les blocs */
-    justify-content: space-between;       /* Aligne les blocs sur toute la largeur */
-}
-
-.languages, 
-.interests {
-    flex: 1 1 calc(50% - 20px);          /* Chaque bloc prend 50% de la largeur */
-    background: #f0f8ff;                 /* Fond bleu clair */
-    padding: 18px;
+/* Design des Cartes (Cards) */
+.card {
+    background: #ffffff;
+    border: 1px solid #e2efff;
     border-radius: 10px;
-    border-left: 4px solid #0077cc;      /* Bande bleue à gauche */
-    box-sizing: border-box;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 119, 204, 0.05); /* Ombre bleutée très discrète */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.languages h3,
-.interests h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #0077cc;
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 119, 204, 0.12); /* Accentuation de l'ombre au survol */
 }
 
-.languages ul,
-.interests ul {
-    padding-left: 20px;
+/* En-tête de la carte (Titre + Badge) */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: #003f88;
     margin: 0;
 }
 
-/* Responsive : 1 colonne sur petit écran */
+/* Texte justificatif de la carte */
+.card-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+}
+
+/* Badges de niveau */
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap; /* Empêche le texte du badge de passer à la ligne */
+}
+
+.badge-advanced { background-color: #27ae60; }     /* Vert pour Avancé */
+.badge-intermediate { background-color: #f39c12; } /* Orange pour Intermédiaire */
+.badge-beginner { background-color: #95a5a6; }     /* Gris pour Débutant */
+
+/* Section spécifique aux images des centres d'intérêt */
+.interest-image img {
+    width: calc(100% + 40px); /* Compense le padding de 20px de la carte (20 + 20) */
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0; /* Arrondis uniquement en haut */
+    margin: -20px -20px 15px -20px; /* Colle l'image aux bords de la carte */
+    display: block;
+}
+
+/* Responsive pour les cartes d'intérêts sur petits écrans */
 @media (max-width: 768px) {
-    .languages,
-    .interests {
-        flex: 1 1 100%;
+    .grid-container-2col {
+        grid-template-columns: 1fr;
+    }
+    .span-2-cols {
+        grid-column: span 1 !important;
     }
 }
 
@@ -286,7 +314,3 @@ footer {
     padding: 15px;                   /* Espacement interne */
     margin-top: 40px;                /* Espace au-dessus du footer */
 }
-
-
-
-
