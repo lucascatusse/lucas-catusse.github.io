@@ -6,42 +6,97 @@
   <title>Stage Florence — Lucas Catusse</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .back-btn {
-      display: inline-block;
-      margin: 20px 0 0 0;
-      padding: 10px 20px;
-      background: #4d9dff;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.2s;
+    :root {
+      --primary: #0077cc;
+      --primary-dark: #003f88;
+      --secondary: #4db8ff;
+      --bg-dark: #1e1e1e;
+      --bg-light: #f0f8ff;
+      --text-dark: #333;
     }
-    .back-btn:hover { background: #1c74e9; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      line-height: 1.6;
+    }
+
+    .nav-bar {
+      background: var(--bg-dark);
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .nav-bar a { color: var(--secondary); text-decoration: none; font-size: 0.95rem; }
+    .nav-bar a:hover { text-decoration: underline; }
+    .nav-bar span { color: #888; }
 
     .stage-hero {
-      background: #1e1e1e;
+      background: linear-gradient(135deg, #1e1e1e 0%, #0d253f 100%);
       color: white;
-      padding: 40px 30px;
+      padding: 60px 30px;
+      text-align: center;
     }
-    .stage-hero h1 { margin: 0 0 8px; font-size: 1.8rem; }
-    .stage-hero .subtitle { color: #4db8ff; font-size: 1rem; margin: 0; }
+    .stage-hero h1 { margin: 0 0 12px; font-size: 2.2rem; font-weight: 700; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .stage-hero .subtitle { color: var(--secondary); font-size: 1.1rem; margin: 0; font-weight: 400; }
 
     .detail-section {
       background: white;
       max-width: 1000px;
-      margin: 25px auto;
-      padding: 25px 30px;
+      margin: 30px auto;
+      padding: 35px 40px;
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
     .detail-section h2 {
-      color: #0077cc;
-      border-bottom: 2px solid #4db8ff;
-      padding-bottom: 8px;
-      margin-bottom: 18px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
     }
-    .detail-section h3 { color: #003f88; }
+    .detail-section h3 { color: var(--primary-dark); margin-top: 25px; font-size: 1.25rem; }
+    
+    p { margin-bottom: 16px; text-align: justify; }
+    ul { padding-left: 20px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; }
+
+    /* Modélisation mathématique box */
+    .math-box {
+      background: #f7f9fa;
+      border: 1px solid #e1e4e6;
+      border-left: 4px solid #6c757d;
+      border-radius: 6px;
+      padding: 15px 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .mission-card {
+      background: var(--bg-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .mission-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .mission-card h4 { margin: 0 0 10px; color: var(--primary-dark); font-size: 1.1rem; }
+    .mission-card p { margin: 0; font-size: 0.95rem; text-align: left; }
 
     .tag-list {
       display: flex;
@@ -53,114 +108,143 @@
     }
     .tag-list li {
       background: #e8f4ff;
-      border: 1px solid #4db8ff;
+      border: 1px solid var(--secondary);
       color: #0055aa;
-      padding: 5px 14px;
+      padding: 6px 16px;
       border-radius: 20px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: bold;
+      margin: 0;
     }
 
-    .mission-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 10px;
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--bg-dark);
+      color: #aaa;
+      margin-top: 60px;
+      font-size: 0.9rem;
     }
-    .mission-card {
-      background: #f0f8ff;
-      border-left: 4px solid #0077cc;
-      border-radius: 8px;
-      padding: 16px;
-    }
-    .mission-card h4 { margin: 0 0 8px; color: #003f88; }
-    .mission-card p { margin: 0; font-size: 0.95rem; }
 
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       .mission-grid { grid-template-columns: 1fr; }
+      .detail-section { padding: 20px; margin: 15px; }
+      .stage-hero h1 { font-size: 1.6rem; }
     }
-
-    .nav-bar {
-      background: #1e1e1e;
-      padding: 10px 30px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .nav-bar a { color: #4db8ff; text-decoration: none; font-size: 0.95rem; }
-    .nav-bar a:hover { text-decoration: underline; }
-    .nav-bar span { color: #888; }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <div class="nav-bar">
     <a href="index.html">← Retour au portfolio</a>
     <span>/</span>
-    <span style="color:white">Stage Florence</span>
+    <span style="color:white">Stage de fin d'études — Florence</span>
   </div>
 
-  <!-- Hero -->
   <div class="stage-hero">
-    <h1>Refroidissement d'une chambre de combustion RDE par structures TPMS</h1>
-    <p class="subtitle">Stage de fin d'études — Laboratoire Heat Transfer, Florence (ITA) — Mars 2025 → Septembre 2025</p>
+    <h1>Optimisation Thermo-Hydraulique d'un Échangeur TPMS pour le Refroidissement de Chambres de Combustion RDE</h1>
+    <p class="subtitle">Laboratoire d'Échange Thermique (DIEF) — Università degli Studi di Firenze (ITA) — Mars 2025 → Septembre 2025</p>
   </div>
 
-  <!-- Contexte -->
   <section class="detail-section">
-    <h2>Contexte & Objectifs</h2>
+    <h2>Contexte Technologique & Enjeux</h2>
     <p>
-      Ce stage de fin d'études s'est déroulé au sein d'un laboratoire spécialisé en transferts thermiques à Florence. L'objectif principal était d'étudier le refroidissement d'une chambre de combustion de type <strong>RDE (Rotating Detonation Engine)</strong> — un concept de propulsion à haut rendement — en utilisant des structures <strong>TPMS (Triply Periodic Minimal Surfaces)</strong> comme canaux de refroidissement internes.
+      Les moteurs à détonation rotative (<strong>RDE — Rotating Detonation Engines</strong>) représentent l'avenir de la propulsion aérospatiale et des turbines à gaz à haute efficacité grâce à leur cycle thermodynamique à apport de pression (Pressure Gain Combustion). Cependant, la présence d'ondes de détonation permanentes génère des flux thermiques extrêmes sur les parois de la chambre de combustion (températures de gaz atteignant 2200 K, coefficients de transfert côté chaud de l'ordre de 2500 W/m²·K). 
     </p>
     <p>
-      Ces structures géométriques complexes (type Gyroid, Schwartz P, etc.) offrent un excellent rapport surface d'échange / volume, ce qui en fait des candidats idéaux pour les systèmes de refroidissement haute performance.
+      Pour relever ce défi thermique, ce projet étudie l'intégration d'une couronne de refroidissement interne utilisant des structures géométriques innovantes : les <strong>TPMS (Triply Periodic Minimal Surfaces)</strong>, et plus particulièrement la topologie <strong>Schwarz Diamond</strong>. Fabriquées par fabrication additive métallique, ces architectures poreuses offrent un rapport surface d'échange/volume exceptionnel et favorisent un mélange fluide tridimensionnel hautement convectif.
     </p>
   </section>
 
-  <!-- Missions -->
   <section class="detail-section">
-    <h2>Missions réalisées</h2>
+    <h2>1. Modélisation Physique & Moteur de Résolution (Python)</h2>
+    <p>
+      La première phase de mon stage a consisté à poser les bases théoriques et à coder un solveur analytico-numérique en Python capable de prédire les performances de l'échangeur sans recourir immédiatement à des simulations 3D lourdes. 
+    </p>
+    <h3>Le Système de Physique Résolue</h3>
+    <p>
+      Le modèle résout simultanément un système non-linéaire à 4 équations et 4 inconnues couplées (débit massique $\dot{m}$, Reynolds $Re$, Nusselt $Nu$, et température de sortie $T_{out}$) :
+    </p>
+    <div class="math-box">
+      [1] Q_tot = ṁ · Cp · (T_out − T_in)          --> Bilan d'énergie fluide<br>
+      [2] Q_tot = h · S_éch · LMTD                 --> Équation de transfert TPMS<br>
+      [3] h     = (Nu · k) / Dh                    --> Corrélation de Nusselt (Yan / Renon)<br>
+          Nu    = 0.49 · Pr⁰·⁴ · Re⁰·⁶²            (Propriétés Diamond)<br>
+      [4] Re    = (ṁ · Dh) / (μ · A_cross)         --> Définition du Reynolds interstitiel
+    </div>
+
+    <h3>Algorithme de Brent & Exploration de l'Espace (Monte-Carlo)</h3>
+    <p>
+      Le système couplé est mathématiquement ramené à une équation scalaire sous forme de résidu : $F(T_{out}) = h_{Nu}(T_{out}) - h_{LMTD}(T_{out}) = 0$. 
+    </p>
+    <ul>
+      <li><strong>Résolution par Dichotomie de Brent :</strong> Utilisation de l'algorithme <code>scipy.optimize.brentq</code>. Cette méthode hybride combine la rapidité de l'interpolation quadratique inverse et de la méthode de la sécante avec la robustesse absolue de la bisection (dichotomie) pour converger vers la température de sortie exacte en moins de 15 itérations.</li>
+      <li><strong>Exploration Multi-variable de Monte-Carlo :</strong> Afin de cartographier l'espace des solutions, j'ai développé un algorithme générant plus de 200 000 tirages aléatoires simultanés des variables libres (Porosité $\phi$, taille de cellule $L_m$, épaisseur de couronne $e$, températures limites $T_{in}$ et $T_{wall}$). </li>
+      <li><strong>Filtrage et Contraintes Réelles :</strong> Intégration des contraintes physiques et de fabrication additive métallique ($\Delta P_{max} = 1\text{ bar}$, $L_{m,min} = 1\text{ mm}$, nombre de cellules radiales $\ge 2$ pour garantir la validité des corrélations). L'algorithme calcule les pertes de charge via la loi de Darcy-Weisbach modifiée par le facteur de friction de Renon ($f = 1.85 \cdot Re^{-0.17}$).</li>
+    </ul>
+  </section>
+
+  <section class="detail-section">
+    <h2>2. Simulations CFD Thermiques & Automatisation (Ansys Fluent)</h2>
+    <p>
+      Afin de valider les modèles analytiques et de capturer les phénomènes hydrodynamiques tridimensionnels locaux (zones de recirculation, gradients de température dans la matrice solide), j'ai mis en place la chaîne de simulation numérique 3D.
+    </p>
     <div class="mission-grid">
       <div class="mission-card">
-        <h4>Algorithme de couplage Monte-Carlo</h4>
-        <p>Développement d'un algorithme couplant les aspects thermiques, hydrauliques et géométriques par méthode de Monte-Carlo pour identifier les points de fonctionnement viables du système.</p>
+        <h4>Simulations CHT (Conjugate Heat Transfer)</h4>
+        <p>Modélisation sous Ansys Fluent du transfert thermique conjugué : couplage direct entre la conduction thermique au sein de la matrice solide du TPMS Diamond (en alliage métallique) et la convection forcée de l'air de refroidissement circulant à haute vitesse dans les canaux sinueux.</p>
       </div>
       <div class="mission-card">
-        <h4>Simulations CFD (CHT)</h4>
-        <p>Réalisation de simulations de transferts thermiques conjugués (Conjugate Heat Transfer) en convection forcée sous <strong>Ansys Fluent</strong> pour évaluer les performances des géométries TPMS.</p>
-      </div>
-      <div class="mission-card">
-        <h4>Automatisation Python</h4>
-        <p>Développement de scripts Python pour automatiser l'ensemble de la chaîne de calculs CFD : génération des cas, lancement des simulations, et post-traitement des résultats.</p>
-      </div>
-      <div class="mission-card">
-        <h4>DoE & Surrogate Models</h4>
-        <p>Déploiement de plans d'expériences (Design of Experiments) et de modèles de substitution (Surrogate Models) pour l'optimisation globale du design avec un minimum de simulations coûteuses.</p>
+        <h4>Scripting & Automatisation Python</h4>
+        <p>Développement de scripts d'automatisation (Python / Journal Files Fluent) pour industrialiser la chaîne numérique. Le script orchestre de manière transparente la génération du maillage fluide/solide, la définition des propriétés dépendant de la température, l'application des conditions aux limites, le lancement du solveur et l'extraction automatique des données clés (vitesse interstitielle, Nusselt local, profils de pression).</p>
       </div>
     </div>
   </section>
 
-  <!-- Compétences mobilisées -->
   <section class="detail-section">
-    <h2>Compétences & Outils</h2>
-    <ul class="tag-list">
-      <li>Ansys Fluent</li>
-      <li>Python</li>
-      <li>CFD / CHT</li>
-      <li>Méthode Monte-Carlo</li>
-      <li>Design of Experiments</li>
-      <li>Surrogate Modeling</li>
-      <li>TPMS Geometry</li>
-      <li>Transferts thermiques</li>
-      <li>Propulsion RDE</li>
-      <li>Post-traitement numérique</li>
+    <h2>3. Travaux Futurs & Perspectives d'Optimisation</h2>
+    <p>
+      La dernière partie de mon stage se concentre sur l'exploitation intensive des données générées et le déploiement d'outils d'optimisation mathématique avancés pour concevoir la géométrie finale de l'échangeur :
+    </p>
+    <ul>
+      <li><strong>Plans d'Expériences (DoE - Design of Experiments) :</strong> Sélection stratégique de points de fonctionnement dans les zones viables identifiées par Monte-Carlo pour lancer des simulations CFD haute fidélité bien ciblées.</li>
+      <li><strong>Modèles de Substitution (Surrogate Models / Métamodélisation) :</strong> Construction de surfaces de réponse mathématiques (Kriging ou Radial Basis Functions) entraînées sur les résultats CFD. Ces modèles "boîte noire" légers simuleront le comportement complexe thermo-hydraulique du TPMS en une fraction de seconde au lieu de plusieurs heures de calcul CFD.</li>
+      <li><strong>Optimisation Multi-Objectif Globale :</strong> Couplage des modèles de substitution avec un algorithme génétique (type NSGA-II) pour trouver le meilleur compromis (Front de Pareto) : maximiser la puissance évacuée ($Q_{tot} \approx 71-84\text{ kW}$) pour protéger les parois de la chambre, tout en minimisant la puissance de pompage requise (pertes de charge $\Delta P$).</li>
     </ul>
   </section>
 
-  <!-- Footer -->
+  <section class="detail-section">
+    <h2>Livrables & Résultats Clés</h2>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <h4>Code de Résolution Évolué</h4>
+        <p>Un outil robuste d'aide à la décision en Python capable de traiter 200 000 configurations en quelques secondes, de filtrer les critères de cohérence physique à $\pm 1\%$ (écart entre $h_{Nu}$ et $h_{LMTD}$) et de classer les points selon un score multi-critères pondéré.</p>
+      </div>
+      <div class="mission-card">
+        <h4>Analyses Graphiques Diagnostiques</h4>
+        <p>Génération de visualisations complexes (Fronts de Pareto $\Delta T$ vs $\Delta P$, cartographies de vitesse interstitielle, distributions statistiques de Reynolds) exportées automatiquement pour l'aide au design industriel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <h2>Compétences & Outils Maîtrisés</h2>
+    <ul class="tag-list">
+      <li>Ansys Fluent (Solveur RANS, CHT)</li>
+      <li>Python (NumPy, SciPy Optimize, Pandas, Matplotlib)</li>
+      <li>Méthode de Brent (brentq)</li>
+      <li>Modélisation Monte-Carlo</li>
+      <li>Mécanique des Fluides Numérique (CFD)</li>
+      <li>Thermique Avancée (LMTD, Convection Interstitielle)</li>
+      <li>Plans d'Expériences (DoE)</li>
+      <li>Modèles de Substitution (Surrogate Modeling)</li>
+      <li>Structures Cellulaires TPMS (Schwarz Diamond)</li>
+      <li>Propulsion Avancée (Chambres RDE / RDC)</li>
+    </ul>
+  </section>
+
   <footer>
-    <p>© Lucas Catusse 2025</p>
+    <p>© Lucas Catusse 2025 — Portfolio Ingénieur Mécanique & Thermique Numérique</p>
   </footer>
 
 </body>
