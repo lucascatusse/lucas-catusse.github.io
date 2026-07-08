@@ -395,7 +395,7 @@
   <!-- Hero -->
   <div class="stage-hero">
     <div class="stage-hero-inner">
-      <p class="eyebrow">Stage ingénieur — Service Après-Vente</p>
+      <p class="eyebrow">Stage ingénieur au sein du Service Après-Vente</p>
       <h1>Analyses d'upgrades d'outillages aéronautiques</h1>
       <p class="subtitle">Dedienne Aerospace · Toulouse (FRA) — 10 février 2025 → 11 juillet 2025</p>
       <div class="hero-badges">
@@ -419,7 +419,7 @@
     </p>
     <p>
       Ma mission : proposer des modifications sur des outillages devenus obsolètes afin de les rendre
-      conformes à leur dernière version autorisée — une démarche appelée <strong>upgrade</strong>,
+      conformes à leur dernière version autorisée, une démarche appelée <strong>upgrade</strong>,
       à la fois plus économique et plus rapide que l'achat d'un outillage neuf, et plus durable grâce
       à la réutilisation des pièces existantes.
     </p>
@@ -575,64 +575,80 @@
     </div>
   </section>
 
-  <!-- Cas pratique -->
-  <section class="detail-section">
-    <h2>Cas pratique : upgrade 956A8403</h2>
-    <div class="case-banner">
-      <span class="case-ref">956A8403<strong>G02</strong></span>
-      <span class="case-arrow">→ upgrade vers →</span>
-      <span class="case-ref">956A8403<strong>G03</strong></span>
+ <!-- STREAMING_CHUNK: Configuration du cas pratique avec intégration du plan technique... -->
+<!-- Cas pratique -->
+<section class="detail-section">
+  <h2>Cas pratique : upgrade 956A8403</h2>
+
+  <!-- Zone d'affichage du plan technique CAD / Blueprint -->
+  <div class="plan-preview-container" style="margin-bottom: 25px; text-align: center;">
+    <div style="background: #0d253f; padding: 10px; border-radius: 8px; border: 1px solid #4db8ff; display: inline-block; width: 100%; max-width: 800px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+      <img src="images/plan_956A8403.jpg" 
+           alt="Plan technique d'assemblage 956A8403" 
+           style="width: 100%; height: auto; border-radius: 6px; display: block;" 
+           onerror="this.src='https://placehold.co/800x400/0d253f/4db8ff?text=PLAN+TECHNIQUE+D%27ASSEMBLAGE+-+956A8403';">
     </div>
-    <p>
-      Premier réflexe : comparer les nomenclatures (BOM) des deux versions pour repérer les pièces
-      ajoutées, retirées, ou potentiellement transformables par rework.
+    <p style="font-size: 0.85rem; color: #666; font-style: italic; margin-top: 8px; margin-bottom: 0;">
+      Plan technique comparatif et nomenclature de l'outillage 956A8403 (Dedienne Aerospace)
     </p>
-    <table class="parts-table">
-      <thead>
-        <tr><th>Pièces retirées (G02)</th><th>Pièces ajoutées (G03)</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>P02</td><td>P27</td></tr>
-        <tr><td class="empty">—</td><td>item 28 (commerciale)</td></tr>
-        <tr><td class="empty">—</td><td>item 29 (commerciale)</td></tr>
-        <tr><td>P07</td><td>P30</td></tr>
-        <tr><td>P09</td><td>P31</td></tr>
-        <tr><td>P10</td><td>P32</td></tr>
-        <tr><td class="empty">—</td><td>items 33, 34, 35 (commerciales)</td></tr>
-        <tr><td>item 21 (commerciale)</td><td class="empty">—</td></tr>
-      </tbody>
-    </table>
+  </div>
 
-    <h3 style="font-size:1.05rem;">Rework possible ou non ?</h3>
-    <div class="mission-grid">
-      <div class="mission-card">
-        <h4>P10 → P32 <span class="rework-tag rework-possible">Rework possible</span></h4>
-        <p>Les deux pièces sont quasi identiques : seul un chanfrein doit être ajouté en usinant la P10. Sous-traitance prévue pour cette opération.</p>
-      </div>
-      <div class="mission-card">
-        <h4>P02 → P27 <span class="rework-tag rework-possible">Rework possible</span></h4>
-        <p>Même logique que P10/P32 : modification mineure permettant de réutiliser la pièce existante.</p>
-      </div>
-      <div class="mission-card">
-        <h4>P07 → P30 <span class="rework-tag rework-impossible">Rework impossible</span></h4>
-        <p>La P30 est plus longue (76 mm) que la P07 (60 mm max) : impossible d'allonger une pièce existante. Fabrication neuve nécessaire.</p>
-      </div>
-      <div class="mission-card">
-        <h4>P09 → P31 <span class="rework-tag rework-impossible">Rework impossible</span></h4>
-        <p>Même conclusion que pour P07/P30 : la transformation n'est pas réalisable, la pièce doit être fabriquée à neuf.</p>
-      </div>
+  <div class="case-banner">
+    <span class="case-ref">956A8403<strong>G02</strong></span>
+    <span class="case-arrow">→ upgrade vers →</span>
+    <span class="case-ref">956A8403<strong>G03</strong></span>
+  </div>
+  
+  <p>
+    Premier réflexe : comparer les nomenclatures (BOM) des deux versions pour repérer les pièces
+    ajoutées, retirées, ou potentiellement transformables par rework.
+  </p>
+  <table class="parts-table">
+    <thead>
+      <tr><th>Pièces retirées (G02)</th><th>Pièces ajoutées (G03)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>P02</td><td>P27</td></tr>
+      <tr><td class="empty">—</td><td>item 28 (commerciale)</td></tr>
+      <tr><td class="empty">—</td><td>item 29 (commerciale)</td></tr>
+      <tr><td>P07</td><td>P30</td></tr>
+      <tr><td>P09</td><td>P31</td></tr>
+      <tr><td>P10</td><td>P32</td></tr>
+      <tr><td class="empty">—</td><td>items 33, 34, 35 (commerciales)</td></tr>
+      <tr><td>item 21 (commerciale)</td><td class="empty">—</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:1.05rem;">Rework possible ou non ?</h3>
+  <div class="mission-grid">
+    <div class="mission-card">
+      <h4>P10 → P32 <span class="rework-tag rework-possible">Rework possible</span></h4>
+      <p>Les deux pièces sont quasi identiques : seul un chanfrein doit être ajouté en usinant la P10. Sous-traitance prévue pour cette opération.</p>
     </div>
+    <div class="mission-card">
+      <h4>P02 → P27 <span class="rework-tag rework-possible">Rework possible</span></h4>
+      <p>Même logique que P10/P32 : modification mineure permettant de réutiliser la pièce existante.</p>
+    </div>
+    <div class="mission-card">
+      <h4>P07 → P30 <span class="rework-tag rework-impossible">Rework impossible</span></h4>
+      <p>La P30 est plus longue (76 mm) que la P07 (60 mm max) : impossible d'allonger une pièce existante. Fabrication neuve nécessaire.</p>
+    </div>
+    <div class="mission-card">
+      <h4>P09 → P31 <span class="rework-tag rework-impossible">Rework impossible</span></h4>
+      <p>Même conclusion que pour P07/P30 : la transformation n'est pas réalisable, la pièce doit être fabriquée à neuf.</p>
+    </div>
+  </div>
 
-    <h3 style="font-size:1.05rem; margin-top:20px;">Conclusion de l'analyse</h3>
-    <ul class="conclusion-list">
-      <li><strong>Pièces à acheter :</strong> items 28, 29, 33, 34, 35</li>
-      <li><strong>Pièces à fabriquer :</strong> P30 et P31</li>
-      <li><strong>Pièces à retirer :</strong> item 21, P07, P09</li>
-      <li><strong>Pièces à modifier (rework) :</strong> P02→P27, P10→P32</li>
-      <li><strong>Test à réaliser :</strong> 1 configuration (test en charge)</li>
-      <li><strong>Résultat final :</strong> prix client 3 967 € — prix outillage neuf 12 000 €</li>
-    </ul>
-  </section>
+  <h3 style="font-size:1.05rem; margin-top:20px;">Conclusion de l'analyse</h3>
+  <ul class="conclusion-list">
+    <li><strong>Pièces à acheter :</strong> items 28, 29, 33, 34, 35</li>
+    <li><strong>Pièces à fabriquer :</strong> P30 et P31</li>
+    <li><strong>Pièces à retirer :</strong> item 21, P07, P09</li>
+    <li><strong>Pièces à modifier (rework) :</strong> P02→P27, P10→P32</li>
+    <li><strong>Test à réaliser :</strong> 1 configuration (test en charge)</li>
+    <li><strong>Résultat final :</strong> prix client 3 967 € — prix outillage neuf 12 000 €</li>
+  </ul>
+</section>
 
   <!-- Outil suivi de chiffrage -->
   <section class="detail-section">
