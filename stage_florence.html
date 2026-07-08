@@ -160,6 +160,46 @@
     .mission-card h4 { margin: 0 0 10px; color: var(--primary-dark); font-size: 1.1rem; }
     .mission-card p { margin: 0; font-size: 0.95rem; text-align: left; }
 
+    /* Nouveaux styles pour la grille du contexte et l'intégration des images */
+    .context-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      margin-top: 25px;
+      border-bottom: 1px dashed #e1e4e6;
+      padding-bottom: 25px;
+    }
+    .context-grid:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .context-grid.reverse {
+      grid-template-columns: 0.8fr 1.2fr;
+    }
+    .context-img-container {
+      background: #fdfdfd;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      text-align: center;
+    }
+    .context-img-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+    .context-caption {
+      font-size: 0.8rem;
+      color: #666;
+      font-style: italic;
+      margin: 0;
+      line-height: 1.3;
+    }
+
     /* Dashboard de données pour le point optimal */
     .dashboard-grid {
       display: grid;
@@ -242,12 +282,47 @@
   <!-- CONTEXTE -->
   <section class="detail-section">
     <h2>Contexte Technologique & Enjeux</h2>
-    <p>
-      Les moteurs à détonation rotative (<strong>RDE — Rotating Detonation Engines</strong>) représentent l'avenir de la propulsion aérospatiale et des turbines à gaz à haute efficacité énergétique grâce à leur cycle thermodynamique à apport de pression (Pressure Gain Combustion). Cependant, la présence d'ondes de détonation supersoniques permanentes génère des flux thermiques extrêmes sur les parois de la chambre de combustion (températures de gaz atteignant $T_{gas} = 2200\text{ K}$, coefficients de transfert côté chaud de l'ordre de $h_{c} = 2500\text{ W}/(\text{m}^2\cdot\text{K})$). 
-    </p>
-    <p>
-      Pour relever ce défi thermique critique sans recourir à des méthodes intrusives comme le refroidissement par film (qui dégrade l'aérodynamique), ce projet étudie l'intégration d'une couronne de refroidissement interne utilisant des structures géométriques poreuses innovantes : les <strong>TPMS (Triply Periodic Minimal Surfaces)</strong>, et plus particulièrement la topologie <strong>Schwarz Diamond</strong>. Fabriquées par fabrication additive métallique, ces architectures offrent un rapport surface d'échange/volume exceptionnel et favorisent un mélange fluide tridimensionnel hautement convectif.
-    </p>
+    
+    <!-- Ligne 1 : Explication RDE + Image RDE -->
+    <div class="context-grid">
+      <div>
+        <h3>Le Moteur à Détonation Rotative (RDE / RDC)</h3>
+        <p>
+          La recherche continue d'efficacités thermodynamiques supérieures dans la propulsion aérospatiale et la génération d'énergie pousse l'industrie à explorer de nouveaux cycles de combustion. Le moteur à détonation rotative (<strong>RDE</strong> ou <strong>RDC</strong>) s'inscrit dans ce cadre via le concept de combustion à apport de pression (<em>Pressure Gain Combustion</em>). Il exploite le <strong>cycle thermodynamique de Humphrey</strong> (apport de chaleur à volume quasi-constant), offrant une efficacité théorique nettement supérieure au cycle classique de Brayton à pression constante.
+        </p>
+        <p>
+          <strong>Fonctionnement :</strong> Contrairement à une chambre classique où la réaction se fait par déflagration (propagation subsonique), le RDE utilise une ou plusieurs ondes de détonation supersoniques se propageant en continu de manière circonférentielle dans un canal annulaire. Les réactifs injectés axialement sont instantanément comprimés et enflammés par l'onde de choc, libérant une énergie propulsive 5 à 10 fois supérieure à celle d'un système conventionnel.
+        </p>
+        <p>
+          <strong>Applications potentielles :</strong> Cette rupture technologique est le candidat idéal pour propulser les futurs aéronefs hypersoniques, les missiles de croisière ou les lanceurs spatiaux de nouvelle génération. Sur le plan civil, son intégration dans des turbines à gaz industrielles permettrait une production d'électricité propre et à très haut rendement.
+        </p>
+      </div>
+      <div class="context-img-container">
+        <!-- Image pointant vers votre chemin GitHub avec fallback automatique si elle n'est pas encore présente -->
+        <img src="images/rde_detonation.jpg" alt="Propagation de l'onde de détonation dans un RDE" onerror="this.src='https://placehold.co/400x250/1e1e1e/4db8ff?text=Visualisation+Combustion+RDE';">
+        <p class="context-caption">Schéma et propagation de l'onde de détonation circonférentielle au sein de la chambre annulaire (Rapport technique - Réf [5])</p>
+      </div>
+    </div>
+
+    <!-- Ligne 2 : Explication TPMS + Image TPMS -->
+    <div class="context-grid reverse">
+      <div class="context-img-container">
+        <img src="images/tpms_structure.jpg" alt="Structure TPMS de topologie Schwarz Diamond" onerror="this.src='https://placehold.co/400x250/1e1e1e/4db8ff?text=Schwarz+Diamond+TPMS';">
+        <p class="context-caption">Visualisation 3D d'une maille élémentaire Schwarz Diamond fabriquée par fabrication additive métallique (LPBF)</p>
+      </div>
+      <div>
+        <h3>L'apport des Structures Cellulaires TPMS</h3>
+        <p>
+          Faisant face à un flux incident de plusieurs mégawatts par $\text{m}^2$ (températures de gaz atteignant $T_{gas} = 2200\text{ K}$), la paroi de la chambre doit être refroidie de manière ultra-efficace pour maintenir le matériau sous sa température limite technologique. Pour y parvenir, le projet rejette les méthodes perturbant l'écoulement principal (comme le refroidissement par film) au profit d'un refroidissement interne intensifié utilisant des structures innovantes : les <strong>TPMS (Triply Periodic Minimal Surfaces)</strong>.
+        </p>
+        <p>
+          <strong>Qu'est-ce qu'un TPMS ?</strong> Il s'agit d'architectures géométriques poreuses complexes définies mathématiquement dans l'espace. Elles se caractérisent par une surface moyenne nulle en tout point. Pour ce projet, la topologie <strong>Schwarz Diamond</strong> a été retenue.
+        </p>
+        <p>
+          <strong>Pourquoi cette géométrie ?</strong> D'une part, les TPMS éliminent complètement les zones de concentration de contraintes mécaniques aux intersections solides, un atout majeur pour la fabrication additive métallique. D'autre part, la topologie Diamond développe la surface spécifique ($S_v$) la plus élevée pour une porosité donnée. Sa tortuosité tridimensionnelle force l'air de refroidissement à suivre des trajectoires sinueuses à forte courbure, brisant continuellement le développement des couches limites thermiques. Elle agit comme un véritable mélangeur statique permanent qui maximise le transfert convectif ($h \cdot S_{\acute{e}ch}$).
+        </p>
+      </div>
+    </div>
   </section>
 
   <!-- BARRIÈRE THERMIQUE -->
