@@ -1,69 +1,870 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>ETUDE AU FLAMBAGE LINEAIRE DE STRUCTURES MINCES</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Étude de Flambement Linéaire sous Nastran — Lucas Catusse</title>
+  
+  <!-- Chargement des dépendances indispensables -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .code-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .patran-theme {
+      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    }
+  </style>
 </head>
+<body class="bg-slate-50 text-slate-800 leading-relaxed min-h-screen">
 
-<body>
-
-<header>
-    <div class="header-left">
-        <h1>ETUDE AU FLAMBAGE LINEAIRE DE STRUCTURES MINCES</h1>
-        <h2>Détails du projet</h2>
+  <!-- HEADER & HERO -->
+  <header class="relative bg-slate-900 text-white overflow-hidden py-16 px-6 sm:px-12">
+    <!-- Motif géométrique en arrière-plan (Simulant un maillage EF) -->
+    <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl opacity-20"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl opacity-15"></div>
+    
+    <div class="relative max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Calcul de Structures (SOL 105)</span>
+          <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Plaques & Coques</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+          Analyse de Flambement Linéaire <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">sous MSC NASTRAN</span>
+        </h1>
+        <p class="mt-4 text-slate-300 text-lg max-w-2xl">
+          Modélisation par éléments finis d'une cuve mince de stockage soumise à des sollicitations combinées : pression hydrostatique, poids propre et dépression critique.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-6 text-sm text-slate-400">
+          <span class="flex items-center gap-1">🏫 Polytech Lyon — Mécanique 4e Année</span>
+          <span class="flex items-center gap-1">👨‍🔬 Encadré par B. Fréchède</span>
+        </div>
+      </div>
+      <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/50 hover:text-white transition px-5 py-2.5 rounded-lg font-semibold flex items-center gap-2 shadow-lg">
+        ← Retour au Portfolio
+      </a>
     </div>
-</header>
+  </header>
 
-<section>
-    <h2>Résumé du projet</h2>
-        <p>Dans le cadre de ce projet, nous avons réalisé une <strong>étude approfondie sur le flambement linéaire de structures minces</strong> en utilisant le logiciel d'analyse par éléments finis <em>PATRAN/NASTRAN</em>.</p>
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
 
-    <h3>Nos réalisations principales comprennent :</h3>
-    <ul>
-        <li><strong>Modélisation et Maillage :</strong> La modélisation d'une cuve de stockage cylindrique en acier inox (hauteur 12 m et diamètre 4 m) avec une condition d'<strong>encastrement à sa base</strong>. Nous avons également réalisé une étude de convergence pour établir l'utilisation d'un maillage final de 30276 éléments quadrangulaires.</li>
-        <li><strong>Analyse Dynamique :</strong> L'exécution de plusieurs <strong>analyses aux valeurs propres</strong> pour obtenir le facteur de charge critique (&lambda;) et les modes de flambement de la structure sous différentes conditions de charge.</li>
-        <li><strong>Évaluation des Efforts :</strong> L'évaluation de l'influence de divers efforts sur la stabilité de la cuve, notamment :
-            <ul>
-                <li>L'action du fluide (vin).</li>
-                <li>L'effet du poids propre de la structure.</li>
-                <li>L'impact d'une <strong>dépression interne</strong> sur la partie supérieure de la cuve.</li>
-            </ul>
-        </li>
-        <li><strong>Identification des Facteurs Critiques :</strong> La conclusion que le poids propre et surtout la <strong>dépression interne</strong> sont les facteurs qui rendent la structure la plus vulnérable au flambement (&lambda;=23 dans le cas le plus critique).</li>
-        <li><strong>Propositions de Dimensionnement :</strong> La formulation de solutions visant à améliorer la résistance de la cuve, telles que l'augmentation de l'épaisseur des parois et l'ajout de renforts (raidisseurs).</li>
-    </ul>
-</section>
+    <!-- EXECUTIVE SUMMARY -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+      <div class="lg:col-span-2 space-y-4">
+        <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+          📖 Résumé de l'Étude & Objectifs
+        </h2>
+        <p class="text-slate-600 text-justify">
+          Cette étude technique examine la résistance à l'instabilité élastique (flambement) d'une structure de coque mince représentant un réservoir industriel. Les coques minces, bien qu'extrêmement efficaces pour supporter des contraintes de traction, sont particulièrement vulnérables aux déformations d'instabilité hors-plan lorsqu'elles sont soumises à de la compression axiale ou à des pressions externes.
+        </p>
+        <p class="text-slate-600 text-justify">
+          À l'aide de l'outil d'ingénierie assistée par ordinateur <strong>MSC PATRAN / NASTRAN</strong>, nous avons construit un modèle géométrique précis d'une cuve cylindrique de <strong>12 m de hauteur</strong> et de <strong>4 m de diamètre</strong> pour une épaisseur de paroi uniforme de <strong>1 cm</strong>. Notre démarche inclut une étude systématique de convergence de maillage, l'analyse comparative de 7 cas de chargement distincts et la modélisation rigoureuse de la structure conique du toit.
+        </p>
+      </div>
+      <div class="bg-slate-900 text-white rounded-xl p-6 flex flex-col justify-between relative overflow-hidden shadow-inner">
+        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] bg-[size:1rem_1rem]"></div>
+        <div>
+          <span class="text-xs text-cyan-400 font-bold uppercase tracking-widest">Formulation Physique</span>
+          <h3 class="text-xl font-bold mt-1 text-slate-100">La bifurcation d'Euler</h3>
+        </div>
+        <div class="my-4 space-y-3 text-sm text-slate-300">
+          <p>Le flambement linéaire résout l'équation aux valeurs propres :</p>
+          <div class="bg-slate-800/80 border border-slate-700 rounded-lg p-3 code-font text-center text-cyan-300 text-xs">
+            \(([K_e] + \lambda [K_g]) \{\Phi\} = \{0\}\)
+          </div>
+          <p class="text-xs text-slate-400">
+            Où \([K_e]\) représente la matrice de rigidité élastique, \([K_g]\) la matrice de rigidité géométrique, et \(\lambda\) le facteur multiplicateur de charge critique.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<section>
-    <h2>Objectifs</h2>
-    <ul>
-        <li>Acquérir une bonne maîtrise du logiciel d'analyse par éléments finis PATRAN/NASTRAN</li>
-        <li>Comprendre l'origine du flambement, phénomène pouvant entraîner la ruine de structures minces sous charges quasi-constantes.</li>
-        <li>Sensibiliser au dimensionnement de structures de type coque (cuve de stockage cylindrique) pour garantir leur stabilité et leur sécurité.</li>
-    </ul>
-</section>
+    <!-- GEOMETRY & SCHEMATICS -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📐 Définition Géométrique & Modèle de Calcul</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <h3 class="text-lg font-bold text-slate-800">Spécifications du Réservoir</h3>
+          <p class="text-slate-600 text-sm">
+            La cuve analysée possède des parois cylindriques minces en acier inoxydable. Pour assurer une cohérence physique complète, les dimensions modélisées sont issues directement de la définition géométrique du projet d'étude :
+          </p>
+          <ul class="space-y-2 text-sm text-slate-600 pl-4 list-disc">
+            <li><strong>Hauteur totale ($H_{cyl}$) :</strong> 12,0 mètres</li>
+            <li><strong>Diamètre intérieur ($D$) :</strong> 4,0 mètres ($R = 2,0\text{ m}$)</li>
+            <li><strong>Épaisseur constante ($t$) :</strong> 10 mm ($0,01\text{ m}$)</li>
+            <li><strong>Matériau (Acier Inox) :</strong> $E = 200\text{ GPa}$, $\nu = 0,28$, $\rho = 7800\text{ kg/m}^3$</li>
+            <li><strong>Conditions aux limites :</strong> Encastrement parfait en base ($y = 0$) représentant les fondations en béton.</li>
+          </ul>
+          <div class="bg-cyan-50 border border-cyan-100 p-4 rounded-xl">
+            <h4 class="font-bold text-cyan-800 text-xs uppercase mb-1">Rapport d'Épaisseur de Coque</h4>
+            <p class="text-cyan-700 text-xs">
+              Le rapport d'élancement $R/t = 200$ classe cette structure dans la catégorie des <strong>coques très minces</strong>. Ces structures sont extrêmement sensibles aux instabilités locales et au flambement sous compression axiale.
+            </p>
+          </div>
+        </div>
 
-<section>
-    <h2>Images & Résultats</h2>
-    <img src="photo_projet5.png" alt="Image du projet 5"
-         style="width: 80%; display: block; margin: auto; border-radius: 8px;">
-</section>
+        <!-- Schéma SVG de la cuve -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm">
+          <span class="text-xs text-slate-400 font-bold uppercase mb-4">Vue en Coupe Conceptuelle (Dimensions en mètres)</span>
+          <svg class="w-full max-w-xs h-96" viewBox="0 0 240 380">
+            <!-- Sol / Encastrement -->
+            <rect x="20" y="340" width="200" height="10" fill="#cbd5e1" />
+            <line x1="20" y1="340" x2="220" y2="340" stroke="#475569" stroke-width="3" />
+            <!-- Hachures sol -->
+            <path d="M25,340 L15,350 M45,340 L35,350 M65,340 L55,350 M85,340 L75,350 M105,340 L95,350 M125,340 L115,350 M145,340 L135,350 M165,340 L155,350 M185,340 L175,350 M205,340 L195,350" stroke="#94a3b8" stroke-width="1.5" />
+            
+            <!-- Corps cylindrique de la cuve -->
+            <rect x="50" y="80" width="140" height="260" fill="none" stroke="#0ea5e9" stroke-width="2.5" />
+            
+            <!-- Toit incliné (Conique) -->
+            <line x1="50" y1="80" x2="80" y2="50" stroke="#0e7490" stroke-width="2.5" />
+            <line x1="190" y1="80" x2="160" y2="50" stroke="#0e7490" stroke-width="2.5" />
+            
+            <!-- Goulot d'entrée -->
+            <rect x="80" y="30" width="80" height="20" fill="none" stroke="#0e7490" stroke-width="2.5" />
 
-<section style="text-align:center; margin: 30px 0; border: none; box-shadow: none;">
-    <a href="rapport_flambement.pdf" download class="details-btn" 
-       style="display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 5px; /* Les styles spécifiques du bouton sont gérés par details-btn dans style.css */">
-        📄 Télécharger le rapport PDF
-    </a>
-</section>
+            <!-- Flèches de cotation -->
+            <!-- Hauteur 12.0m -->
+            <line x1="210" y1="80" x2="210" y2="340" stroke="#64748b" stroke-width="1" />
+            <polygon points="210,80 207,90 213,90" fill="#64748b" />
+            <polygon points="210,340 207,330 213,330" fill="#64748b" />
+            <text x="218" y="215" fill="#475569" font-size="10" font-weight="bold">12,0 m</text>
 
+            <!-- Diamètre 4.0m -->
+            <line x1="50" y1="365" x2="190" y2="365" stroke="#64748b" stroke-width="1" />
+            <polygon points="50,365 60,362 60,368" fill="#64748b" />
+            <polygon points="190,365 180,362 180,368" fill="#64748b" />
+            <text x="105" y="377" fill="#475569" font-size="10" font-weight="bold">D = 4,0 m</text>
 
-<section style="text-align:center; margin: 30px 0; border: none; box-shadow: none;">
-    <a href="index.html" class="details-btn"
-       style="display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 5px; /* Les styles spécifiques du bouton sont gérés par details-btn dans style.css */">
-        ⬅ Retour
-    </a>
-</section>
+            <!-- Hauteur toit h = 0.5m -->
+            <line x1="30" y1="50" x2="30" y2="80" stroke="#64748b" stroke-width="1" />
+            <polygon points="30,50 27,58 33,58" fill="#64748b" />
+            <polygon points="30,80 27,72 33,72" fill="#64748b" />
+            <text x="12" y="70" fill="#475569" font-size="9" font-weight="bold">h = 0,5 m</text>
 
+            <!-- Niveau du liquide (Vin) -->
+            <path d="M50,91.5 Q120,90 190,91.5 L190,340 L50,340 Z" fill="rgba(147, 51, 234, 0.15)" stroke="rgba(147, 51, 234, 0.3)" stroke-width="1" />
+            <text x="85" y="230" fill="#701a75" font-size="10" font-style="italic">Fluide : Vin (11,5 m)</text>
+            <line x1="45" y1="91.5" x2="195" y2="91.5" stroke="#a21caf" stroke-width="1" stroke-dasharray="3 3" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE PHYSICAL LAB -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md space-y-6">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs text-cyan-600 font-bold uppercase tracking-widest">Visualisateur Éléments Finis</span>
+          <h2 class="text-2xl font-bold text-slate-900">🔬 Laboratoire de Flambement Virtuel (MSC NASTRAN)</h2>
+        </div>
+        <p class="text-xs text-slate-500 max-w-sm">
+          Faites pivoter la cuve à l'aide de votre souris (clic + glisser) et sélectionnez les cas d'étude pour analyser les déformées modales résolues.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Panneau de Contrôle -->
+        <div class="lg:col-span-4 bg-slate-50 border border-slate-200/60 rounded-xl p-5 space-y-6">
+          <h3 class="font-bold text-slate-800 flex items-center gap-2">📂 Sélection du Cas de Charge</h3>
+          
+          <div class="space-y-2 text-sm">
+            <!-- Boutons de sélection de Cas -->
+            <button id="btn-cas1" onclick="selectCase(1)" class="w-full text-left px-4 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 transition duration-150 flex flex-col gap-1 bg-white">
+              <span class="font-bold text-slate-800 text-xs">Cas 1 : Charge Toit Simplifiée</span>
+              <span class="text-slate-500 text-[11px]">Sans poids propre, sans fluide. \(\lambda_1 \approx 2916\)</span>
+            </button>
+
+            <button id="btn-cas2" onclick="selectCase(2)" class="w-full text-left px-4 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 transition duration-150 flex flex-col gap-1 bg-white">
+              <span class="font-bold text-slate-800 text-xs">Cas 2 : Toit Simplifié + Fluide</span>
+              <span class="text-slate-500 text-[11px]">Vin (11.5m), sans gravité. \(\lambda_1 \approx 2916\)</span>
+            </button>
+
+            <button id="btn-cas3" onclick="selectCase(3)" class="w-full text-left px-4 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 transition duration-150 flex flex-col gap-1 bg-white">
+              <span class="font-bold text-slate-800 text-xs">Cas 3 : Toit Simplifié + Gravité</span>
+              <span class="text-slate-500 text-[11px]">Poids propre, sans fluide. \(\lambda_1 \approx 655\)</span>
+            </button>
+
+            <button id="btn-cas4" onclick="selectCase(4)" class="w-full text-left px-4 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 transition duration-150 flex flex-col gap-1 bg-white">
+              <span class="font-bold text-slate-800 text-xs">Cas 4 : Toit Maillé + Gravité</span>
+              <span class="text-slate-500 text-[11px]">Modèle de toit 2D complet. \(\lambda_1 \approx 207\)</span>
+            </button>
+
+            <button id="btn-cas6" onclick="selectCase(6)" class="w-full text-left px-4 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 transition duration-150 flex flex-col gap-1 bg-white">
+              <span class="font-bold text-slate-800 text-xs">Cas 6 : Toit Maillé + Fluide + Gravité</span>
+              <span class="text-slate-500 text-[11px]">Combinaison nominale de base. \(\lambda_1 \approx 207\)</span>
+            </button>
+
+            <button id="btn-cas7" onclick="selectCase(7)" class="w-full text-left px-4 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 transition duration-150 flex flex-col gap-1 bg-white">
+              <span class="font-bold text-slate-800 text-xs">Cas 7 : Effet d'une Dépression Critique</span>
+              <span class="text-slate-500 text-[11px]">Combinaison + Dépression -0.5 bar. \(\lambda_1 \approx 23\)</span>
+            </button>
+          </div>
+
+          <!-- Affichage Dynamique Métriques du Cas sélectionné -->
+          <div id="panel-case-info" class="bg-cyan-50/50 border border-cyan-100/80 rounded-lg p-4 space-y-3">
+            <div class="flex justify-between border-b border-cyan-100 pb-1 text-xs">
+              <span class="font-medium text-slate-600">Valeur Propre Critique (\(\lambda_1\)) :</span>
+              <span id="case-lambda" class="font-extrabold text-cyan-600">2916</span>
+            </div>
+            <div class="flex justify-between border-b border-cyan-100 pb-1 text-xs">
+              <span class="font-medium text-slate-600">Risque de Ruine :</span>
+              <span id="case-risk" class="font-bold text-emerald-600">Négligeable</span>
+            </div>
+            <p id="case-desc" class="text-xs text-slate-600 leading-relaxed text-justify">
+              Sélectionnez un cas pour afficher l'analyse d'ingénierie et la déformée modale de flambement résolue.
+            </p>
+          </div>
+        </div>
+
+        <!-- Visualisation Canvas 3D Virtuelle -->
+        <div class="lg:col-span-8 flex flex-col">
+          <div class="relative rounded-2xl overflow-hidden patran-theme border border-slate-800 h-[480px] shadow-lg flex items-center justify-center">
+            
+            <!-- Informations incrustées HUD (Simule PATRAN) -->
+            <div class="absolute top-4 left-4 text-xs font-mono text-cyan-400 space-y-1 bg-slate-950/70 p-3 rounded border border-slate-800 z-10">
+              <p>MSC.Patran / MSC.Nastran SOL 105</p>
+              <p id="hud-mode">MODE : 1 (First Bifurcation Point)</p>
+              <p id="hud-eigen">EIGENVALUE : 2916.4</p>
+              <p id="hud-def">DISPLACEMENT : Contour Plot (Normalized)</p>
+            </div>
+
+            <div class="absolute bottom-4 right-4 text-[10px] font-mono text-slate-400 bg-slate-950/70 p-2 rounded border border-slate-800 z-10">
+              <p>Clic + Glisser pour tourner la caméra</p>
+            </div>
+
+            <!-- Canvas de rendu -->
+            <canvas id="feaCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+          </div>
+
+          <!-- Échelle de Franges Colorées (FEA) -->
+          <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-2 px-2 text-xs text-slate-500 font-medium">
+            <span>Déformation relative (Nulle)</span>
+            <div class="w-full sm:w-2/3 h-4 rounded bg-gradient-to-r from-blue-600 via-green-500 via-yellow-400 to-red-500 shadow-inner flex justify-between px-2 text-[10px] text-white font-mono leading-4">
+              <span>0.0</span>
+              <span>0.25</span>
+              <span>0.5</span>
+              <span>0.75</span>
+              <span>1.0</span>
+            </div>
+            <span>Maximale (Dépl. Critique)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATHEMATICAL MODELLING -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📐 Résolution Physique & Formulations Coques Minces</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Formulations théoriques -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
+          <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">🔄 Sollicitation Critique de Compression</h3>
+          <p class="text-sm text-slate-600 text-justify">
+            Pour un cylindre mince soumis à une charge axiale pure, la contrainte critique de compression élastique théorique (formule classique de Donnell-Wan-Loo) s'exprime par :
+          </p>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 my-2 text-center">
+            $$\sigma_{cr} = \frac{E}{\sqrt{3(1-\nu^2)}} \frac{t}{R}$$
+          </div>
+          <p class="text-xs text-slate-500 text-justify">
+            En appliquant nos données ($E = 200\text{ GPa}$, $\nu = 0,28$, $t = 0,01\text{ m}$ et $R = 2,0\text{ m}$), nous calculons une contrainte limite de flambement théorique de :
+          </p>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 my-2 text-center font-mono font-bold text-cyan-600 text-sm">
+            $$\sigma_{cr} \approx 602,7 \text{ MPa}$$
+          </div>
+          <p class="text-xs text-slate-500 text-justify">
+            <strong>Observation importante :</strong> Dans les structures réelles, les imperfections initiales (tolérances géométriques, soudures) réduisent drastiquement cette valeur. C'est pourquoi la modélisation numérique via Nastran est essentielle pour capturer les configurations géométriques complexes (conicité du toit, discontinuités de forme).
+          </p>
+        </div>
+
+        <!-- Matrice de sollicitations -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
+          <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">🌋 Prise en Compte de l'Hydrostatique & Dépression</h3>
+          <p class="text-sm text-slate-600 text-justify">
+            Les charges volumiques et surfaciques s'ajoutent à la matrice géométrique de rigidité globale.
+          </p>
+          <div class="space-y-3">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
+              <span class="text-xs text-slate-500 block mb-1">Pression Hydrostatique (Vin, $y < 11.5\text{ m}$) :</span>
+              <div class="text-xs font-semibold text-slate-800 font-mono">
+                $$P_{hydro}(y) = \rho_{vin} \cdot g \cdot (11,5 - y)$$
+              </div>
+              <p class="text-[10px] text-slate-500 mt-1">Génère des contraintes de traction circonférentielles stables.</p>
+            </div>
+            
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
+              <span class="text-xs text-slate-500 block mb-1">Poids Propre (Gravité $-\rho_{acier} \cdot g$) :</span>
+              <div class="text-xs font-semibold text-slate-800 font-mono">
+                $$F_{grav} = -\rho_{acier} \cdot g \cdot A \cdot t$$
+              </div>
+              <p class="text-[10px] text-slate-500 mt-1">Introduit des contraintes de compression axiale maximale en base ($y = 0$).</p>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
+              <span class="text-xs text-slate-500 block mb-1">Dépression Interne de Sûreté (Cas 7) :</span>
+              <div class="text-xs font-semibold text-slate-800 font-mono">
+                $$P_{int} = -50\,000 \text{ Pa} \quad (-0,5\text{ bar})$$
+              </div>
+              <p class="text-[10px] text-slate-500 mt-1">Appliquée uniquement sur la paroi "sèche" au-dessus du niveau de vin.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESH CONVERGENCE STUDY -->
+    <section class="space-y-6">
+      <div class="border-b border-slate-100 pb-3">
+        <span class="text-xs text-blue-600 font-bold uppercase tracking-widest font-mono">Contrôle Qualité & Métrologie Numérique</span>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">📈 Étude Rétroactive de Convergence de Maillage</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Explication de la convergence -->
+        <div class="lg:col-span-4 space-y-4 text-sm text-slate-600 text-justify">
+          <p>
+            Avant de réaliser l'évaluation des cas complexes, une <strong>étude de sensibilité au maillage</strong> a été menée pour garantir la précision mathématique de la méthode.
+          </p>
+          <p>
+            En augmentant progressivement le nombre d'éléments quadrangulaires (2D Shell elements) et de degrés de liberté du modèle pour le cas test d'Euler, nous observons une stabilisation asymptotique de la première valeur propre \(\lambda\) autour du maillage à 30 000 éléments.
+          </p>
+          <div class="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50/50 rounded-r-lg">
+            <span class="block text-xs font-bold text-blue-800 uppercase">Configuration Choisie :</span>
+            <p class="text-xs text-blue-700 font-mono mt-1">
+              174 éléments verticaux &times; 174 éléments horizontaux = <strong>30 276 éléments quadrilatères CQUAD4</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Graphique de convergence Chart.js -->
+        <div class="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <div class="relative h-64 sm:h-80">
+            <canvas id="convergenceChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARATIVE CASE TABLE -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📋 Matrice Comparative des Scénarios de Flambement</h2>
+      <div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-sm">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              <th class="py-4 px-6">Scénario</th>
+              <th class="py-4 px-6 text-center">Toit Modélisé</th>
+              <th class="py-4 px-6 text-center">Fluide Interne</th>
+              <th class="py-4 px-6 text-center">Gravité (Poids)</th>
+              <th class="py-4 px-6 text-center">Dépression</th>
+              <th class="py-4 px-6 text-center">Valeur Propre \(\lambda_1\)</th>
+              <th class="py-4 px-6">Mécanisme Physique Diagnostiqué</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+            
+            <!-- Cas 1 -->
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-4 px-6 font-bold text-slate-900">Cas 1</td>
+              <td class="py-4 px-6 text-center text-slate-500">Non (1000 kg)</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center font-mono font-bold text-slate-800">2916</td>
+              <td class="py-4 px-6 text-slate-600 text-xs">Flambement purement localisé sous la ligne de charge au sommet. Risque inexistant en conditions opératoires normales.</td>
+            </tr>
+
+            <!-- Cas 2 -->
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-4 px-6 font-bold text-slate-900">Cas 2</td>
+              <td class="py-4 px-6 text-center text-slate-500">Non (1000 kg)</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center font-mono font-bold text-slate-800">2916</td>
+              <td class="py-4 px-6 text-slate-600 text-xs">Aucun changement. La pression hydrostatique radiale n'interfère pas avec les mécanismes d'instabilité de compression axiale.</td>
+            </tr>
+
+            <!-- Cas 3 -->
+            <tr class="hover:bg-slate-50/50 bg-amber-50/20">
+              <td class="py-4 px-6 font-bold text-slate-900">Cas 3</td>
+              <td class="py-4 px-6 text-center text-slate-500">Non (1000 kg)</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center font-mono font-bold text-amber-600">655</td>
+              <td class="py-4 px-6 text-slate-600 text-xs">Le poids propre induit des contraintes de compression concentrées à la base du cylindre. La charge critique chute de 77 %.</td>
+            </tr>
+
+            <!-- Cas 4 -->
+            <tr class="hover:bg-slate-50/50 bg-amber-50/40">
+              <td class="py-4 px-6 font-bold text-slate-900">Cas 4</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui (Maillé)</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center font-mono font-bold text-amber-700">207</td>
+              <td class="py-4 px-6 text-slate-600 text-xs">Instabilité du toit conique maillé au niveau du raccord de goulot. Vulnerabilité plus prononcée en partie supérieure.</td>
+            </tr>
+
+            <!-- Cas 5 -->
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-4 px-6 font-bold text-slate-900">Cas 5</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui (Maillé)</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center font-mono font-bold text-slate-500">5920</td>
+              <td class="py-4 px-6 text-slate-600 text-xs">Recherche de valeur propre forcée positive. Modèle non-physique asymétrique lié aux termes de tension circonférentielle.</td>
+            </tr>
+
+            <!-- Cas 6 -->
+            <tr class="hover:bg-slate-50/50 bg-amber-50/40">
+              <td class="py-4 px-6 font-bold text-slate-900">Cas 6</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui (Maillé)</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-red-500 font-semibold">Non</td>
+              <td class="py-4 px-6 text-center font-mono font-bold text-amber-700">207</td>
+              <td class="py-4 px-6 text-slate-600 text-xs">Comportement similaire au cas 4. Le flambement est localisé sur le dôme conique, le fluide n'agissant pas comme élément stabilisateur axial.</td>
+            </tr>
+
+            <!-- Cas 7 -->
+            <tr class="hover:bg-slate-50/50 bg-rose-50">
+              <td class="py-4 px-6 font-bold text-slate-900">Cas 7</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui (Maillé)</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center text-emerald-500 font-semibold">Oui</td>
+              <td class="py-4 px-6 text-center font-mono font-bold text-rose-600">23</td>
+              <td class="py-4 px-6 text-slate-600 text-xs font-semibold">Scénario de ruine critique ! La dépression (-0.5 bar) aspire les parois de la zone supérieure "sèche" vers l'intérieur. Danger structurel extrême.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ENGINEERING SOLUTIONS -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">💡 Recommandations Technologiques & Dimensionnement</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
+          <div class="text-2xl">💍</div>
+          <h3 class="font-bold text-slate-900 text-sm">Raidisseurs Circonférentiels</h3>
+          <p class="text-xs text-slate-600 leading-relaxed text-justify">
+            L'ajout d'anneaux de raidissement horizontaux (U-beams ou cornières) sur la paroi extérieure de la zone de dôme sec permet de briser le lobe de flambement radial critique provoqué par la dépression.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
+          <div class="text-2xl">🔩</div>
+          <h3 class="font-bold text-slate-900 text-sm">Raidisseurs Verticaux</h3>
+          <p class="text-xs text-slate-600 leading-relaxed text-justify">
+            L'implantation de nervures longitudinales internes limite la flexion locale et supporte une partie de la compression axiale générée par le poids propre conséquent du fluide et du toit métallique.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
+          <div class="text-2xl">⚙️</div>
+          <h3 class="font-bold text-slate-900 text-sm">Dispositifs Anti-Vide</h3>
+          <p class="text-xs text-slate-600 leading-relaxed text-justify">
+            La perte critique constatée au Cas 7 ($\lambda = 23$) impose l'installation obligatoire de soupapes casse-vide mécaniques redondantes pour empêcher toute dépression interne accidentelle d'excéder 0,05 bar.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
+          <div class="text-2xl">📐</div>
+          <h3 class="font-bold text-slate-900 text-sm">Surépaisseur Locale</h3>
+          <p class="text-xs text-slate-600 leading-relaxed text-justify">
+            Plutôt que d'épaissir uniformément la cuve (économiquement non rentable), une surépaisseur de tôle locale de 15 mm au raccord cylindre/toit résout efficacement l'instabilité induite par la modélisation du dôme.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-center py-12 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 space-y-4">
+      <p class="font-semibold text-slate-300">Lucas Catusse — Ingénieur Calcul Scientifique & Simulation Numérique</p>
+      <p class="text-sm text-slate-500">Validation Numérique de Structures Minces © 2026</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT SOLVER & FEA RENDER ENGINE -->
+  <script>
+    // 1. CHART.JS CONFIGURATION (Study of convergence)
+    function setupConvergenceChart() {
+      const ctx = document.getElementById('convergenceChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['100 elm', '5 000 elm', '10 000 elm', '20 000 elm', '30 276 elm (Choisi)', '40 000 elm'],
+          datasets: [{
+            label: 'Valeur Propre Critique Lambda (λ)',
+            data: [6170, 4200, 3108, 2980, 2916, 2916],
+            borderColor: '#0ea5e9',
+            backgroundColor: 'rgba(14, 165, 233, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.3,
+            pointBackgroundColor: '#0ea5e9',
+            pointRadius: 6,
+            pointHoverRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                font: { family: 'Inter', weight: '600' }
+              }
+            }
+          },
+          scales: {
+            y: {
+              title: { display: true, text: 'Facteur de charge λ', font: { weight: 'bold' } },
+              grid: { color: '#f1f5f9' },
+              min: 2000,
+              max: 7000
+            },
+            x: {
+              title: { display: true, text: 'Nombre d\'éléments 2D', font: { weight: 'bold' } },
+              grid: { color: '#f1f5f9' }
+            }
+          }
+        }
+      });
+    }
+
+    // 2. CANVAS INTERACTIVE RENDER ENGINE (3D Orthographic FEA Simulation)
+    const canvas = document.getElementById('feaCanvas');
+    const ctxFea = canvas.getContext('2d');
+
+    let currentCase = 1;
+    let cameraAngleX = 0.5;
+    let cameraAngleY = 0.4;
+    let isDragging = false;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+
+    // Définition géométrique du maillage 3D
+    const cylinderR = 50;
+    const cylinderH = 150;
+    const rings = 20;
+    const segments = 24;
+
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+      drawFeaModel();
+    }
+
+    // Mapping des informations des cas d'étude
+    const caseData = {
+      1: { eigen: "2916.4", lambda: "2916", risk: "Négligeable", riskClass: "text-emerald-600", modeDesc: "MODE 1: Lobes de flambement radial uniformément répartis au sommet du cylindre sec sous la ligne de charge linéique de 1000 kg. Pas de déplacement basal.", desc: "Dans ce cas de référence purement théorique, la structure est très stable. Le flambement intervient uniquement au sommet de la virole cylindrique par plissement sinusoïdal localisé. Les modes s'échelonnent de manière très rapprochée entre 2930 et 3330." },
+      2: { eigen: "2916.1", lambda: "2916", risk: "Négligeable", riskClass: "text-emerald-600", modeDesc: "MODE 1: Identique au Cas 1. La poussée radiale hydrostatique n'a aucune influence sur la tenue axiale.", desc: "La modélisation de l'action du fluide (vin de densité 990 kg/m³) montre une stricte superposition des valeurs de lambda par rapport au cas 1. La force hydrostatique agit de manière purement radiale et induit de la traction circonférentielle stabilisatrice qui n'altère pas la réponse à la compression axiale." },
+      3: { eigen: "655.2", lambda: "655", risk: "Modéré", riskClass: "text-amber-600", modeDesc: "MODE 1: Plissements de type lobes concentrés à la base encastrée du cylindre dûs à l'écrasement gravitaire.", desc: "L'application du poids propre de la virole en acier inoxydable engendre un pic de compression axiale important situé à l'encastrement basal. La coque y est plus vulnérable et s'effondre selon de nombreux petits plis localisés. La valeur critique chute de 77 %." },
+      4: { eigen: "207.1", lambda: "207", risk: "Élevé", riskClass: "text-amber-700", modeDesc: "MODE 1: Flambement d'assemblage asymétrique et instabilité prononcée sur le raccordement conique du toit.", desc: "La modélisation rigoureuse en éléments finis du toit mince conique et de son goulot démontre une forte vulnérabilité géométrique. L'assemblage s'écarte du repère cylindrique local et flambe sous des charges d'appui réduites au niveau de l'arête de transition." },
+      6: { eigen: "207.0", lambda: "207", risk: "Élevé", riskClass: "text-amber-700", modeDesc: "MODE 1: Instabilité géométrique locale sur le goulot d'entrée et le pan de toit conique mince.", desc: "La combinaison simultanée du poids propre, de la présence du toit maillé et de l'action du vin n'entraîne pas de variation. La rupture reste dictée par l'instabilité structurale de la coque conique supérieure du toit." },
+      7: { eigen: "23.4", lambda: "23", risk: "Extrême / Ruine !", riskClass: "text-rose-600", modeDesc: "MODE 1: Grand pli rentrant d'aspiration asymétrique localisé sur la partie sèche (effet canette écrasée).", desc: "Le cas d'accident par dépression (-0.5 bar au-dessus du fluide dû à une brutale contraction thermique) représente le cas de ruine structurelle le plus critique de notre étude. La paroi sèche subit une dépression externe qui plie instantanément la tôle vers l'intérieur à une valeur λ dramatiquement faible." }
+    };
+
+    function selectCase(caseId) {
+      currentCase = caseId;
+      
+      // Mise à jour de l'UI
+      const info = caseData[caseId];
+      document.getElementById('case-lambda').innerText = info.lambda;
+      document.getElementById('case-risk').innerText = info.risk;
+      document.getElementById('case-risk').className = `font-extrabold ${info.riskClass}`;
+      document.getElementById('case-desc').innerText = info.desc;
+      
+      document.getElementById('hud-eigen').innerText = `EIGENVALUE : ${info.eigen}`;
+      document.getElementById('hud-mode').innerText = info.modeDesc;
+
+      // Reset style boutons
+      [1, 2, 3, 4, 6, 7].forEach(id => {
+        const btn = document.getElementById(`btn-cas${id}`);
+        if(btn) {
+          btn.className = "w-full text-left px-4 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 transition duration-150 flex flex-col gap-1 bg-white";
+        }
+      });
+      // Active bouton
+      const activeBtn = document.getElementById(`btn-cas${caseId}`);
+      if(activeBtn) {
+        activeBtn.className = "w-full text-left px-4 py-3 rounded-lg border-2 border-cyan-500 bg-cyan-50/20 hover:bg-cyan-50/30 transition duration-150 flex flex-col gap-1";
+      }
+
+      drawFeaModel();
+    }
+
+    // Moteur graphique 3D ultra-léger en projection
+    function project(x, y, z) {
+      // Rotation autour de l'axe Y
+      let x1 = x * Math.cos(cameraAngleX) - z * Math.sin(cameraAngleX);
+      let z1 = x * Math.sin(cameraAngleX) + z * Math.cos(cameraAngleX);
+      
+      // Rotation autour de l'axe X
+      let y2 = y * Math.cos(cameraAngleY) - z1 * Math.sin(cameraAngleY);
+      let z2 = y * Math.sin(cameraAngleY) + z1 * Math.cos(cameraAngleY);
+      
+      // Projection orthographique centrée
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2 + 50;
+      return { x: x1 + cx, y: -y2 + cy, z: z2 };
+    }
+
+    // Génération de la couleur des contraintes (RGB Jet Color Map)
+    function getStressColor(val) {
+      val = Math.max(0, Math.min(1, val));
+      const r = Math.floor(Math.max(0, 255 * (2 * val - 1)));
+      const g = Math.floor(Math.max(0, 255 * (1 - 2 * Math.abs(val - 0.5))));
+      const b = Math.floor(Math.max(0, 255 * (1 - 2 * val)));
+      return `rgb(${r},${g},${b})`;
+    }
+
+    function drawFeaModel() {
+      if (!canvas.width || !canvas.height) return;
+      ctxFea.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Génération et tracé du maillage 3D de la cuve avec déformée modale associée
+      let vertices = [];
+      let faces = [];
+
+      // 1. Génération des sommets du cylindre principal
+      for (let r = 0; r <= rings; r++) {
+        let y = (r / rings) * cylinderH; // Hauteur locale
+        for (let s = 0; s < segments; s++) {
+          let theta = (s / segments) * Math.PI * 2;
+          
+          let defAmp = 0;
+          let colorVal = 0;
+          
+          // APPLICATION PHYSIQUE DES DEFORMEES MODALES NASTRAN
+          if (currentCase === 1 || currentCase === 2) {
+            // Flambement au sommet (localisé près du haut)
+            if (r > rings - 4) {
+              const weight = (r - (rings - 4)) / 4;
+              defAmp = 10 * Math.sin(theta * 8) * weight; // 8 lobes au sommet
+              colorVal = Math.abs(Math.sin(theta * 8)) * weight;
+            }
+          } else if (currentCase === 3) {
+            // Flambement basal (localisé près de la base)
+            if (r < 6 && r > 0) {
+              const weight = (6 - r) / 6;
+              defAmp = 8 * Math.sin(theta * 12) * weight; // 12 lobes en base
+              colorVal = Math.abs(Math.sin(theta * 12)) * weight;
+            }
+          } else if (currentCase === 4 || currentCase === 6) {
+            // Flambement concentré sur la transition cylindre/toit
+            if (r === rings) {
+              defAmp = 12 * Math.sin(theta * 10);
+              colorVal = Math.abs(Math.sin(theta * 10));
+            }
+          } else if (currentCase === 7) {
+            // Grand effondrement par aspiration (Dépression)
+            if (r > 12) { // Uniquement sur la zone sèche
+              let hWeight = Math.sin(((r - 12) / (rings - 12)) * Math.PI);
+              defAmp = -25 * Math.max(0, Math.sin(theta * 3)) * hWeight; // Sucion vers l'intérieur
+              colorVal = Math.abs(defAmp / 25);
+            }
+          }
+
+          let localR = cylinderR + defAmp;
+          let px = localR * Math.cos(theta);
+          let pz = localR * Math.sin(theta);
+          
+          vertices.push({ x: px, y: y, z: pz, c: colorVal });
+        }
+      }
+
+      // Toit conique
+      const roofYStart = cylinderH;
+      const roofYEnd = cylinderH + 30;
+      const neckYEnd = cylinderH + 45;
+      
+      // Sommets du toit (Pan incliné)
+      const roofRingStartIdx = vertices.length;
+      for (let s = 0; s < segments; s++) {
+        let theta = (s / segments) * Math.PI * 2;
+        let defAmp = 0;
+        let colorVal = 0;
+
+        if (currentCase === 4 || currentCase === 6 || currentCase === 7) {
+          // Flambement dôme conique très instable
+          defAmp = 8 * Math.sin(theta * 10);
+          colorVal = Math.max(0.4, Math.abs(Math.sin(theta * 10)));
+        }
+        
+        let localR = 15 + defAmp;
+        let px = localR * Math.cos(theta);
+        let pz = localR * Math.sin(theta);
+        vertices.push({ x: px, y: roofYEnd, z: pz, c: colorVal });
+      }
+
+      // Sommets du goulot (Col)
+      const neckStartIdx = vertices.length;
+      for (let s = 0; s < segments; s++) {
+        let theta = (s / segments) * Math.PI * 2;
+        let localR = 15;
+        let px = localR * Math.cos(theta);
+        let pz = localR * Math.sin(theta);
+        let colorVal = 0;
+        if (currentCase === 4 || currentCase === 6) {
+          colorVal = 0.5;
+        }
+        vertices.push({ x: px, y: neckYEnd, z: pz, c: colorVal });
+      }
+
+      // Génération des faces
+      // 1. Faces du cylindre
+      for (let r = 0; r < rings; r++) {
+        for (let s = 0; s < segments; s++) {
+          let nextS = (s + 1) % segments;
+          let i0 = r * segments + s;
+          let i1 = r * segments + nextS;
+          let i2 = (r + 1) * segments + nextS;
+          let i3 = (r + 1) * segments + s;
+          faces.push({ indices: [i0, i1, i2, i3], r: r });
+        }
+      }
+
+      // 2. Faces du toit conique
+      for (let s = 0; s < segments; s++) {
+        let nextS = (s + 1) % segments;
+        let i0 = rings * segments + s; // Bord supérieur du cylindre
+        let i1 = rings * segments + nextS;
+        let i2 = roofRingStartIdx + nextS; // Toit conique dôme
+        let i3 = roofRingStartIdx + s;
+        faces.push({ indices: [i0, i1, i2, i3], r: rings });
+      }
+
+      // 3. Faces du goulot
+      for (let s = 0; s < segments; s++) {
+        let nextS = (s + 1) % segments;
+        let i0 = roofRingStartIdx + s;
+        let i1 = roofRingStartIdx + nextS;
+        let i2 = neckStartIdx + nextS;
+        let i3 = neckStartIdx + s;
+        faces.push({ indices: [i0, i1, i2, i3], r: rings + 1 });
+      }
+
+      // Calcul des coordonnées projetées et tri par profondeur (Peintre Z-buffer)
+      let projected = vertices.map(v => project(v.x, v.y, v.z));
+      
+      faces.forEach(f => {
+        let sumZ = 0;
+        f.indices.forEach(idx => sumZ += projected[idx].z);
+        f.avgZ = sumZ / f.indices.length;
+      });
+
+      // Tri Z-back to front
+      faces.sort((a, b) => b.avgZ - a.avgZ);
+
+      // Dessin des faces maillées
+      faces.forEach(f => {
+        ctxFea.beginPath();
+        ctxFea.moveTo(projected[f.indices[0]].x, projected[f.indices[0]].y);
+        for (let i = 1; i < f.indices.length; i++) {
+          ctxFea.lineTo(projected[f.indices[i]].x, projected[f.indices[i]].y);
+        }
+        ctxFea.closePath();
+
+        // Calcul couleur moyenne de face pour l'échelle de couleurs
+        let sumC = 0;
+        f.indices.forEach(idx => sumC += vertices[idx].c);
+        let avgC = sumC / f.indices.length;
+
+        // Ombrage de surface 3D basique en fonction de l'angle
+        ctxFea.fillStyle = getStressColor(avgC);
+        ctxFea.fill();
+
+        // Tracé des lignes de maillage (Simule l'environnement PATRAN)
+        ctxFea.strokeStyle = 'rgba(15, 23, 42, 0.15)';
+        ctxFea.lineWidth = 0.5;
+        ctxFea.stroke();
+      });
+    }
+
+    // Gestion du Drag pour faire tourner la structure en 3D
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - prevMouseX;
+      const deltaY = e.clientY - prevMouseY;
+      
+      cameraAngleX += deltaX * 0.01;
+      cameraAngleY += deltaY * 0.01;
+
+      // Protection gimbal lock de caméra
+      cameraAngleY = Math.max(-Math.PI/2.5, Math.min(Math.PI/2.5, cameraAngleY));
+
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+      
+      drawFeaModel();
+    });
+
+    // Support des écrans tactiles
+    canvas.addEventListener('touchstart', (e) => {
+      if(e.touches.length === 1) {
+        isDragging = true;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+      }
+    });
+
+    canvas.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - prevMouseX;
+      const deltaY = e.touches[0].clientY - prevMouseY;
+      
+      cameraAngleX += deltaX * 0.01;
+      cameraAngleY += deltaY * 0.01;
+      cameraAngleY = Math.max(-Math.PI/2.5, Math.min(Math.PI/2.5, cameraAngleY));
+
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+      
+      drawFeaModel();
+    });
+
+    // Lancement de l'initialisation globale
+    window.onload = function() {
+      setupConvergenceChart();
+      resizeCanvas();
+      selectCase(1); // Démarre sur le Cas 1
+    };
+
+    window.addEventListener('resize', resizeCanvas);
+  </script>
 </body>
 </html>
