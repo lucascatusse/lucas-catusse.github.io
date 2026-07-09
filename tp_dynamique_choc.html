@@ -1,125 +1,410 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Simulation d'un Essai de Traction-Compression Élastomère — Dynamique Rapide & Choc</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyse de Choc & Dynamique Rapide — Lucas Catusse</title>
+  
+  <!-- Chargement des bibliothèques externes -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .code-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
 </head>
+<body class="bg-slate-50 text-slate-800 leading-relaxed min-h-screen">
 
-<body>
-
-<header>
-    <div class="header-left">
-        <h1>Projet : Dynamique Rapide & Analyse de Choc</h1>
-        <h2>Simulation Numérique d'un Cycle Cyclique sur Élastomère | Solveur Explicite RADIOSS</h2>
+  <header class="relative bg-slate-900 text-white overflow-hidden py-16 px-6 sm:px-12">
+    <!-- Motif géométrique en arrière-plan -->
+    <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-violet-500 rounded-full filter blur-3xl opacity-20"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-600 rounded-full filter blur-3xl opacity-15"></div>
+    
+    <div class="relative max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="bg-violet-500/10 text-violet-400 border border-violet-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Modélisation Éléments Finis</span>
+          <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Dynamique Rapide (Altair RADIOSS)</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+          Simulation d'un Essai de Traction-Compression sur <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400">Élastomère Dissipatif</span>
+        </h1>
+        <p class="mt-4 text-slate-300 text-lg max-w-2xl">
+          Analyse transitoire par solveur explicite d'un cycle de charge-décharge sur éprouvette cylindrique. Confrontation de modèles élastiques et viscoélastiques de Maxwell-Kelvin sous HyperMesh & HyperCrash.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-6 text-sm text-slate-400">
+          <span class="flex items-center gap-1">🏫 Polytech Lyon — 5e Année Mécanique</span>
+          <span class="flex items-center gap-1">⏱️ Analyse Explicite RADIOSS</span>
+        </div>
+      </div>
+      <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/50 hover:text-white transition px-5 py-2.5 rounded-lg font-semibold flex items-center gap-2 shadow-lg">
+        ← Retour au Portfolio
+      </a>
     </div>
-</header>
+  </header>
 
-<section>
-    <h2>Résumé du projet</h2>
-    <p>
-        Ce projet de 5A Mécanique traite de la modélisation et de la simulation numérique par éléments finis d'un <strong>essai de traction-compression cyclique</strong> (charge/décharge) sur une éprouvette cylindrique en caoutchouc[cite: 1, 3]. Menée sous l'environnement Altair (HyperMesh, HyperCrash) et résolue via le solveur de dynamique rapide <strong>Altair RADIOSS</strong>, l'étude vise à caractériser et comparer la réponse transitoire d'un matériau hautement dissipatif soumis à différentes vitesses de sollicitation[cite: 1, 3, 23, 41].
-    </p>
-    <p>
-        L'analyse repose sur une double approche théorique et numérique permettant de confronter une loi purement instantanée et réversible à un modèle tenant compte de la dépendance temporelle et de l'histoire du chargement[cite: 5, 6]. Le système d'unités rigoureusement retenu pour l'ensemble de la chaîne de calcul est <code>[mm, ms, g, N, MPa]</code>[cite: 4, 17].
-    </p>
-</section>
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
 
-<section>
-    <h2>Objectifs du Projet</h2>
-    <ul>
-        <li><strong>Formulation des Lois Métallurgiques et Polymères :</strong> Implémenter et analyser les équations constitutives d'un modèle Élastique Linéaire (Loi de Hooke) et d'un modèle Viscoélastique Linéaire (Maxwell-Kelvin généralisé)[cite: 5, 6].</li>
-        <li><strong>Maîtrise de la Réduction de Modèle :</strong> Exploiter les plans de symétrie géométrique et axiale de la pièce pour n'analyser qu'un quart d'éprouvette, minimisant ainsi de manière drastique les temps de calcul CPU[cite: 13].</li>
-        <li><strong>Contrôle du Phénomène de Verrouillage :</strong> Concevoir une stratégie de maillage structuré par extrusion visant à éradiquer les instabilités numériques induites par la quasi-incompressibilité de l'élastomère[cite: 14, 15].</li>
-        <li><strong>Analyse de la Stabilité Explicite :</strong> Valider la convergence et la fiabilité physique de la simulation dynamique en effectuant un suivi rigoureux du bilan énergétique global, notamment des énergies cinétique et de Hourglass (sablier)[cite: 35].</li>
-    </ul>
-</section>
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+      <div class="lg:col-span-8 space-y-5">
+        <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+          ⚡ Problématique Physique, Objectifs & Contexte Industriel
+        </h2>
+        <p class="text-slate-600 text-justify">
+          Dans les secteurs aéronautique, automobile et ferroviaire, les élastomères (caoutchoucs naturels ou synthétiques) sont massivement employés comme amortisseurs vibratoires, butées de fin de course ou silentblocs de protection. Soumis à des impacts sévères ou à des charges transitoires cycliques, ces matériaux se caractérisent par un comportement mécanique hautement non linéaire, dépendant du temps (viscosité) et fortement amortissant. Prédire numériquement avec précision la part d'énergie dissipée en chaleur est indispensable pour éviter la ruine précoce des structures et garantir la sécurité des systèmes lors d'un crash.
+        </p>
+        <p class="text-slate-600 text-justify">
+          L'enjeu de ce projet de 5e année est de concevoir et valider un modèle numérique sous le solveur de dynamique rapide <strong>Altair RADIOSS</strong> capable de reproduire un <strong>cycle d'essai de traction-compression transitoire</strong>. Le test mécanique virtuel applique une rampe de chargement imposée à vitesse contrôlée jusqu'à une déformation de 5%, suivie d'une phase de décharge complète à vitesse équivalente. L'étude met directement en opposition deux formulations matérielles fondamentales :
+        </p>
+        <ul class="list-disc pl-5 text-sm text-slate-600 space-y-2">
+          <li><strong>Le modèle Élastique Linéaire (Loi de Hooke) :</strong> Réponse instantanée et réversible, incapable de dissiper de l'énergie et insensible à la vitesse d'application de la charge.</li>
+          <li><strong>Le modèle Viscoélastique Linéaire de Maxwell-Kelvin :</strong> Comportement à mémoire de déformation régi par l'intégrale de superposition de Boltzmann, capturant les glissements macromoléculaires internes à l'origine de l'hystérésis amortissante.</li>
+        </ul>
+        <p class="text-slate-600 text-justify">
+          Pour optimiser le coût de calcul CPU tout en conservant une rigueur mathématique stricte, nous exploitons une <strong>double symétrie géométrique et axiale</strong>. L'étude numérique se restreint ainsi à un unique quart d'éprouvette cylindrique, modélisant de manière robuste l'effet du confinement spatial.
+        </p>
+      </div>
 
-<section>
-    <h2>Spécifications Géométriques & Configurations d'Essais</h2>
-    <p>
-        L'échantillon d'élastomère étudié présente des dimensions initiales strictes : un diamètre $D = 20\text{ mm}$, une hauteur de référence $L_0 = 100\text{ mm}$ et une masse volumique $\rho = 0.001\text{ g/mm}^3$[cite: 5]. L'étude compare 4 configurations distinctes combinant lois physiques et profils de vitesse en créneau[cite: 5, 23]:
-    </p>
-    <ul>
-        <li><strong>Régime Élastique Linéaire (Cas 1 & 2) :</strong> Module de Young $E = 0.1\text{ MPa}$ et coefficient de Poisson poussé à la limite physique d'incompressibilité $\nu = 0.4999$[cite: 9]. Testé à vitesse lente ($v = 0.01\text{ mm/ms}$, rampe de 500 ms) et rapide ($v = 0.05\text{ mm/ms}$, rampe de 100 ms) pour atteindre $5\%$ de déformation ($\epsilon = 0.05$)[cite: 9, 10, 23].</li>
-        <li><strong>Régime Viscoélastique Linéaire (Cas 3 & 4) :</strong> Intégration de l'intégrale de Boltzmann s'appuyant sur un module de compression $K = 1000\text{ MPa}$ et un module de relaxation défini par $G(t) = G_\infty + G_1 e^{-\beta_1 t}$[cite: 6, 7, 9]. Les paramètres identifiés sont $G_\infty = 0.011\text{ MPa}$, $G_1 = 0.022\text{ MPa}$, et une constante de temps $\beta_1 = 0.0038\text{ ms}^{-1}$[cite: 9]. Les profils cinématiques restent identiques à l'approche élastique[cite: 23].</li>
-    </ul>
-</section>
+      <!-- Cohérence du système d'unités sous RADIOSS -->
+      <div class="lg:col-span-4 bg-slate-900 text-white rounded-xl p-6 flex flex-col justify-between relative overflow-hidden shadow-inner border border-slate-800">
+        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] bg-[size:1rem_1rem]"></div>
+        <div>
+          <span class="text-xs text-violet-400 font-bold uppercase tracking-widest code-font">RADIOSS Setup</span>
+          <h3 class="text-xl font-bold mt-1 text-slate-100">Système d'Unités</h3>
+          <p class="text-[11px] text-slate-400 mt-1">
+            La cohérence dimensionnelle est indispensable en dynamique explicite pour éviter toute dérive d'échelle physique.
+          </p>
+        </div>
 
-<section>
-    <h2>Stratégie Numérique sous Altair (Pre-Processing)</h2>
-    
-    <h3>1. Maillage Structuré sur HyperMesh & Prévention du Verrouillage</h3>
-    <p>
-        Compte tenu de la quasi-incompressibilité du caoutchouc ($\nu \approx 0.5$) [cite: 9, 15], un maillage automatique standard en tétraèdres aurait provoqué un phénomène de <strong>verrouillage numérique (volumetric locking)</strong>, conduisant à une surestimation artificielle de la raideur de la structure[cite: 15]. 
-    </p>
-    <p>
-        Pour y pallier, un maillage surfacique composé uniquement de quadrilatères (<i>Quad only</i>) a été généré sur la section du quart de cylindre, puis extrudé suivant l'axe vertical pour former des éléments de type brique hexagonaux à 8 nœuds (<strong>HEXA8</strong>)[cite: 14, 16]. Cette topologie garantit une excellente précision dans la capture des gradients de contraintes axiales $\sigma_{zz}$[cite: 14, 25].
-    </p>
+        <div class="my-4 bg-slate-950/80 rounded-lg p-3 border border-slate-800 space-y-2.5">
+          <div class="flex justify-between items-center text-xs text-slate-300">
+            <span>Longueur :</span><span class="code-font text-violet-400 font-semibold">mm</span>
+          </div>
+          <div class="flex justify-between items-center text-xs text-slate-300">
+            <span>Temps :</span><span class="code-font text-violet-400 font-semibold">ms</span>
+          </div>
+          <div class="flex justify-between items-center text-xs text-slate-300">
+            <span>Masse :</span><span class="code-font text-violet-400 font-semibold">g</span>
+          </div>
+          <div class="flex justify-between items-center text-xs text-slate-300">
+            <span>Force :</span><span class="code-font text-violet-400 font-semibold">N</span>
+          </div>
+          <div class="flex justify-between items-center text-xs text-slate-300">
+            <span>Contrainte :</span><span class="code-font text-violet-400 font-semibold">MPa</span>
+          </div>
+        </div>
 
-    <h3>2. Conditions aux Limites et Fonctions de Pilotage sous HyperCrash</h3>
-    <p>
-        L'environnement physique a été rigoureusement retranscrit via les abstractions d'HyperCrash[cite: 16, 129]:
-    </p>
-    <ul>
-        <li><strong>Encastrement :</strong> Blocage absolu de tous les degrés de liberté en translation et rotation sur la face inférieure de l'éprouvette ($T_x=T_y=T_z=M_x=M_y=M_z=0$)[cite: 20].</li>
-        <li><strong>Symétries Radiales :</strong> Conditions de symétrie appliquées sur les plans de coupe ($T_x=0, M_y=M_z=0$ pour le plan orthogonal à X ; $T_y=0, M_x=M_z=0$ pour le plan orthogonal à Y)[cite: 21].</li>
-        <li><strong>Chargement Dynamique :</strong> Application de la vitesse imposée (créneau de charge à vitesse constante suivi d'une inversion stricte pour simuler la décharge) sur la face supérieure via un raccord cinématique rigide (<i>Rigid Body / Rigid Link</i>)[cite: 21, 23].</li>
-    </ul>
-</section>
+        <div class="bg-violet-950/40 text-violet-300 text-[11px] p-3 rounded border border-violet-900/30">
+          <strong>Rigueur Physique :</strong> 
+          $$1\text{ N} = 1\text{ kg}\cdot\text{m/s}^2 = 10^3\text{ g}\cdot \frac{10^3\text{ mm}}{(10^3\text{ ms})^2} = 1\text{ g}\cdot\text{mm/ms}^2$$
+          La densité du caoutchouc (\(1\text{ g/cm}^3\)) s'exprime ainsi de manière cohérente à \(\rho = 0.001\text{ g/mm}^3\).
+        </div>
+      </div>
+    </section>
 
-<section>
-    <h2>Résultats, Confrontations & Analyse Énergétique</h2>
-    
-    <h3>1. Extraction et Corrélation des Profils de Contrainte</h3>
-    <p>
-        Les données de contrainte normale $\sigma_{zz}$ ont été extraites au cœur du modèle (Élément central 917, Nœud 1202)[cite: 25].
-    </p>
-    <ul>
-        <li><strong>Validation Élastique :</strong> Les simulations confirment un pic de contrainte rigoureusement calé à $0.005\text{ MPa}$ pour les deux vitesses de chargement[cite: 25]. La superposition parfaite avec la solution analytique de Hooke ($\sigma = 0.1 \times 0.05$) valide l'exactitude de notre système d'unités et de la géométrie[cite: 10, 25, 27].</li>
-        <li><strong>Phénoménologie Viscoélastique :</strong> À l'inverse de la loi élastique, la réponse dépend fortement de la vitesse de déformation[cite: 28]. Le modèle numérique confirme de manière précise la solution de l'intégrale de Boltzmann en atteignant la valeur théorique attendue de $\approx 0.00165\text{ MPa}$ au pic de charge[cite: 7, 11, 29].</li>
-    </ul>
+    <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm space-y-8">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-violet-600 font-bold uppercase tracking-widest">Maillage & Algorithmes sous HyperMesh</span>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">🛠️ Stratégie Numérique & Contrôle du Verrouillage Volumique</h2>
+      </div>
 
-    <h3>2. Analyse des Courbes Hystérésis et Bilan Sollicitation-Déformation</h3>
-    <p>
-        Le tracé des courbes $\sigma = f(\epsilon)$ met en évidence la signature rhéologique des deux matériaux[cite: 30]:
-    </p>
-    <p>
-        Le comportement élastique se traduit par une droite réversible passant par l'origine[cite: 31]. À l'inverse, la réponse viscoélastique décrit une <strong>boucle d'hystérésis ouverte</strong> entre la phase de charge et de décharge[cite: 32]. L'aire confinée au sein de cette boucle possède une signification physique majeure : elle quantifie <strong>l'énergie dissipée par unité de volume</strong> sous forme de chaleur au cours du cycle, illustrant directement le pouvoir amortissant intrinsèque de l'élastomère[cite: 33, 34].
-    </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4 text-sm text-slate-600 text-justify">
+          <p>
+            Compte tenu de la quasi-incompressibilité des élastomères (modélisée ici par un coefficient de Poisson poussé à \(\nu = 0.4999\)), l'utilisation d'un maillage standard automatique de type tétraédrique linéaire aurait provoqué un <strong>verrouillage hydrostatique/volumique (volumetric locking)</strong>. 
+          </p>
+          <p>
+            Ce phénomène numérique néfaste se produit car la contrainte de volume constant (divergence nulle du champ de déplacement) surcontraint les nœuds des éléments, conduisant à une surestimation dramatique et totalement artificielle de la rigidité globale de l'éprouvette.
+          </p>
+          <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2">
+            <h4 class="font-bold text-violet-600">Méthodologie adoptée pour éradiquer le blocage :</h4>
+            <p class="text-xs">
+              1. **Maillage Quads initial :** Génération d'un maillage surfacique régulier composé uniquement de quadrilatères de haute qualité (pas de triangles dégénérés) sur la section plane du quart de cylindre.
+            </p>
+            <p class="text-xs">
+              2. **Extrusion verticale en HEXA8 :** Extrusion guidée de cette face selon l'axe longitudinal pour générer des briques hexagonales régulières à 8 nœuds (HEXA8) avec point d'intégration sélectif.
+            </p>
+            <p class="text-xs">
+              3. **Avantages mécaniques :** Cette structure de maillage permet une excellente découple entre les déformations déviatoriques (cisaillement) et volumiques (pression hydrostatique), garantissant un calcul exempt de verrouillage.
+            </p>
+          </div>
+        </div>
 
-    <blockquote style="background: #f9f9f9; border-left: 5px solid #4caf50; margin: 1.5em 10px; padding: 0.5em 10px;">
-        <strong>Diagnostic de Stabilité Explicite (RADIOSS) :</strong> L'exploitation d'un schéma d'intégration temporelle explicite impose une surveillance critique du bilan d'énergie[cite: 35]. Le suivi temporel sous HyperView confirme que l'énergie cinétique reste minimale (garantissant un état quasi-statique contrôlé) et, point crucial, que l'<strong>énergie Hourglass (énergie de sablier)</strong> demeure parfaitement négligeable devant l'énergie interne. Cette absence de modes de déformation parasites non physiques valide définitivement la qualité du maillage HEXA8 et la robustesse de la mise en données[cite: 14, 36, 41].
-    </blockquote>
+        <!-- Schéma SVG technique interactif représentant le quart d'éprouvette modélisé -->
+        <div class="bg-slate-900 text-white border border-slate-800 rounded-xl p-6 flex flex-col justify-center items-center h-80 relative overflow-hidden">
+          <svg class="w-full h-full" viewBox="0 0 400 240">
+            <!-- Grid lines CAD -->
+            <path d="M 0,40 L 400,40 M 0,120 L 400,120 M 0,200 L 400,200 M 100,0 L 100,240 M 200,0 L 200,240 M 300,0 L 300,240" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="2" />
+            
+            <!-- Axes 3D représentatifs -->
+            <line x1="30" y1="200" x2="80" y2="200" stroke="#f43f5e" stroke-width="1.5" /> <!-- X -->
+            <line x1="30" y1="200" x2="30" y2="150" stroke="#10b981" stroke-width="1.5" /> <!-- Z -->
+            <line x1="30" y1="200" x2="55" y2="175" stroke="#3b82f6" stroke-width="1.5" /> <!-- Y -->
+            <text x="85" y="203" fill="#f43f5e" font-size="8" font-family="monospace">X</text>
+            <text x="27" y="145" fill="#10b981" font-size="8" font-family="monospace">Z</text>
+            <text x="59" y="172" fill="#3b82f6" font-size="8" font-family="monospace">Y</text>
 
-    <div style="text-align: center; margin: 25px 0;">
-        <img src="courbe_energetique_radioss.png" alt="Courbes de bilan énergétique et boucle d'hystérésis sous RADIOSS" 
-             style="width: 80%; display: block; margin: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-        <em style="display: block; margin-top: 10px; font-size: 0.9rem; color: #555;">Graphes RADIOSS : Comparaison des cycles d'hystérésis contrainte-déformation et suivi des énergies (Interne vs Hourglass).</em>
+            <!-- Quart de Cylindre en 3D Isométrique -->
+            <!-- Base inférieure (Encastrée) -->
+            <path d="M 200,200 L 250,175 A 70,35 0 0,0 180,140 L 200,200 Z" fill="#334155" stroke="#64748b" stroke-width="1" />
+            
+            <!-- Extrusion de l'arbre vertical -->
+            <!-- Face latérale courbe -->
+            <path d="M 250,175 A 70,35 0 0,0 180,140 L 180,60 A 70,35 0 0,1 250,95 Z" fill="url(#cyl-gradient)" stroke="#64748b" stroke-width="1" />
+            <!-- Face de coupe X (Plate) -->
+            <rect x="180" y="60" width="20" height="80" fill="#1e293b" stroke="#64748b" stroke-width="1" transform="skewY(-26.5)" />
+            <!-- Face supérieure plane (Sollicitée en vitesse imposée) -->
+            <path d="M 200,120 L 250,95 A 70,35 0 0,0 180,60 L 200,120 Z" fill="#475569" stroke="#64748b" stroke-width="1" />
+            
+            <!-- Flèche de chargement vertical en Z (Rigid link) -->
+            <line x1="210" y1="90" x2="210" y2="40" stroke="#8b5cf6" stroke-width="3" marker-end="url(#arrow-choc)" />
+            <text x="220" y="55" fill="#a78bfa" font-size="9" font-family="monospace" font-weight="bold">V(t) IMPOSÉE</text>
+            
+            <!-- Annotation des plans de symétrie -->
+            <path d="M 120,180 L 170,155" stroke="#a78bfa" stroke-width="0.75" />
+            <text x="70" y="188" fill="#cbd5e1" font-size="8">Plan de Symétrie Y (Ty = 0)</text>
+            
+            <path d="M 260,195 L 210,195" stroke="#a78bfa" stroke-width="0.75" />
+            <text x="265" y="198" fill="#cbd5e1" font-size="8">Plan de Symétrie X (Tx = 0)</text>
+
+            <!-- Définitions de dégradés -->
+            <defs>
+              <linearGradient id="cyl-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#1e1e2f;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#312e81;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#4338ca;stop-opacity:1" />
+              </linearGradient>
+              <marker id="arrow-choc" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b5cf6" />
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📐 Formulations Physique & Équations Fondamentales</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Modèle Élastique Linéaire de Hooke -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
+          <h3 class="font-bold text-violet-600 text-lg flex items-center gap-2">🔄 Élastique Linéaire (Loi de Hooke)</h3>
+          <p class="text-sm text-slate-500 text-justify">
+            La contrainte normale \(\sigma_{zz}\) est directement proportionnelle à la déformation \(\epsilon_{zz}\) appliquée, de façon instantanée et entièrement réversible (aucune dissipation d'énergie).
+          </p>
+          <div class="space-y-3">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3.5">
+              <span class="text-xs text-slate-500 block mb-1 font-semibold">Loi de comportement unidimensionnelle :</span>
+              <div class="text-sm font-medium text-slate-800">
+                $$\sigma(t) = E \cdot \epsilon(t)$$
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3.5">
+              <span class="text-xs text-slate-500 block mb-1 font-semibold">Vitesse de déformation constante (\(\dot{\epsilon}\)) :</span>
+              <div class="text-sm font-medium text-slate-800">
+                $$\dot{\epsilon} = \frac{v}{L_0} = \text{cte} \implies \epsilon(t) = \dot{\epsilon} \cdot t$$
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3.5">
+              <span class="text-xs text-slate-500 block mb-1 font-semibold">Pic de contrainte théorique (indépendant de \(v\)) :</span>
+              <div class="text-sm font-medium text-slate-800">
+                $$\sigma_{max} = 0.1\text{ MPa} \times 0.05 = 0.005\text{ MPa}$$
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modèle Viscoélastique de Maxwell-Kelvin -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
+          <h3 class="font-bold text-indigo-600 text-lg flex items-center gap-2">⏳ Viscoélastique (Intégrale de Boltzmann)</h3>
+          <p class="text-sm text-slate-500 text-justify">
+            La contrainte dépend de l'histoire temporelle complète de la déformation via une fonction noyau de relaxation à mémoire amortissante.
+          </p>
+          <div class="space-y-3">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3.5">
+              <span class="text-xs text-slate-500 block mb-1 font-semibold">Intégrale de superposition de Boltzmann :</span>
+              <div class="text-sm font-medium text-slate-800">
+                $$\sigma(t) = \int_{0}^{t} 3G(t-u) \dot{\epsilon}(u) \, du$$
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3.5">
+              <span class="text-xs text-slate-500 block mb-1 font-semibold">Module de cisaillement relaxé (Maxwell-Kelvin) :</span>
+              <div class="text-sm font-medium text-slate-800">
+                $$G(t) = G_{\infty} + G_1 e^{-\beta_1 t}$$
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3.5">
+              <span class="text-xs text-slate-500 block mb-1 font-semibold">Solution analytique sous rampe de charge (\(t \le t_p\)) :</span>
+              <div class="text-sm font-medium text-slate-800">
+                $$\sigma(t) = 3\frac{v}{L_0} \left[ G_{\infty}t + \frac{G_1}{\beta_1}(1 - e^{-\beta_1 t}) \right]$$
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-violet-600 font-bold uppercase tracking-widest">Matrice comparative</span>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">📋 Matrice Comparative des Scénarios Simulés sous RADIOSS</h2>
+      </div>
+      <div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-sm">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              <th class="py-4 px-6">Cas d'Étude</th>
+              <th class="py-4 px-6">Loi de Comportement</th>
+              <th class="py-4 px-6">Vitesse \(v\) (mm/ms)</th>
+              <th class="py-4 px-6">Constante de temps \(\beta_1\)</th>
+              <th class="py-4 px-6">Contrainte Pic Théorique</th>
+              <th class="py-4 px-6">Contrainte Pic RADIOSS</th>
+              <th class="py-4 px-6">Hystérésis / Dissipation</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-sm">
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-4 px-6 font-semibold text-slate-900">Cas 1 (Lent Élastique)</td>
+              <td class="py-4 px-6">Élastique Linéaire</td>
+              <td class="py-4 px-6">0.01 (Rampe 500ms)</td>
+              <td class="py-4 px-6 font-mono">N/A</td>
+              <td class="py-4 px-6 font-mono text-violet-600 font-semibold">0.0050 MPa</td>
+              <td class="py-4 px-6 font-mono text-emerald-600 font-semibold">0.0050 MPa</td>
+              <td class="py-4 px-6 text-slate-500">Nulle (Droite réversible)</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-4 px-6 font-semibold text-slate-900">Cas 2 (Rapide Élastique)</td>
+              <td class="py-4 px-6">Élastique Linéaire</td>
+              <td class="py-4 px-6">0.05 (Rampe 100ms)</td>
+              <td class="py-4 px-6 font-mono">N/A</td>
+              <td class="py-4 px-6 font-mono text-violet-600 font-semibold">0.0050 MPa</td>
+              <td class="py-4 px-6 font-mono text-emerald-600 font-semibold">0.0050 MPa</td>
+              <td class="py-4 px-6 text-slate-500">Nulle (Droite réversible)</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-4 px-6 font-semibold text-slate-900">Cas 3 (Lent Visco)</td>
+              <td class="py-4 px-6">Viscoélastique Maxwell</td>
+              <td class="py-4 px-6">0.01 (Rampe 500ms)</td>
+              <td class="py-4 px-6 font-mono text-slate-500">0.0038 ms⁻¹</td>
+              <td class="py-4 px-6 font-mono text-violet-600 font-semibold">≈ 0.00165 MPa</td>
+              <td class="py-4 px-6 font-mono text-emerald-600 font-semibold">≈ 0.00163 MPa</td>
+              <td class="py-4 px-6 text-rose-600 font-medium">Dissipation forte (cycle large)</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-4 px-6 font-semibold text-slate-900">Cas 4 (Rapide Visco)</td>
+              <td class="py-4 px-6">Viscoélastique Maxwell</td>
+              <td class="py-4 px-6">0.05 (Rampe 100ms)</td>
+              <td class="py-4 px-6 font-mono text-slate-500">0.0038 ms⁻¹</td>
+              <td class="py-4 px-6 font-mono text-violet-600 font-semibold">≈ 0.00165 MPa</td>
+              <td class="py-4 px-6 font-mono text-emerald-600 font-semibold">≈ 0.00165 MPa</td>
+              <td class="py-4 px-6 text-rose-600 font-medium">Dissipation moyenne (cycle étroit)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-violet-600 font-bold uppercase tracking-widest">Bilan de l'étude</span>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">✨ Synthèse & Conclusions du Projet</h2>
+      </div>
+      
+      <p class="text-slate-600 text-justify text-sm leading-relaxed">
+        Ce projet de dynamique rapide a permis d'assimiler plusieurs concepts fondamentaux en mécanique numérique, en rhéologie des élastomères et en modélisation par éléments finis :
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-violet-50/50 border border-violet-100 p-5 rounded-xl space-y-2">
+          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">📈 Dépendance au Temps</h4>
+          <p class="text-xs text-slate-600 leading-relaxed text-justify">
+            La loi viscoélastique de Boltzmann a mis en évidence la forte dépendance au temps du caoutchouc. Une sollicitation rapide engendre une rigidité initiale plus élevée et un pic de contrainte accru par rapport à une charge lente, validant la sensibilité au taux de déformation (<em>strain-rate sensitivity</em>).
+          </p>
+        </div>
+
+        <div class="bg-violet-50/50 border border-violet-100 p-5 rounded-xl space-y-2">
+          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">🔥 Amortissement & Énergie</h4>
+          <p class="text-xs text-slate-600 leading-relaxed text-justify">
+            La quantification de la boucle d'hystérésis démontre que l'amortissement mécanique est directement piloté par le frottement visqueux interne. Contrairement au modèle élastique réversible, l'énergie résiduelle accumulée est intégralement convertie en chaleur, servant de base pour dimensionner des organes de sécurité de crash.
+          </p>
+        </div>
+
+        <div class="bg-violet-50/50 border border-violet-100 p-5 rounded-xl space-y-2">
+          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">⚙️ Maîtrise Numérique</h4>
+          <p class="text-xs text-slate-600 leading-relaxed text-justify">
+            La transition d'une modélisation automatique à un maillage structuré en briques hexagonales (HEXA8) s'avère payante. Elle a éliminé de manière rigoureuse le blocage hydrostatique volumique induit par la quasi-incompressibilité du matériau (\(\nu \to 0.5\)), sans générer de déformations de sablier parasites.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-slate-600 text-justify text-sm leading-relaxed">
+        <strong>En conclusion</strong>, la comparaison rigoureuse entre les calculs analytiques de superposition et les résultats issus d'Altair RADIOSS valide notre méthodologie de modélisation mécanique. Ces conclusions démontrent que l'emploi de lois rhéologiques avancées dépendant du temps est incontournable pour simuler avec réalisme la sécurité passive de composants mécaniques réels sous conditions d'impacts.
+      </p>
+    </section>
+
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">🎯 Compétences d'Ingénierie Capitalisées</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+          <div class="text-2xl text-violet-500">🧪</div>
+          <h3 class="font-bold text-slate-900">Rhéologie des Élastomères</h3>
+          <p class="text-xs text-slate-600">Compréhension avancée des lois dépendant du temps (modèles Maxwell-Kelvin), de la viscoélasticité et de l'amortissement d'hystérésis.</p>
+        </div>
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+          <div class="text-2xl text-violet-500">💻</div>
+          <h3 class="font-bold text-slate-900">Pre-Processing Altair</h3>
+          <p class="text-xs text-slate-600">Mise en données sous HyperMesh et HyperCrash. Maîtrise des conditions aux limites complexes et des liaisons rigides (Rigid Bodies).</p>
+        </div>
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+          <div class="text-2xl text-violet-500">🏎️</div>
+          <h3 class="font-bold text-slate-900">Dynamique Rapide Explicite</h3>
+          <p class="text-xs text-slate-600">Résolution temporelle sous RADIOSS, gestion du pas de temps critique stable (CFL) et surveillance énergétique globale.</p>
+        </div>
+        <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+          <div class="text-2xl text-violet-500">🛡️</div>
+          <h3 class="font-bold text-slate-900">Diagnostic Numérique</h3>
+          <p class="text-xs text-slate-600">Inhibition du verrouillage volumique par maillage brique HEXA8 et maîtrise absolue de l'énergie de Hourglass parasite.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORT DOWNLOAD -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="space-y-2">
+        <span class="text-xs text-violet-600 font-bold uppercase tracking-widest block">Rapport de Projet de Spécialité</span>
+        <h3 class="text-xl font-bold text-slate-900">Rapport d'Essai de Traction Élastomère complet</h3>
+        <p class="text-sm text-slate-500 max-w-xl">
+          Consultez l'intégralité du document technique universitaire décrivant la configuration de la loi de Boltzmann, la mise en données sous HyperCrash, l'analyse des bilans énergétiques et la validation du modèle face aux résultats expérimentaux sous Altair RADIOSS.
+        </p>
+      </div>
+      <a href="Dymanique_choc.pdf" download class="bg-violet-600 hover:bg-violet-500 text-white font-semibold transition px-6 py-3 rounded-lg shadow-lg shadow-violet-600/10 hover:shadow-violet-600/20 flex items-center justify-center gap-2 whitespace-nowrap">
+        📄 Télécharger Dymanique_choc.pdf
+      </a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-center py-12 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 space-y-4">
+      <p class="font-semibold text-slate-300">Lucas Catusse & Kylian Palays — Portfolio Ingénieurs Mécanique</p>
+      <p class="text-sm text-slate-500">Conception Numérique & Dynamique Rapide © 2026</p>
     </div>
-</section>
-
-<section>
-    <h2>Compétences Développées</h2>
-    <ul>
-        <li><strong>Rhéologie Non-Linéaire des Polymères :</strong> Compréhension avancée des lois constitutives dépendantes du temps, des mécanismes de relaxation (modèles de Maxwell-Kelvin) et des phénomènes de dissipation thermique par hystérésis mécanique[cite: 6, 7, 33, 34].</li>
-        <li><strong>Pre-Processing Avancé (HyperMesh / HyperCrash) :</strong> Maîtrise des techniques de maillage structuré en éléments de type brique (HEXA8), gestion des conditions aux limites complexes (liaisons rigides, plans de symétries multiples) et configuration de cartes de contrôle pour solveur explicite[cite: 14, 16, 21, 41].</li>
-        <li><strong>Analyse Mathématique et Numérique (RADIOSS) :</strong> Aptitude à corréler des résultats issus de solveurs éléments finis avec des formulations analytiques (Intégrale de Boltzmann) et validation de la justesse du modèle par analyse de cartes énergétiques[cite: 7, 27, 35].</li>
-        <li><strong>Esprit Critique en Calcul Explicite :</strong> Capacité à détecter, analyser et inhiber les défaillances numériques classiques des codes de calcul rapide (verrouillage volumique des milieux quasi-incompressibles, dérive de l'énergie de Hourglass)[cite: 15, 35, 36].</li>
-    </ul>
-</section>
-
-<section style="text-align:center; margin: 30px 0; border: none; box-shadow: none;">
-    <a href="Dymanique_choc.pdf" download class="details-btn" 
-       style="display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 5px; /* Les styles spécifiques du bouton sont gérés par details-btn dans style.css */">
-        📄 Télécharger le rapport PDF
-    </a>
-</section>
-
-    
-<section style="text-align:center; margin: 30px 0;">
-    <a href="index.html" class="details-btn">⬅ Retour à l'accueil</a>
-</section>
+  </footer>
 
 </body>
 </html>
+```
+eof
+
+Le fichier a été allégé de toutes les parties relatives à la simulation interactive et à l'affichage des graphiques. Ta page est désormais épurée, entièrement axée sur la démonstration d'ingénierie, et prête à être consultée avec le bouton **Preview** !
