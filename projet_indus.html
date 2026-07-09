@@ -55,61 +55,99 @@
   <!-- MAIN CONTAINER -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
 
-    <!-- EXECUTIVE SUMMARY -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-      <div class="lg:col-span-2 space-y-4">
+    <!-- EXECUTIVE SUMMARY & DETAILED INTRO -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+      <div class="lg:col-span-8 space-y-5">
         <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-          ⚡ Concept & Problématique Industrielle
+          ⚡ Concept, Fonctionnement & Problématique Industrielle
         </h2>
         <p class="text-slate-600 text-justify">
-          Les éoliennes à axe vertical (VAWT) offrent des avantages majeurs en milieu urbain et décentralisé grâce à leur insensibilité à la direction du vent et à l'implantation au sol de leur génératrice. Cependant, les deux principales topologies souffrent de faiblesses complémentaires :
+          Les éoliennes à axe vertical (<strong>VAWT</strong> — <em>Vertical Axis Wind Turbines</em>) représentent une alternative technologique clé face aux structures horizontales classiques (HAWT). Elles se distinguent par leur capacité d'indépendance vis-à-vis de la direction du vent incident, éliminant ainsi les systèmes lourds d'orientation de la nacelle (systèmes de lacet ou <em>yaw</em>). De plus, l'implantation au sol de la génératrice et des composants de transmission facilite drastiquement les opérations de maintenance et allège la contrainte structurelle du mât.
         </p>
+        <p class="text-slate-600 text-justify">
+          Toutefois, la captation cinétique du vent repose sur deux principes aérodynamiques distincts, chacun porté par des topologies de rotors bien spécifiques aux performances complémentaires :
+        </p>
+        
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
           <div class="bg-slate-50 border border-slate-200/60 p-4 rounded-xl">
-            <h4 class="font-bold text-emerald-600 text-sm flex items-center gap-1.5">🪘 Type Savonius</h4>
-            <p class="text-xs text-slate-500 mt-1">Fonctionne par traînée différentielle. Excellent couple au démarrage à très faible vitesse de vent, mais rendement maximal faible à régime nominal.</p>
+            <h4 class="font-bold text-emerald-600 text-sm flex items-center gap-1.5">🪘 Type Savonius (Rotor à Traînée)</h4>
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed text-justify">
+              Fonctionne principalement par <strong>traînée différentielle</strong>. Les demi-godets opposés présentent des coefficients de traînée asymétriques face à l'écoulement. Cette topologie offre un <strong>excellent couple à l'arrêt</strong> et démarre sous de très faibles vitesses de vent, mais présente un rendement aérodynamique maximal (\(C_p \approx 0.15\)) limité et ne peut pas dépasser un rapport de vitesse périphérique supérieur à 1 (\(\lambda < 1\)).
+            </p>
           </div>
           <div class="bg-slate-50 border border-slate-200/60 p-4 rounded-xl">
-            <h4 class="font-bold text-teal-600 text-sm flex items-center gap-1.5">🪶 Type Darrieus</h4>
-            <p class="text-xs text-slate-500 mt-1">Fonctionne par portance aérodynamique. Très bonne efficacité (\(C_p\)) à grande vitesse, mais couple de démarrage quasi-nul (auto-démarrage impossible).</p>
+            <h4 class="font-bold text-teal-600 text-sm flex items-center gap-1.5">🪶 Type Darrieus (Rotor à Portance)</h4>
+            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed text-justify">
+              Fonctionne par <strong>portance aérodynamique</strong> grâce à l'utilisation de pales au profil aéronautique profilé (ici de type NACA symétrique). Cette configuration offre des rendements exceptionnels (\(C_p > 0.35\)) à haute vitesse de rotation (\(\lambda > 2\)). Néanmoins, le couple au démarrage est quasi-nul à basse vitesse, rendant l'<strong>auto-démarrage physiquement impossible</strong> sans assistance.
+            </p>
           </div>
         </div>
+        
         <p class="text-slate-600 text-justify">
-          Ce projet étudie un <strong>concept hybride imbriqué</strong> : un petit rotor Savonius central assure le démarrage instantané du système, puis transmet son couple au grand rotor Darrieus périphérique à trois pales aérodynamiques qui prend le relais pour extraire l'énergie à haut rendement.
+          Pour s'affranchir de ce compromis historique, ce projet étudie un <strong>concept hybride coaxial imbriqué</strong>. Au centre du système, un petit rotor Savonius à deux godets capte les brises initiales pour initier instantanément la rotation de l'arbre commun. Une fois que la turbine acquiert une vitesse de rotation suffisante, la portance s'établit sur les trois pales Darrieus périphériques, qui prennent alors le relais pour exploiter pleinement l'énergie cinétique du vent à haut rendement.
         </p>
       </div>
       
-      <!-- Fiche technique de l'éolienne -->
-      <div class="bg-slate-900 text-white rounded-xl p-6 flex flex-col justify-between relative overflow-hidden shadow-inner">
+      <!-- Visual CAD / Creo Annotation Block -->
+      <div class="lg:col-span-4 bg-slate-900 text-white rounded-xl p-6 flex flex-col justify-between relative overflow-hidden shadow-inner border border-slate-800">
         <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] bg-[size:1rem_1rem]"></div>
         <div>
-          <span class="text-xs text-emerald-400 font-bold uppercase tracking-widest">Caractéristiques Modèle</span>
-          <h3 class="text-xl font-bold mt-1 text-slate-100">Spécifications CAO</h3>
+          <span class="text-xs text-emerald-400 font-bold uppercase tracking-widest code-font">Modélisation CAO Creo</span>
+          <h3 class="text-xl font-bold mt-1 text-slate-100">Vue CAO Creo Parametric</h3>
+          <p class="text-[11px] text-slate-400 mt-1">Conception mécanique tridimensionnelle du modèle hybride et de ses composants.</p>
         </div>
-        <div class="my-4 space-y-3.5 text-xs text-slate-300">
-          <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
-            <span>Diamètre Darrieus</span>
-            <span class="font-bold text-slate-100">500 mm</span>
-          </div>
-          <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
-            <span>Profils de pale</span>
-            <span class="font-bold text-slate-100">NACA 0018 (Symétrique)</span>
-          </div>
-          <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
-            <span>Rotor central</span>
-            <span class="font-bold text-slate-100">Savonius (2 godets)</span>
-          </div>
-          <div class="flex justify-between border-b border-slate-800/60 pb-1.5">
-            <span>Hauteur totale</span>
-            <span class="font-bold text-slate-100">400 mm</span>
-          </div>
-          <div class="flex justify-between">
-            <span>Fluide de calcul</span>
-            <span class="font-bold text-emerald-400">Air standard (1.225 kg/m³)</span>
-          </div>
+        
+        <!-- SVG Isometric Technical Drawing representing the Creo model -->
+        <div class="my-4 bg-slate-950/80 rounded-lg p-3 border border-slate-800 flex justify-center items-center h-56 relative">
+          <svg class="w-full h-full" viewBox="0 0 200 220">
+            <!-- Grid lines simulating CAD screen -->
+            <path d="M 0,55 L 200,55 M 0,110 L 200,110 M 0,165 L 200,165 M 50,0 L 50,220 M 100,0 L 100,220 M 150,0 L 150,220" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="2" />
+            
+            <!-- Axis lines -->
+            <line x1="100" y1="10" x2="100" y2="210" stroke="#f59e0b" stroke-width="1" stroke-dasharray="5,2" />
+            
+            <!-- Outer Darrieus Blades (Isometric projection styling) -->
+            <!-- Blade 1 (Left) -->
+            <path d="M 50,40 Q 30,110 50,180" fill="none" stroke="#0ea5e9" stroke-width="3" />
+            <!-- Connection strut 1 -->
+            <line x1="100" y1="40" x2="50" y2="40" stroke="#64748b" stroke-width="1.5" />
+            <line x1="100" y1="180" x2="50" y2="180" stroke="#64748b" stroke-width="1.5" />
+            
+            <!-- Blade 2 (Right) -->
+            <path d="M 150,40 Q 170,110 150,180" fill="none" stroke="#0ea5e9" stroke-width="3" />
+            <!-- Connection strut 2 -->
+            <line x1="100" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="1.5" />
+            <line x1="100" y1="180" x2="150" y2="180" stroke="#64748b" stroke-width="1.5" />
+            
+            <!-- Central shaft -->
+            <rect x="96" y="25" width="8" height="170" fill="#94a3b8" rx="2" />
+            
+            <!-- Inner Savonius Buckets -->
+            <!-- Bucket 1 (Left offset) -->
+            <path d="M 100,85 C 75,85 75,115 100,115" fill="none" stroke="#10b981" stroke-width="2.5" />
+            <line x1="100" y1="85" x2="80" y2="85" stroke="#64748b" stroke-width="1" />
+            <line x1="100" y1="115" x2="80" y2="115" stroke="#64748b" stroke-width="1" />
+            
+            <!-- Bucket 2 (Right offset) -->
+            <path d="M 100,115 C 125,115 125,145 100,145" fill="none" stroke="#10b981" stroke-width="2.5" />
+            <line x1="100" y1="115" x2="120" y2="115" stroke="#64748b" stroke-width="1" />
+            <line x1="100" y1="145" x2="120" y2="145" stroke="#64748b" stroke-width="1" />
+            
+            <!-- Dimensional lines & markers -->
+            <line x1="165" y1="40" x2="185" y2="40" stroke="#e2e8f0" stroke-width="0.5" />
+            <line x1="165" y1="180" x2="185" y2="180" stroke="#e2e8f0" stroke-width="0.5" />
+            <line x1="180" y1="40" x2="180" y2="180" stroke="#34d399" stroke-width="0.75" />
+            <polygon points="180,38 178,44 182,44" fill="#34d399" />
+            <polygon points="180,182 178,176 182,176" fill="#34d399" />
+            
+            <!-- Annotation Text -->
+            <text x="186" y="115" fill="#34d399" font-size="7" font-family="monospace" writing-mode="vertical-lr">H = 400 mm</text>
+            <text x="100" y="212" fill="#38bdf8" font-size="8" font-family="monospace" text-anchor="middle">Ø 500 mm (Darrieus)</text>
+          </svg>
         </div>
+        
         <div class="bg-emerald-950/40 text-emerald-300 text-[11px] p-3 rounded border border-emerald-900/30">
-          💡 <strong>Défi résolu :</strong> Intégration d'un maillage glissant transitoire (Sliding Mesh) pour simuler la rotation physique sous Fluent.
+          💡 <strong>Rigueur Géométrique :</strong> Les pales aérodynamiques externes adoptent un profil symétrique de type <strong>NACA 0018</strong>, idéal pour stabiliser la portance sur des angles d'attaque oscillants.
         </div>
       </div>
     </section>
@@ -368,61 +406,29 @@
     </section>
 
     <!-- MESHING & CFD NUMERICAL SOLUTION -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-      <div class="lg:col-span-7 space-y-4">
+    <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm space-y-6">
+      <div class="space-y-4">
         <span class="text-xs text-teal-600 font-bold uppercase tracking-widest">Stratégie Numérique de Maillage</span>
         <h2 class="text-2xl font-bold text-slate-900">💻 Optimisation et Robustesse de Maillage</h2>
         <p class="text-slate-600 text-sm text-justify">
-          La simulation transitoire à maillage tournant (<strong>Sliding Mesh</strong>) est gourmande en ressources de calcul. Le modèle CAO initial générait un maillage non structuré de plus de <strong>3 000 000 d'éléments</strong>, rendant les calculs industriels impraticables.
+          La simulation transitoire à maillage tournant (<strong>Sliding Mesh</strong>) est particulièrement exigeante en ressources de calcul, car elle nécessite d'actualiser les coordonnées nodales de la zone tournante fluide-solide à chaque pas de temps. Le modèle CAO initial issu de Creo Parametric générait originellement un maillage non structuré de plus de <strong>3 000 000 d'éléments</strong>, rendant les calculs physiques incompatibles avec des contraintes de temps industrielles.
         </p>
         <p class="text-slate-600 text-sm text-justify">
-          En appliquant des techniques de raffinement sélectif de l'interface glissante fluide-fluide et en configurant des éléments tétraédriques linéaires optimisés, nous avons réussi à diviser par près de 5 la taille du modèle, la ramenant à seulement <strong>665 420 éléments</strong>, sans aucune perte de précision sur la captation du sillage et des détachements tourbillonnaires (vortex shedding).
+          En appliquant des techniques de raffinement sélectif de l'interface glissante fluide-fluide et en configurant des éléments tétraédriques linéaires optimisés, nous avons réussi à diviser par près de 5 la taille du modèle, la ramenant à seulement <strong>665 420 éléments</strong>. Ce gain colossal de performance n'introduit aucune perte de précision sur la captation du sillage et des détachements tourbillonnaires (vortex shedding). Des couches d'inflation d'épaisseur géométrique ont par ailleurs été conservées localement pour maintenir le \(y^+ < 1.0\) aux parois clés.
         </p>
-        <div class="grid grid-cols-3 gap-4 mt-6 text-center">
-          <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-center">
+          <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
             <span class="text-[10px] text-slate-500 uppercase font-semibold">Taille Initiale</span>
-            <div class="text-sm font-bold text-rose-600 mt-1">> 3.0M Éléments</div>
+            <div class="text-lg font-bold text-rose-600 mt-1">> 3.0M Éléments</div>
           </div>
-          <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+          <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
             <span class="text-[10px] text-slate-500 uppercase font-semibold">Taille Optimisée</span>
-            <div class="text-sm font-bold text-emerald-600 mt-1">665 420 Éléments</div>
+            <div class="text-lg font-bold text-emerald-600 mt-1">665 420 Éléments</div>
           </div>
-          <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+          <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
             <span class="text-[10px] text-slate-500 uppercase font-semibold">Gain de Temps</span>
-            <div class="text-sm font-bold text-teal-600 mt-1">-82% CPU Time</div>
+            <div class="text-lg font-bold text-teal-600 mt-1">-82% CPU Time</div>
           </div>
-        </div>
-      </div>
-      
-      <!-- Schéma visuel de la couche limite / Inflation -->
-      <div class="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-6 flex flex-col justify-center h-80 relative overflow-hidden">
-        <h3 class="font-bold text-slate-800 text-sm mb-3">🪶 Couches d'Inflation de la Limite Visqueuse (\(y^+\))</h3>
-        <p class="text-xs text-slate-500 mb-4 text-justify">
-          Pour capter les forces de portance sur les profils aérodynamiques Darrieus (NACA 0018), 12 couches d'inflation prismatiques progressives ont été configurées en paroi solide.
-        </p>
-        <div class="bg-white border border-slate-200 rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
-          <svg class="w-full h-32" viewBox="0 0 300 120">
-            <!-- Surface de la Pale -->
-            <rect x="0" y="90" width="300" height="30" fill="#f1f5f9" />
-            <line x1="0" y1="90" x2="300" y2="90" stroke="#94a3b8" stroke-width="2" />
-            <text x="10" y="110" fill="#475569" font-size="10" font-family="monospace">PAROI SOLIDE PROFILE (NACA)</text>
-
-            <!-- Couches d'inflation (Lignes parallèles serrées s'écartant) -->
-            <line x1="0" y1="88" x2="300" y2="88" stroke="#10b981" stroke-width="0.7" opacity="0.9" />
-            <line x1="0" y1="85" x2="300" y2="85" stroke="#10b981" stroke-width="0.7" opacity="0.8" />
-            <line x1="0" y1="81" x2="300" y2="81" stroke="#10b981" stroke-width="0.7" opacity="0.7" />
-            <line x1="0" y1="76" x2="300" y2="76" stroke="#10b981" stroke-width="0.7" opacity="0.6" />
-            <line x1="0" y1="70" x2="300" y2="70" stroke="#10b981" stroke-width="0.7" opacity="0.5" />
-            <line x1="0" y1="62" x2="300" y2="62" stroke="#10b981" stroke-width="0.7" opacity="0.4" />
-            <line x1="0" y1="52" x2="300" y2="52" stroke="#10b981" stroke-width="0.7" opacity="0.3" />
-            <line x1="0" y1="40" x2="300" y2="40" stroke="#10b981" stroke-width="0.7" opacity="0.2" />
-
-            <!-- Flèche d'épaisseur -->
-            <line x1="250" y1="90" x2="250" y2="40" stroke="#f59e0b" stroke-width="1.5" />
-            <polygon points="250,35 247,42 253,42" fill="#f59e0b" />
-            <text x="130" y="55" fill="#f59e0b" font-size="8" font-family="monospace">1ère cellule : y = 0.012 mm</text>
-            <text x="130" y="68" fill="#10b981" font-size="9" font-weight="bold" font-family="monospace">y+ = 0.85 (&lt; 1.0)</text>
-          </svg>
         </div>
       </div>
     </section>
@@ -434,7 +440,7 @@
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
           <div class="text-2xl text-emerald-500">📐</div>
           <h3 class="font-bold text-slate-900">Modélisation CAO</h3>
-          <p class="text-xs text-slate-600">Conception sous SolidWorks de rotors hybrides complexes imbriqués et gestion de mécanismes glissants.</p>
+          <p class="text-xs text-slate-600">Conception sous Creo Parametric de rotors hybrides complexes imbriqués et gestion des assemblages cinématiques associés.</p>
         </div>
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
           <div class="text-2xl text-emerald-500">💨</div>
@@ -452,20 +458,6 @@
           <p class="text-xs text-slate-600">Diagnostic scientifique des pertes de rendement et formulation de préconisations de géométries améliorées.</p>
         </div>
       </div>
-    </section>
-
-    <!-- REPORT DOWNLOAD -->
-    <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="space-y-2">
-        <span class="text-xs text-emerald-600 font-bold uppercase tracking-widest">Rapport de Synthèse Industrielle</span>
-        <h3 class="text-xl font-bold text-slate-900">Consulter l'Étude Aérodynamique Complète</h3>
-        <p class="text-sm text-slate-500 max-w-xl text-justify">
-          Découvrez l'intégralité du rapport d'ingénierie universitaire décrivant les analyses CFD transitoires (Transient CFD), la modélisation sous Fluent et les solutions d'évitement du bouchon aérodynamique.
-        </p>
-      </div>
-      <a href="rapport_eolienne.pdf" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition px-6 py-3 rounded-lg shadow-lg shadow-emerald-600/10 hover:shadow-emerald-600/20 flex items-center gap-2 whitespace-nowrap">
-        📄 Télécharger le Rapport (PDF)
-      </a>
     </section>
 
   </main>
