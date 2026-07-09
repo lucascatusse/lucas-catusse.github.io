@@ -431,60 +431,6 @@
       </div>
     </section>
 
-    <!-- PYTHON CODES SHOWCASE -->
-    <section class="bg-slate-900 text-white border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <span class="text-xs text-sky-400 font-bold uppercase tracking-widest">Algorithmes du Projet</span>
-          <h2 class="text-2xl font-bold text-slate-100 mt-1">💻 Script d'Intégration Python (Eyjafjallajökull)</h2>
-        </div>
-        <div class="flex gap-2">
-          <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
-        </div>
-      </div>
-
-      <p class="text-slate-400 text-sm">
-        Voici le cœur du moteur d'intégration physique codé en Python pour le traitement du cas thermodynamique complexe de l'éruption d'Eyjafjallajökull (tiré de l'annexe A.4 de notre rapport) :
-      </p>
-
-      <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-x-auto code-font text-xs sm:text-sm text-sky-200 leading-relaxed max-h-96 scrollbar-thin scrollbar-thumb-slate-800">
-<pre class="text-slate-300">
-<span class="text-sky-400"># Initialisation du schéma d'intégration d'Euler Explicite</span>
-<span class="text-sky-500">def</span> <span class="text-emerald-400">euler</span>(Y):
-    Qn, Mn, Hn = Y
-    
-    <span class="text-sky-400"># Calcul local des fractions massiques et de la capacité thermique</span>
-    masse_gaz = Qn - Flux_Particules
-    n = masse_gaz / Qn
-    Cp_mix = n * Cp_a + (1.0 - n) * Cp_s
-    
-    <span class="text-sky-400"># Calcul de la température locale et de la densité du gaz et mélange</span>
-    Tn = Hn / (Qn * Cp_mix)
-    rho_g = rho_a * (T_a / Tn)
-    rho_n = 1.0 / (n / rho_g + (1.0 - n) / rho_s)
-    
-    <span class="text-sky-400"># Calcul du rayon réel à l'étape n</span>
-    bn = np.sqrt(Qn**2 / (rho_n * Mn))
-    
-    <span class="text-sky-400"># Équations différentielles de transport (Woods, 2010)</span>
-    dQ = 2.0 * alpha * np.sqrt(Mn * rho_a) * dz
-    dM = g * (rho_a - rho_n) * (bn**2) * dz
-    dH = dQ * Cp_a * T_a  <span class="text-slate-500"># L'air entrainé amène sa chaleur ambiante</span>
-    
-    <span class="text-sky-500">return</span> np.array([Qn + dQ, Mn + dM, Hn + dH])
-
-<span class="text-sky-400"># Boucle de transport spatial avec critère d'effondrement</span>
-<span class="text-sky-500">for</span> i <span class="text-sky-500">in</span> <span class="text-emerald-400">range</span>(N - 1):
-    <span class="text-sky-500">if</span> R[1, i] &lt;= 0:
-        collapse_index = i
-        <span class="text-amber-400">print</span>(<span class="text-emerald-300">f"Effondrement de colonne détecté à z = {z[i]:.1f} mètres"</span>)
-        <span class="text-sky-500">break</span>
-    R[:, i + 1] = euler(R[:, i])
-</pre>
-      </div>
-    </section>
 
     <!-- REPORT DOWNLOAD -->
     <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
