@@ -4,736 +4,653 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stage Dedienne Aerospace — Lucas Catusse</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- Chargement de Tailwind CSS et MathJax -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <style>
-    /* ======================= */
-    /*     NAVIGATION BAR      */
-    /* ======================= */
-    .nav-bar {
-      background: #1e1e1e;
-      padding: 10px 30px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      position: sticky;
-      top: 0;
-      z-index: 50;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
     }
-    .nav-bar a { color: #4db8ff; text-decoration: none; font-size: 0.95rem; }
-    .nav-bar a:hover { text-decoration: underline; }
-    .nav-bar span { color: #888; }
-
-    /* ======================= */
-    /*          HERO           */
-    /* ======================= */
-    .stage-hero {
-      background: linear-gradient(135deg, #1e1e1e 0%, #0d2b4d 100%);
-      color: white;
-      padding: 50px 30px;
-    }
-    .stage-hero-inner { max-width: 1000px; margin: 0 auto; }
-    .stage-hero .eyebrow {
-      color: #4db8ff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      margin: 0 0 10px;
-    }
-    .stage-hero h1 { margin: 0 0 12px; font-size: 2rem; line-height: 1.2; }
-    .stage-hero .subtitle { color: #cfe8ff; font-size: 1.05rem; margin: 0 0 20px; }
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .hero-badge {
-      background: rgba(77,184,255,0.15);
-      border: 1px solid #4db8ff;
-      color: #cfe8ff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-    }
-
-    /* ======================= */
-    /*      SECTION SHELL      */
-    /* ======================= */
-    .detail-section {
-      background: white;
-      max-width: 1000px;
-      margin: 25px auto;
-      padding: 28px 32px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
-    .detail-section h2 {
-      color: #0077cc;
-      border-bottom: 2px solid #4db8ff;
-      padding-bottom: 8px;
-      margin-bottom: 18px;
-    }
-    .detail-section h3 { color: #003f88; margin-top: 0; }
-    .detail-section p { margin: 0 0 12px; }
-    .section-intro {
-      color: #555;
-      font-style: italic;
-      margin-bottom: 20px;
-    }
-
-    /* ======================= */
-    /*       TAG LIST           */
-    /* ======================= */
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 0;
-      list-style: none;
-      margin: 0;
-    }
-    .tag-list li {
-      background: #e8f4ff;
-      border: 1px solid #4db8ff;
-      color: #0055aa;
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: bold;
-    }
-
-    /* ======================= */
-    /*      MISSION GRID        */
-    /* ======================= */
-    .mission-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 10px;
-    }
-    .mission-card {
-      background: #f0f8ff;
-      border-left: 4px solid #0077cc;
-      border-radius: 8px;
-      padding: 16px;
-    }
-    .mission-card h4 { margin: 0 0 8px; color: #003f88; }
-    .mission-card p { margin: 0; font-size: 0.95rem; }
-
-    /* ======================= */
-    /*        KPI ROW           */
-    /* ======================= */
-    .kpi-row {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .kpi-box {
-      flex: 1 1 140px;
-      background: #003f88;
-      color: white;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-    .kpi-box .number { font-size: 2rem; font-weight: bold; color: #4db8ff; }
-    .kpi-box .label { font-size: 0.85rem; margin-top: 4px; }
-
-    /* ======================= */
-    /*    COMPANY INFO GRID     */
-    /* ======================= */
-    .company-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-    .company-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .stat-card {
-      background: #f0f8ff;
-      border-radius: 10px;
-      padding: 14px;
-      text-align: center;
-      border: 1px solid #d2e6ff;
-    }
-    .stat-card .stat-number { font-size: 1.5rem; font-weight: bold; color: #0077cc; }
-    .stat-card .stat-label { font-size: 0.8rem; color: #555; margin-top: 2px; }
-
-    .client-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .client-pill {
-      background: #fff3e8;
-      border: 1px solid #ffb877;
-      color: #b85c00;
-      padding: 4px 12px;
-      border-radius: 16px;
-      font-size: 0.85rem;
-      font-weight: bold;
-    }
-
-    /* ======================= */
-    /*      STATUS TABLE         */
-    /* ======================= */
-    .status-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 0.92rem;
-    }
-    .status-table th, .status-table td {
-      text-align: left;
-      padding: 10px 12px;
-      border-bottom: 1px solid #e0eaf5;
-    }
-    .status-table th {
-      background: #f0f8ff;
-      color: #003f88;
-    }
-    .status-code {
-      display: inline-block;
-      font-weight: bold;
-      padding: 2px 10px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-    }
-    .status-tc { background: #ffe0e0; color: #b00020; }
-    .status-tu { background: #fff3d6; color: #a06800; }
-    .status-ob { background: #e6f0ff; color: #0050b3; }
-    .status-rc { background: #e2f7e6; color: #1c7c34; }
-
-    /* ======================= */
-    /*       TIMELINE            */
-    /* ======================= */
-    .process-flow {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: stretch;
-      margin-top: 15px;
-    }
-    .flow-step {
-      flex: 1 1 130px;
-      background: #f0f8ff;
-      border: 1px solid #d2e6ff;
-      border-radius: 10px;
-      padding: 12px;
-      position: relative;
-    }
-    .flow-step .flow-num {
-      display: inline-block;
-      background: #0077cc;
-      color: white;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 22px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-    .flow-step p { margin: 0; font-size: 0.85rem; color: #333; }
-    .flow-arrow {
-      display: flex;
-      align-items: center;
-      color: #4db8ff;
-      font-size: 1.2rem;
-      padding: 0 2px;
-    }
-    @media (max-width: 800px) {
-      .flow-arrow { display: none; }
-      .process-flow { flex-direction: column; }
-    }
-
-    /* ======================= */
-    /*      CASE STUDY           */
-    /* ======================= */
-    .case-banner {
-      background: #003f88;
-      color: white;
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .case-banner .case-ref { font-size: 1.1rem; font-weight: bold; }
-    .case-banner .case-arrow { color: #4db8ff; font-weight: bold; }
-
-    .parts-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 14px 0;
-      font-size: 0.9rem;
-    }
-    .parts-table th, .parts-table td {
-      border: 1px solid #d2e6ff;
-      padding: 8px 10px;
-      text-align: center;
-    }
-    .parts-table th { background: #e8f4ff; color: #003f88; }
-    .parts-table td.empty { color: #bbb; }
-
-    .rework-tag {
-      display: inline-block;
-      padding: 3px 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 0.85rem;
-    }
-    .rework-possible { background: #e2f7e6; color: #1c7c34; }
-    .rework-impossible { background: #ffe0e0; color: #b00020; }
-
-    .conclusion-list {
-      list-style: none;
-      padding: 0;
-      margin: 10px 0 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .conclusion-list li {
-      background: #f0f8ff;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 0.9rem;
-    }
-    .conclusion-list strong { color: #003f88; }
-
-    /* ======================= */
-    /*       TOOL CARD            */
-    /* ======================= */
-    .tool-card {
-      background: linear-gradient(135deg, #f0f8ff 0%, #e8f4ff 100%);
-      border: 1px solid #cfe6ff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 10px;
-    }
-    .tool-card h4 { color: #003f88; margin: 0 0 10px; }
-    .tool-card ul { margin: 0; padding-left: 20px; }
-    .tool-card li { margin-bottom: 4px; font-size: 0.95rem; }
-
-    /* ======================= */
-    /*    TIME BREAKDOWN BARS    */
-    /* ======================= */
-    .time-bars { margin-top: 12px; }
-    .time-bar-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-    .time-bar-label {
-      flex: 0 0 200px;
-      font-size: 0.9rem;
-      color: #333;
-    }
-    .time-bar-track {
-      flex: 1;
-      background: #eef6ff;
-      border-radius: 6px;
-      height: 16px;
-      overflow: hidden;
-    }
-    .time-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #0077cc, #4db8ff);
-      border-radius: 6px 0 0 6px;
-    }
-    .time-bar-pct {
-      flex: 0 0 40px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #003f88;
-      text-align: right;
-    }
-
-    /* ======================= */
-    /*    DOCS / DOWNLOADS        */
-    /* ======================= */
-    .doc-buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    /* ======================= */
-    /*      RESPONSIVE             */
-    /* ======================= */
-    @media (max-width: 800px) {
-      .mission-grid { grid-template-columns: 1fr; }
-      .company-grid { grid-template-columns: 1fr; }
-      .company-stats { grid-template-columns: 1fr 1fr; }
-      .conclusion-list { grid-template-columns: 1fr; }
-      .stage-hero h1 { font-size: 1.5rem; }
+    .code-font {
+      font-family: 'JetBrains Mono', monospace;
     }
   </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 leading-relaxed min-h-screen">
 
-  <!-- Navigation -->
-  <div class="nav-bar">
-    <a href="index.html">← Retour au portfolio</a>
-    <span>/</span>
-    <span style="color:white">Stage Dedienne Aerospace</span>
-  </div>
+  <!-- NAV BAR -->
+  <nav class="bg-slate-900 border-b border-slate-800 py-4 px-6 sm:px-12 flex items-center gap-3 text-sm sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+    <a href="index.html" class="text-sky-400 hover:text-sky-300 transition font-medium">← Retour au portfolio</a>
+    <span class="text-slate-600">/</span>
+    <span class="text-slate-300 font-medium">Stage Dedienne Aerospace</span>
+  </nav>
 
-  <!-- Hero -->
-  <div class="stage-hero">
-    <div class="stage-hero-inner">
-      <p class="eyebrow">Stage ingénieur au sein du Service Après-Vente</p>
-      <h1>Analyses d'upgrades d'outillages aéronautiques</h1>
-      <p class="subtitle">Dedienne Aerospace · Toulouse (FRA) — 10 février 2025 → 11 juillet 2025</p>
-      <div class="hero-badges">
-        <span class="hero-badge">54 upgrades traités</span>
-        <span class="hero-badge">198 devis fournisseurs</span>
-        <span class="hero-badge">1037 bulletins générés</span>
-        <span class="hero-badge">Licences LEAP · Boeing · Rolls-Royce</span>
+  <!-- HEADER & HERO -->
+  <header class="relative bg-slate-900 text-white overflow-hidden py-16 px-6 sm:px-12">
+    <!-- Motif géométrique en arrière-plan -->
+    <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl opacity-20"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-sky-600 rounded-full filter blur-3xl opacity-15"></div>
+    
+    <div class="relative max-w-6xl mx-auto flex flex-col items-center text-center">
+      <span class="bg-blue-500/10 text-sky-400 border border-blue-500/20 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-sm">
+        ✈️ Stage ingénieur au sein du Service Après-Vente
+      </span>
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight max-w-4xl">
+        Analyses d'upgrades d'outillages <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-400">aéronautiques</span>
+      </h1>
+      <p class="mt-4 text-slate-300 text-base sm:text-lg max-w-3xl">
+        Dedienne Aerospace · Toulouse (FRA) — 10 février 2025 → 11 juillet 2025
+      </p>
+
+      <!-- Badge bar -->
+      <div class="flex flex-wrap justify-center gap-3 mt-8 max-w-3xl">
+        <span class="bg-slate-800/80 text-sky-300 border border-slate-700 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:border-slate-600 transition">
+          📊 54 upgrades traités
+        </span>
+        <span class="bg-slate-800/80 text-sky-300 border border-slate-700 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:border-slate-600 transition">
+          📄 198 devis fournisseurs
+        </span>
+        <span class="bg-slate-800/80 text-sky-300 border border-slate-700 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:border-slate-600 transition">
+          ⚙️ 1037 bulletins générés
+        </span>
+        <span class="bg-slate-800/80 text-sky-300 border border-slate-700 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:border-slate-600 transition">
+          🏷️ Licences LEAP · Boeing · Rolls-Royce
+        </span>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Contexte -->
-  <section class="detail-section">
-    <h2>Contexte du stage</h2>
-    <p>
-      Étudiant en 4<sup>e</sup> année à Polytech Lyon (spécialité Mécanique), j'ai effectué ma première
-      expérience en entreprise au sein du département <strong>Services (SAV)</strong> de
-      <strong>Dedienne Aerospace</strong>, équipementier aéronautique spécialisé dans la conception,
-      la fabrication et la maintenance d'outillages pour l'industrie aéronautique (outils de montage,
-      bancs d'essai, chariots moteurs, équipements de maintenance au sol…).
-    </p>
-    <p>
-      Ma mission : proposer des modifications sur des outillages devenus obsolètes afin de les rendre
-      conformes à leur dernière version autorisée, une démarche appelée <strong>upgrade</strong>,
-      à la fois plus économique et plus rapide que l'achat d'un outillage neuf, et plus durable grâce
-      à la réutilisation des pièces existantes.
-    </p>
-  </section>
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
 
-  <!-- Présentation entreprise -->
-  <section class="detail-section">
-    <h2>Dedienne Aerospace en quelques chiffres</h2>
-    <div class="company-grid">
-      <div>
+    <!-- CONTEXTE -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Introduction</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Contexte du stage</h2>
+      </div>
+      
+      <div class="space-y-4 text-slate-600 text-justify text-sm sm:text-base">
         <p>
-          Fondée en <strong>1947</strong> par Roland Dedienne, l'entreprise s'est imposée comme un
-          acteur incontournable de l'outillage aéronautique, avec des licences officielles de
-          fabrication pour des constructeurs majeurs.
+          Étudiant en 4<sup>e</sup> année à Polytech Lyon (spécialité Mécanique), j'ai effectué ma première
+          expérience en entreprise au sein du département <strong>Services (SAV)</strong> de
+          <strong>Dedienne Aerospace</strong>, équipementier aéronautique spécialisé dans la conception,
+          la fabrication et la maintenance d'outillages pour l'industrie aéronautique (outils de montage,
+          bancs d'essai, chariots moteurs, équipements de maintenance au sol…).
         </p>
-        <h3 style="font-size:1rem; margin-top:18px;">Partenaires & clients</h3>
-        <div class="client-list">
-          <span class="client-pill">Boeing</span>
-          <span class="client-pill">Leap (CFM)</span>
-          <span class="client-pill">Rolls-Royce</span>
-          <span class="client-pill">Dassault Aviation</span>
-          <span class="client-pill">Safran</span>
-          <span class="client-pill">Airbus</span>
-          <span class="client-pill">Air France</span>
-          <span class="client-pill">Lufthansa</span>
-          <span class="client-pill">SABENA Technics (MRO)</span>
+        <p>
+          Ma mission : proposer des modifications sur des outillages devenus obsolètes afin de les rendre
+          conformes à leur dernière version autorisée, une démarche appelée <strong>upgrade</strong>,
+          à la fois plus économique et plus rapide que l'achat d'un outillage neuf, et plus durable grâce
+          à la réutilisation des pièces existantes.
+        </p>
+      </div>
+    </section>
+
+    <!-- PRÉSENTATION ENTREPRISE -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Acteur Global</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Dedienne Aerospace en quelques chiffres</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Histoire et partenaires -->
+        <div class="lg:col-span-7 space-y-6">
+          <p class="text-slate-600 text-justify text-sm sm:text-base">
+            Fondée en <strong>1947</strong> par Roland Dedienne, l'entreprise s'est imposée comme un
+            acteur incontournable de l'outillage aéronautique, avec des licences officielles de
+            fabrication pour des constructeurs majeurs.
+          </p>
+
+          <div class="space-y-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              🤝 Partenaires & clients d'envergure
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Boeing</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Leap (CFM)</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Rolls-Royce</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Dassault Aviation</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Safran</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Airbus</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Air France</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">Lufthansa</span>
+              <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-blue-100/50 transition">SABENA Technics (MRO)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Chiffres d'entreprise -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-blue-300 transition shadow-sm">
+            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Chiffre d'Affaires 2024</span>
+            <div class="text-xl sm:text-2xl font-black text-sky-600 code-font">235 M€</div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-blue-300 transition shadow-sm">
+            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Sites mondiaux</span>
+            <div class="text-xl sm:text-2xl font-black text-sky-600 code-font">34</div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-blue-300 transition shadow-sm">
+            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Collaborateurs</span>
+            <div class="text-xl sm:text-2xl font-black text-sky-600 code-font">500+</div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-blue-300 transition shadow-sm">
+            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">CA Généré SAV (2024)</span>
+            <div class="text-xl sm:text-2xl font-black text-emerald-600 code-font">6 M€</div>
+          </div>
         </div>
       </div>
-      <div class="company-stats">
-        <div class="stat-card">
-          <div class="stat-number">235 M€</div>
-          <div class="stat-label">Chiffre d'affaires 2024</div>
+    </section>
+
+    <!-- RÉSULTATS CLÉS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Indicateurs de Performance</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Résultats clés du stage</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-sky-300 transition shadow-sm">
+          <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Upgrades traités</span>
+          <div class="text-xl sm:text-2xl font-black text-sky-600 code-font">54</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">34</div>
-          <div class="stat-label">Sites dans le monde</div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-sky-300 transition shadow-sm">
+          <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Pièces chiffrées</span>
+          <div class="text-xl sm:text-2xl font-black text-sky-600 code-font">168</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">500+</div>
-          <div class="stat-label">Collaborateurs</div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-sky-300 transition shadow-sm">
+          <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Devis obtenus</span>
+          <div class="text-xl sm:text-2xl font-black text-sky-600 code-font">198</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">6 M€</div>
-          <div class="stat-label">CA généré par le SAV (2024)</div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-amber-300 transition shadow-sm">
+          <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Réponse fournisseurs</span>
+          <div class="text-xl sm:text-2xl font-black text-amber-500 code-font">47,5%</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-emerald-300 transition shadow-sm">
+          <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Bulletins générés</span>
+          <div class="text-xl sm:text-2xl font-black text-emerald-600 code-font">1037</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center space-y-1 hover:border-emerald-300 transition shadow-sm">
+          <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider block">Bulletins clients</span>
+          <div class="text-xl sm:text-2xl font-black text-emerald-600 code-font">115</div>
         </div>
       </div>
+    </section>
+
+    <!-- MON RÔLE -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Responsabilités</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Mon rôle : ingénieur d'analyse d'upgrades</h2>
+      </div>
+
+      <p class="text-slate-500 italic text-sm sm:text-base">
+        De la notification de changement de statut d'un outillage par l'OEM jusqu'à la transmission
+        de l'offre au service commercial — j'ai pris en charge l'intégralité de la chaîne d'analyse technique.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:-translate-y-1 hover:shadow-md transition duration-300 space-y-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm code-font">01</div>
+          <h4 class="font-bold text-slate-950 text-base">Notification & veille des statuts</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Suivi des changements de statut des outillages (TC, TU, OB, RC pour Leap ; Replaced/Superseded pour Boeing) via les Stop Orders émis par les OEM.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:-translate-y-1 hover:shadow-md transition duration-300 space-y-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm code-font">02</div>
+          <h4 class="font-bold text-slate-950 text-base">Analyse technique des plans</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Comparaison des nomenclatures (BOM) entre l'ancienne et la nouvelle version d'un outillage pour identifier les pièces à racheter, fabriquer, retirer ou modifier (rework).
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:-translate-y-1 hover:shadow-md transition duration-300 space-y-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm code-font">03</div>
+          <h4 class="font-bold text-slate-950 text-base">Chiffrage & contact fournisseurs</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Constitution du "quoting file" : envoi des plans aux fournisseurs, suivi des devis, intégration des coûts de fabrication, tests et traitements.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:-translate-y-1 hover:shadow-md transition duration-300 space-y-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm code-font">04</div>
+          <h4 class="font-bold text-slate-950 text-base">Partage inter-sites</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Diffusion de chaque analyse aux 4 autres pôles Dedienne (Miami, Dubaï, Singapour, Zhuhai) pour harmoniser les coûts et sécuriser les hypothèses.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:-translate-y-1 hover:shadow-md transition duration-300 space-y-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm code-font">05</div>
+          <h4 class="font-bold text-slate-950 text-base">Édition des bulletins</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Rédaction des bulletins d'offre (prix neuf vs. upgrade, délais, photos avant/après) et diffusion ciblée selon 5 zones géographiques mondiales.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:-translate-y-1 hover:shadow-md transition duration-300 space-y-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center font-bold text-sm code-font">06</div>
+          <h4 class="font-bold text-slate-950 text-base">Outils de suivi internes</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Conception d'un fichier "Suivi de chiffrage" pour tracer les devis et mesurer la fiabilité des fournisseurs, légué à l'entreprise en fin de stage.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATUTS DES OUTILLAGES -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Nomenclature Technique</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Comprendre les statuts d'un outillage</h2>
+      </div>
+
+      <p class="text-slate-500 italic text-sm sm:text-base">Chaque outillage possède un statut qui conditionne son usage. Exemple pour les outillages LEAP :</p>
+      
+      <div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-sm">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              <th class="py-4 px-6">Statut</th>
+              <th class="py-4 px-6">Signification</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="py-4 px-6">
+                <span class="bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded-md text-xs uppercase tracking-wider code-font">TC</span>
+              </td>
+              <td class="py-4 px-6 font-medium text-slate-900">
+                Tool Cancelled — l'outillage n'est plus conforme, il ne doit plus être utilisé.
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="py-4 px-6">
+                <span class="bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded-md text-xs uppercase tracking-wider code-font">TU</span>
+              </td>
+              <td class="py-4 px-6 font-medium text-slate-900">
+                Temporary Used — l'outillage va devenir TC sous 6 à 12 mois.
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="py-4 px-6">
+                <span class="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-md text-xs uppercase tracking-wider code-font">OB</span>
+              </td>
+              <td class="py-4 px-6 font-medium text-slate-900">
+                Obsolete — toujours utilisable, mais une version plus récente existe.
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 transition">
+              <td class="py-4 px-6">
+                <span class="bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-md text-xs uppercase tracking-wider code-font">RC</span>
+              </td>
+              <td class="py-4 px-6 font-medium text-slate-900">
+                Recommended — version la plus à jour, recommandée pour l'usage.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-xs text-slate-500 text-justify mt-4 leading-relaxed">
+        <strong>Remarque sur les autres OEM :</strong> Chez Boeing, deux statuts existent : <em>Replaced</em> (l'ancien outillage reste utilisable) et
+        <em>Superseded</em> (remplacement obligatoire). Chez Rolls-Royce, un outillage est soit valide,
+        soit remplacé par une nouvelle référence.
+      </p>
+    </section>
+
+    <!-- PROCESSUS GLOBAL -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Workflow d'Ingénierie</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Processus global d'un upgrade</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-2">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between h-36 hover:border-sky-300 transition shadow-sm">
+          <span class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold code-font">1</span>
+          <p class="text-xs text-slate-700 font-medium">Notification : changement de statut d'un outillage (Stop Order de l'OEM)</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between h-36 hover:border-sky-300 transition shadow-sm">
+          <span class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold code-font">2</span>
+          <p class="text-xs text-slate-700 font-medium">Expertise générale de l'outillage reçu</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between h-36 hover:border-sky-300 transition shadow-sm">
+          <span class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold code-font">3</span>
+          <p class="text-xs text-slate-700 font-medium">Comparaison des BOM : pièces à acheter / fabriquer / modifier / retirer</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between h-36 hover:border-sky-300 transition shadow-sm">
+          <span class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold code-font">4</span>
+          <p class="text-xs text-slate-700 font-medium">Tests requis (charge, pression) et services (calibration, marquage)</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between h-36 hover:border-sky-300 transition shadow-sm">
+          <span class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold code-font">5</span>
+          <p class="text-xs text-slate-700 font-medium">Chiffrage via le quoting file et devis fournisseurs</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between h-36 hover:border-sky-300 transition shadow-sm">
+          <span class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold code-font">6</span>
+          <p class="text-xs text-slate-700 font-medium">Édition et diffusion du bulletin au client</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAS PRATIQUE -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-8">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Cas d'Étude</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Cas pratique : upgrade 956A8403</h2>
+      </div>
+
+      <!-- Zone d'affichage du plan technique CAD / Blueprint -->
+      <div class="plan-preview-container flex flex-col items-center">
+        <div class="bg-slate-900 p-3 rounded-2xl border border-slate-800 w-full max-w-4xl shadow-md overflow-hidden">
+          <div class="w-full h-80 relative rounded-lg border border-slate-800 overflow-hidden bg-slate-950 flex items-center justify-center">
+            <img src="images/plan_956A8403.jpg" 
+                 alt="Plan technique d'assemblage 956A8403" 
+                 class="w-full h-full object-cover opacity-90 hover:scale-105 transition duration-500" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/800x400/0b1528/38bdf8?text=PLAN+TECHNIQUE+D%27ASSEMBLAGE+-+956A8403';">
+          </div>
+          <p class="text-[11px] text-slate-400 italic mt-3 text-center leading-relaxed">
+            Plan technique comparatif et nomenclature d'assemblage de l'outillage 956A8403 (Dedienne Aerospace)
+          </p>
+        </div>
+      </div>
+
+      <!-- Bannière de transition -->
+      <div class="bg-slate-900 text-white rounded-xl p-5 shadow-inner border border-slate-800 flex flex-col sm:flex-row justify-around items-center gap-4 text-center">
+        <div>
+          <span class="text-[10px] text-slate-400 uppercase tracking-widest font-bold block mb-1">Version Obsolète</span>
+          <span class="text-xl sm:text-2xl font-black text-rose-500 code-font">956A8403G02</span>
+        </div>
+        <div class="text-sky-400 font-bold text-lg animate-pulse">⚙️ upgrade →</div>
+        <div>
+          <span class="text-[10px] text-slate-400 uppercase tracking-widest font-bold block mb-1">Dernière Version (RC)</span>
+          <span class="text-xl sm:text-2xl font-black text-emerald-400 code-font">956A8403G03</span>
+        </div>
+      </div>
+      
+      <p class="text-slate-600 text-justify text-sm sm:text-base">
+        Premier réflexe : comparer les nomenclatures (BOM) des deux versions pour repérer les pièces
+        ajoutées, retirées, ou potentiellement transformables par rework.
+      </p>
+
+      <!-- TABLEAU COMPARATIF DES PIÈCES -->
+      <div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-sm">
+        <table class="w-full text-left border-collapse text-sm text-slate-600">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              <th class="py-3 px-6">Pièces retirées (G02)</th>
+              <th class="py-3 px-6">Pièces ajoutées (G03)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 code-font text-slate-800">P02</td>
+              <td class="py-3 px-6 code-font text-slate-800">P27</td>
+            </tr>
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 italic text-slate-400">—</td>
+              <td class="py-3 px-6 text-slate-600">item 28 (commerciale)</td>
+            </tr>
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 italic text-slate-400">—</td>
+              <td class="py-3 px-6 text-slate-600">item 29 (commerciale)</td>
+            </tr>
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 code-font text-slate-800">P07</td>
+              <td class="py-3 px-6 code-font text-slate-800">P30</td>
+            </tr>
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 code-font text-slate-800">P09</td>
+              <td class="py-3 px-6 code-font text-slate-800">P31</td>
+            </tr>
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 code-font text-slate-800">P10</td>
+              <td class="py-3 px-6 code-font text-slate-800">P32</td>
+            </tr>
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 italic text-slate-400">—</td>
+              <td class="py-3 px-6 text-slate-600">items 33, 34, 35 (commerciales)</td>
+            </tr>
+            <tr class="hover:bg-slate-50/40">
+              <td class="py-3 px-6 text-slate-600">item 21 (commerciale)</td>
+              <td class="py-3 px-6 italic text-slate-400">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ANALYSE DU REWORK -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">🛠️ Diagnostic d'usinage (Rework)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <div class="bg-slate-50 border-l-4 border-emerald-500 rounded-r-xl p-5 shadow-sm space-y-2">
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-slate-900 text-base">P10 → P32</h4>
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Rework possible</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed text-justify">
+              Les deux pièces sont quasi identiques : seul un chanfrein doit être ajouté en usinant la P10. Sous-traitance prévue pour cette opération.
+            </p>
+          </div>
+
+          <div class="bg-slate-50 border-l-4 border-emerald-500 rounded-r-xl p-5 shadow-sm space-y-2">
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-slate-900 text-base">P02 → P27</h4>
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Rework possible</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed text-justify">
+              Même logique que P10/P32 : modification mineure de géométrie permettant de réutiliser intégralement la pièce existante.
+            </p>
+          </div>
+
+          <div class="bg-slate-50 border-l-4 border-rose-500 rounded-r-xl p-5 shadow-sm space-y-2">
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-slate-900 text-base">P07 → P30</h4>
+              <span class="bg-rose-100 text-rose-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Rework impossible</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed text-justify">
+              La P30 est plus longue (76 mm) que la P07 (60 mm max) : impossible d'allonger une pièce existante. Fabrication neuve nécessaire.
+            </p>
+          </div>
+
+          <div class="bg-slate-50 border-l-4 border-rose-500 rounded-r-xl p-5 shadow-sm space-y-2">
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-slate-900 text-base">P09 → P31</h4>
+              <span class="bg-rose-100 text-rose-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Rework impossible</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed text-justify">
+              Même conclusion physique que pour P07/P30 : la transformation n'est pas réalisable, la pièce doit être fabriquée à neuf.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CONCLUSION DU CAS -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">📑 Conclusion de l'analyse d'upgrade</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-3">
+            <span class="text-xs text-sky-600 font-bold uppercase tracking-wider">Plan d'action industriel</span>
+            <ul class="space-y-2 text-xs sm:text-sm pl-4 list-disc text-slate-600">
+              <li><strong>Pièces à acheter :</strong> items 28, 29, 33, 34, 35</li>
+              <li><strong>Pièces à fabriquer :</strong> P30 et P31</li>
+              <li><strong>Pièces à retirer :</strong> item 21, P07, P09</li>
+              <li><strong>Pièces à modifier (rework) :</strong> P02→P27, P10→P32</li>
+              <li><strong>Test à réaliser :</strong> 1 configuration (test en charge)</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-900 text-white rounded-xl p-5 flex flex-col justify-center space-y-4 shadow-md">
+            <div>
+              <span class="text-xs text-sky-300 uppercase font-bold tracking-wider block">Bilan Financier Client</span>
+              <div class="text-3xl font-black text-emerald-400 code-font">3 967 €</div>
+              <p class="text-[11px] text-slate-300 mt-1">Coût de la solution d'upgrade optimisée.</p>
+            </div>
+            <div class="border-t border-blue-800 pt-3">
+              <span class="text-xs text-slate-400 uppercase font-bold tracking-wider block">Coût du Neuf</span>
+              <div class="text-xl font-bold text-slate-300 code-font">12 000 €</div>
+              <p class="text-[10px] text-emerald-400 font-semibold mt-1">💡 Économie nette de 66,9% pour l'exploitant.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTIL DE SUIVI -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Amélioration Continue</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Initiative personnelle : l'outil "Suivi de chiffrage"</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4 text-sm sm:text-base text-slate-600">
+          <p class="text-justify">
+            Face au volume croissant de sollicitations fournisseurs, j'ai conçu et déployé un fichier centralisé
+            permettant de suivre l'ensemble des demandes de devis — un outil resté en place après mon départ.
+          </p>
+          <p class="text-justify">
+            <strong>Résultat :</strong> un flux de chiffrage accéléré, une meilleure stratégie de relance, et l'identification
+            des fournisseurs sous-performants — avec un objectif de taux de réponse passé de 47,5% à 50% visé en fin de stage.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 bg-slate-900 text-slate-300 border border-slate-800 rounded-xl p-5 space-y-3 shadow-inner">
+          <span class="text-xs text-sky-400 font-bold uppercase tracking-wider code-font block border-b border-slate-800 pb-2">Données tracées par l'outil</span>
+          <ul class="space-y-1.5 text-xs pl-4 list-disc">
+            <li>Quantités, opérations (rework, fab, test, traitements)</li>
+            <li>Matériaux concernés, présence de peinture/marquage</li>
+            <li>Statut des demandes (réalisée, refusée, en attente)</li>
+            <li>Fiabilité fournisseurs (taux de réponse, délais)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPARTITION DU TEMPS -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Planification</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Répartition d'une semaine type</h2>
+      </div>
+
+      <div class="space-y-4 pt-2">
+        <!-- Bar 1 -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <span class="font-bold text-slate-700">Contact fournisseurs & relances</span>
+            <span class="font-semibold text-sky-600">40%</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="bg-sky-500 h-full rounded-full" style="width: 40%"></div>
+          </div>
+        </div>
+
+        <!-- Bar 2 -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <span class="font-bold text-slate-700">Mise à jour des fichiers</span>
+            <span class="font-semibold text-sky-600">25%</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="bg-sky-500 h-full rounded-full" style="width: 25%"></div>
+          </div>
+        </div>
+
+        <!-- Bar 3 -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <span class="font-bold text-slate-700">Analyse technique</span>
+            <span class="font-semibold text-sky-600">25%</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="bg-sky-500 h-full rounded-full" style="width: 25%"></div>
+          </div>
+        </div>
+
+        <!-- Bar 4 -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs sm:text-sm">
+            <span class="font-bold text-slate-700">Projets divers</span>
+            <span class="font-semibold text-sky-600">10%</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="bg-sky-500 h-full rounded-full" style="width: 10%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPÉTENCES -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Matrice de compétences</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Compétences & outils mobilisés</h2>
+      </div>
+
+      <div class="flex flex-wrap gap-2.5 pt-2">
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Lecture de plans techniques</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Analyse de nomenclatures (BOM)</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">ERP Sage</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Excel avancé</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Relation fournisseurs</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Outillage aéronautique</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Gestion de projet</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Coordination multi-sites</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Achats techniques</span>
+        <span class="bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-blue-100/50 transition">Rédaction de bulletins commerciaux</span>
+      </div>
+    </section>
+
+    <!-- REPORT DOWNLOAD -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs text-sky-600 font-bold uppercase tracking-widest">Livrables du stage</span>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Documents du stage</h2>
+      </div>
+      <p class="text-slate-600 text-sm">Consultez l'intégralité du rapport technique d'ingénierie et la présentation finale de soutenance ci-dessous :</p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 pt-2">
+        <a href="rapportstageDA.pdf" target="_blank" class="bg-sky-600 hover:bg-sky-500 text-white font-semibold transition px-6 py-3 rounded-lg shadow-md hover:shadow-sky-600/10 flex items-center justify-center gap-2 whitespace-nowrap">
+          📄 Voir le rapport PDF
+        </a>
+        <a href="presentation_dedienne.pdf" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/50 hover:text-white transition px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-md">
+          📊 Voir la présentation (PDF)
+        </a>
+      </div>
+    </section>
+
+    <!-- RETOUR BOUTON -->
+    <section class="flex justify-center pt-4">
+      <a href="index.html" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold transition px-8 py-3.5 rounded-xl shadow-lg flex items-center gap-2">
+        ← Retour au portfolio
+      </a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-center py-12 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 space-y-4">
+      <p class="font-semibold text-slate-300">© Lucas Catusse 2025 — Portfolio Ingénieur Mécanique & Thermique Numérique</p>
+      <p class="text-sm text-slate-500">Conception Avancée & Gestion de Projet SAV</p>
     </div>
-  </section>
-
-  <!-- Résultats clés -->
-  <section class="detail-section">
-    <h2>Résultats clés du stage</h2>
-    <div class="kpi-row">
-      <div class="kpi-box">
-        <div class="number">54</div>
-        <div class="label">Upgrades traités</div>
-      </div>
-      <div class="kpi-box">
-        <div class="number">168</div>
-        <div class="label">Pièces chiffrées</div>
-      </div>
-      <div class="kpi-box">
-        <div class="number">198</div>
-        <div class="label">Devis fournisseurs obtenus</div>
-      </div>
-      <div class="kpi-box">
-        <div class="number">47,5%</div>
-        <div class="label">Taux de réponse fournisseurs</div>
-      </div>
-      <div class="kpi-box">
-        <div class="number">1037</div>
-        <div class="label">Bulletins générés</div>
-      </div>
-      <div class="kpi-box">
-        <div class="number">115</div>
-        <div class="label">Bulletins envoyés aux clients</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mon rôle -->
-  <section class="detail-section">
-    <h2>Mon rôle : ingénieur d'analyse d'upgrades</h2>
-    <p class="section-intro">
-      De la notification de changement de statut d'un outillage par l'OEM jusqu'à la transmission
-      de l'offre au service commercial — j'ai pris en charge l'intégralité de la chaîne d'analyse technique.
-    </p>
-    <div class="mission-grid">
-      <div class="mission-card">
-        <h4>Notification & veille des statuts</h4>
-        <p>Suivi des changements de statut des outillages (TC, TU, OB, RC pour Leap ; Replaced/Superseded pour Boeing) via les Stop Orders émis par les OEM.</p>
-      </div>
-      <div class="mission-card">
-        <h4>Analyse technique des plans</h4>
-        <p>Comparaison des nomenclatures (BOM) entre l'ancienne et la nouvelle version d'un outillage pour identifier les pièces à racheter, fabriquer, retirer ou modifier (rework).</p>
-      </div>
-      <div class="mission-card">
-        <h4>Chiffrage & contact fournisseurs</h4>
-        <p>Constitution du "quoting file" : envoi des plans aux fournisseurs, suivi des devis, intégration des coûts de fabrication, tests et traitements.</p>
-      </div>
-      <div class="mission-card">
-        <h4>Partage inter-sites</h4>
-        <p>Diffusion de chaque analyse aux 4 autres pôles Dedienne (Miami, Dubaï, Singapour, Zhuhai) pour harmoniser les coûts et sécuriser les hypothèses.</p>
-      </div>
-      <div class="mission-card">
-        <h4>Édition des bulletins</h4>
-        <p>Rédaction des bulletins d'offre (prix neuf vs. upgrade, délais, photos avant/après) et diffusion ciblée selon 5 zones géographiques mondiales.</p>
-      </div>
-      <div class="mission-card">
-        <h4>Outils de suivi internes</h4>
-        <p>Conception d'un fichier "Suivi de chiffrage" pour tracer les devis et mesurer la fiabilité des fournisseurs, légué à l'entreprise en fin de stage.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Statuts des outillages -->
-  <section class="detail-section">
-    <h2>Comprendre les statuts d'un outillage</h2>
-    <p class="section-intro">Chaque outillage possède un statut qui conditionne son usage. Exemple pour les outillages LEAP :</p>
-    <table class="status-table">
-      <thead>
-        <tr><th>Statut</th><th>Signification</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><span class="status-code status-tc">TC</span></td><td>Tool Cancelled — l'outillage n'est plus conforme, il ne doit plus être utilisé.</td></tr>
-        <tr><td><span class="status-code status-tu">TU</span></td><td>Temporary Used — l'outillage va devenir TC sous 6 à 12 mois.</td></tr>
-        <tr><td><span class="status-code status-ob">OB</span></td><td>Obsolete — toujours utilisable, mais une version plus récente existe.</td></tr>
-        <tr><td><span class="status-code status-rc">RC</span></td><td>Recommended — version la plus à jour, recommandée pour l'usage.</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:14px; font-size:0.9rem; color:#555;">
-      Chez Boeing, deux statuts existent : <em>Replaced</em> (l'ancien outillage reste utilisable) et
-      <em>Superseded</em> (remplacement obligatoire). Chez Rolls-Royce, un outillage est soit valide,
-      soit remplacé par une nouvelle référence.
-    </p>
-  </section>
-
-  <!-- Processus global -->
-  <section class="detail-section">
-    <h2>Processus global d'un upgrade</h2>
-    <div class="process-flow">
-      <div class="flow-step"><span class="flow-num">1</span><p>Notification : changement de statut d'un outillage (Stop Order de l'OEM)</p></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step"><span class="flow-num">2</span><p>Expertise générale de l'outillage reçu</p></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step"><span class="flow-num">3</span><p>Comparaison des BOM : pièces à acheter / fabriquer / modifier / retirer</p></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step"><span class="flow-num">4</span><p>Tests requis (charge, pression) et autres services (calibration, marquage)</p></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step"><span class="flow-num">5</span><p>Chiffrage via le quoting file et devis fournisseurs</p></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step"><span class="flow-num">6</span><p>Édition et diffusion du bulletin au client</p></div>
-    </div>
-  </section>
-
- <!-- STREAMING_CHUNK: Configuration du cas pratique avec intégration du plan technique... -->
-<!-- Cas pratique -->
-<section class="detail-section">
-  <h2>Cas pratique : upgrade 956A8403</h2>
-
-  <!-- Zone d'affichage du plan technique CAD / Blueprint -->
-  <div class="plan-preview-container" style="margin-bottom: 25px; text-align: center;">
-    <div style="background: #0d253f; padding: 10px; border-radius: 8px; border: 1px solid #4db8ff; display: inline-block; width: 100%; max-width: 800px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-      <img src="images/plan_956A8403.jpg" 
-           alt="Plan technique d'assemblage 956A8403" 
-           style="width: 100%; height: auto; border-radius: 6px; display: block;" 
-           onerror="this.src='https://placehold.co/800x400/0d253f/4db8ff?text=PLAN+TECHNIQUE+D%27ASSEMBLAGE+-+956A8403';">
-    </div>
-    <p style="font-size: 0.85rem; color: #666; font-style: italic; margin-top: 8px; margin-bottom: 0;">
-      Plan technique comparatif et nomenclature de l'outillage 956A8403 (Dedienne Aerospace)
-    </p>
-  </div>
-
-  <div class="case-banner">
-    <span class="case-ref">956A8403<strong>G02</strong></span>
-    <span class="case-arrow">→ upgrade vers →</span>
-    <span class="case-ref">956A8403<strong>G03</strong></span>
-  </div>
-  
-  <p>
-    Premier réflexe : comparer les nomenclatures (BOM) des deux versions pour repérer les pièces
-    ajoutées, retirées, ou potentiellement transformables par rework.
-  </p>
-  <table class="parts-table">
-    <thead>
-      <tr><th>Pièces retirées (G02)</th><th>Pièces ajoutées (G03)</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>P02</td><td>P27</td></tr>
-      <tr><td class="empty">—</td><td>item 28 (commerciale)</td></tr>
-      <tr><td class="empty">—</td><td>item 29 (commerciale)</td></tr>
-      <tr><td>P07</td><td>P30</td></tr>
-      <tr><td>P09</td><td>P31</td></tr>
-      <tr><td>P10</td><td>P32</td></tr>
-      <tr><td class="empty">—</td><td>items 33, 34, 35 (commerciales)</td></tr>
-      <tr><td>item 21 (commerciale)</td><td class="empty">—</td></tr>
-    </tbody>
-  </table>
-
-  <h3 style="font-size:1.05rem;">Rework possible ou non ?</h3>
-  <div class="mission-grid">
-    <div class="mission-card">
-      <h4>P10 → P32 <span class="rework-tag rework-possible">Rework possible</span></h4>
-      <p>Les deux pièces sont quasi identiques : seul un chanfrein doit être ajouté en usinant la P10. Sous-traitance prévue pour cette opération.</p>
-    </div>
-    <div class="mission-card">
-      <h4>P02 → P27 <span class="rework-tag rework-possible">Rework possible</span></h4>
-      <p>Même logique que P10/P32 : modification mineure permettant de réutiliser la pièce existante.</p>
-    </div>
-    <div class="mission-card">
-      <h4>P07 → P30 <span class="rework-tag rework-impossible">Rework impossible</span></h4>
-      <p>La P30 est plus longue (76 mm) que la P07 (60 mm max) : impossible d'allonger une pièce existante. Fabrication neuve nécessaire.</p>
-    </div>
-    <div class="mission-card">
-      <h4>P09 → P31 <span class="rework-tag rework-impossible">Rework impossible</span></h4>
-      <p>Même conclusion que pour P07/P30 : la transformation n'est pas réalisable, la pièce doit être fabriquée à neuf.</p>
-    </div>
-  </div>
-
-  <h3 style="font-size:1.05rem; margin-top:20px;">Conclusion de l'analyse</h3>
-  <ul class="conclusion-list">
-    <li><strong>Pièces à acheter :</strong> items 28, 29, 33, 34, 35</li>
-    <li><strong>Pièces à fabriquer :</strong> P30 et P31</li>
-    <li><strong>Pièces à retirer :</strong> item 21, P07, P09</li>
-    <li><strong>Pièces à modifier (rework) :</strong> P02→P27, P10→P32</li>
-    <li><strong>Test à réaliser :</strong> 1 configuration (test en charge)</li>
-    <li><strong>Résultat final :</strong> prix client 3 967 € — prix outillage neuf 12 000 €</li>
-  </ul>
-</section>
-
-  <!-- Outil suivi de chiffrage -->
-  <section class="detail-section">
-    <h2>Initiative personnelle : l'outil "Suivi de chiffrage"</h2>
-    <p>
-      Face au volume croissant de sollicitations fournisseurs, j'ai conçu et déployé un fichier centralisé
-      permettant de suivre l'ensemble des demandes de devis — un outil resté en place après mon départ.
-    </p>
-    <div class="tool-card">
-      <h4>Ce que l'outil permet de tracer</h4>
-      <ul>
-        <li>Quantités, types d'opération (rework, fabrication, test) et traitements de surface requis</li>
-        <li>Matériaux concernés, présence de peinture ou marquage</li>
-        <li>Fournisseurs sollicités et statut de chaque demande (réalisée, refusée, en attente)</li>
-        <li>Statistiques de fiabilité par fournisseur (taux de réponse, délais moyens)</li>
-      </ul>
-    </div>
-    <p style="margin-top:14px;">
-      Résultat : un flux de chiffrage accéléré, une meilleure stratégie de relance, et l'identification
-      des fournisseurs sous-performants — avec un objectif de taux de réponse passé de 47,5% à 50% visé en fin de stage.
-    </p>
-  </section>
-
-  <!-- Répartition du temps -->
-  <section class="detail-section">
-    <h2>Répartition d'une semaine type</h2>
-    <div class="time-bars">
-      <div class="time-bar-row">
-        <span class="time-bar-label">Contact fournisseurs & relances</span>
-        <div class="time-bar-track"><div class="time-bar-fill" style="width:40%"></div></div>
-        <span class="time-bar-pct">40%</span>
-      </div>
-      <div class="time-bar-row">
-        <span class="time-bar-label">Mise à jour des fichiers</span>
-        <div class="time-bar-track"><div class="time-bar-fill" style="width:25%"></div></div>
-        <span class="time-bar-pct">25%</span>
-      </div>
-      <div class="time-bar-row">
-        <span class="time-bar-label">Analyse technique</span>
-        <div class="time-bar-track"><div class="time-bar-fill" style="width:25%"></div></div>
-        <span class="time-bar-pct">25%</span>
-      </div>
-      <div class="time-bar-row">
-        <span class="time-bar-label">Projets divers</span>
-        <div class="time-bar-track"><div class="time-bar-fill" style="width:10%"></div></div>
-        <span class="time-bar-pct">10%</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Compétences -->
-  <section class="detail-section">
-    <h2>Compétences & outils mobilisés</h2>
-    <ul class="tag-list">
-      <li>Lecture de plans techniques</li>
-      <li>Analyse de nomenclatures (BOM)</li>
-      <li>ERP Sage</li>
-      <li>Excel avancé</li>
-      <li>Relation fournisseurs</li>
-      <li>Outillage aéronautique</li>
-      <li>Gestion de projet</li>
-      <li>Coordination multi-sites</li>
-      <li>Achats techniques</li>
-      <li>Rédaction de bulletins commerciaux</li>
-    </ul>
-  </section>
-
-  <!-- Documents -->
-  <section class="detail-section">
-    <h2>Documents du stage</h2>
-    <p>Consulte le rapport complet et la présentation de soutenance ci-dessous :</p>
-    <div class="doc-buttons">
-      <a href="rapportstageDA.pdf" target="_blank" class="details-btn">📄 Voir le rapport PDF</a>
-      <a href="presentation_dedienne.pdf" target="_blank" class="details-btn">📊 Voir la présentation (PDF)</a>
-    </div>
-  </section>
-
-  <!-- Retour -->
-  <section style="text-align:center; margin: 30px 0;">
-    <a href="index.html" class="details-btn">⬅ Retour au portfolio</a>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© Lucas Catusse 2025</p>
   </footer>
 
 </body>
