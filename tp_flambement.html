@@ -46,8 +46,7 @@
           Modélisation par éléments finis d'une cuve mince de stockage soumise à des sollicitations combinées : pression hydrostatique, poids propre et dépression critique.
         </p>
         <div class="flex flex-wrap gap-4 mt-6 text-sm text-slate-400">
-          <span class="flex items-center gap-1">🏫 Polytech Lyon — Mécanique 4e Année</span>
-          <span class="flex items-center gap-1">👨‍🔬 Encadré par B. Fréchède</span>
+          <span class="flex items-center gap-1">Polytech Lyon — Mécanique 4e Année</span>
         </div>
       </div>
       <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/50 hover:text-white transition px-5 py-2.5 rounded-lg font-semibold flex items-center gap-2 shadow-lg">
@@ -63,7 +62,7 @@
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
       <div class="lg:col-span-2 space-y-4">
         <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-          📖 Résumé de l'Étude & Objectifs
+          Résumé de l'Étude & Objectifs
         </h2>
         <p class="text-slate-600 text-justify">
           Cette étude technique examine la résistance à l'instabilité élastique (flambement) d'une structure de coque mince représentant un réservoir industriel. Les coques minces, bien qu'extrêmement efficaces pour supporter des contraintes de traction, sont particulièrement vulnérables aux déformations d'instabilité hors-plan lorsqu'elles sont soumises à de la compression axiale ou à des pressions externes.
@@ -92,7 +91,7 @@
 
     <!-- GEOMETRY & SCHEMATICS -->
     <section class="space-y-6">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📐 Définition Géométrique & Modèle de Calcul</h2>
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">Définition Géométrique & Modèle de Calcul</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="space-y-4">
           <h3 class="text-lg font-bold text-slate-800">Spécifications du Réservoir</h3>
@@ -100,16 +99,16 @@
             La cuve analysée possède des parois cylindriques minces en acier inoxydable. Pour assurer une cohérence physique complète, les dimensions modélisées sont issues directement de la définition géométrique du projet d'étude :
           </p>
           <ul class="space-y-2 text-sm text-slate-600 pl-4 list-disc">
-            <li><strong>Hauteur totale ($H_{cyl}$) :</strong> 12,0 mètres</li>
-            <li><strong>Diamètre intérieur ($D$) :</strong> 4,0 mètres ($R = 2,0\text{ m}$)</li>
-            <li><strong>Épaisseur constante ($t$) :</strong> 10 mm ($0,01\text{ m}$)</li>
-            <li><strong>Matériau (Acier Inox) :</strong> $E = 200\text{ GPa}$, $\nu = 0,28$, $\rho = 7800\text{ kg/m}^3$</li>
-            <li><strong>Conditions aux limites :</strong> Encastrement parfait en base ($y = 0$) représentant les fondations en béton.</li>
+            <li><strong>Hauteur totale (H_{cyl}) :</strong> 12,0 mètres</li>
+            <li><strong>Diamètre intérieur (D) :</strong> 4,0 mètres (R = 2,0 m)</li>
+            <li><strong>Épaisseur constante (t) :</strong> 10 mm (0,01 m)</li>
+            <li><strong>Matériau (Acier Inox) :</strong> E = 200 GPa, nu = 0,28, rho = 7800 kg/(m^3)</li>
+            <li><strong>Conditions aux limites :</strong> Encastrement parfait en base (y = 0) représentant les fondations en béton.</li>
           </ul>
           <div class="bg-cyan-50 border border-cyan-100 p-4 rounded-xl">
             <h4 class="font-bold text-cyan-800 text-xs uppercase mb-1">Rapport d'Épaisseur de Coque</h4>
             <p class="text-cyan-700 text-xs">
-              Le rapport d'élancement $R/t = 200$ classe cette structure dans la catégorie des <strong>coques très minces</strong>. Ces structures sont extrêmement sensibles aux instabilités locales et au flambement sous compression axiale.
+              Le rapport d'élancement R/t = 200 classe cette structure dans la catégorie des <strong>coques très minces</strong>. Ces structures sont extrêmement sensibles aux instabilités locales et au flambement sous compression axiale.
             </p>
           </div>
         </div>
@@ -167,17 +166,14 @@
       <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 border-b border-slate-100 pb-4">
         <div>
           <span class="text-xs text-cyan-600 font-bold uppercase tracking-widest">Visualisateur Éléments Finis</span>
-          <h2 class="text-2xl font-bold text-slate-900">🔬 Laboratoire de Flambement Virtuel (MSC NASTRAN)</h2>
+          <h2 class="text-2xl font-bold text-slate-900">Flambement Virtuel (MSC NASTRAN)</h2>
         </div>
-        <p class="text-xs text-slate-500 max-w-sm">
-          Faites pivoter la cuve à l'aide de votre souris (clic + glisser) et sélectionnez les cas d'étude pour analyser les déformées modales résolues.
-        </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <!-- Panneau de Contrôle -->
         <div class="lg:col-span-4 bg-slate-50 border border-slate-200/60 rounded-xl p-5 space-y-6">
-          <h3 class="font-bold text-slate-800 flex items-center gap-2">📂 Sélection du Cas de Charge</h3>
+          <h3 class="font-bold text-slate-800 flex items-center gap-2">Sélection du Cas de Charge</h3>
           
           <div class="space-y-2 text-sm">
             <!-- Boutons de sélection de Cas -->
@@ -266,12 +262,12 @@
 
     <!-- MATHEMATICAL MODELLING -->
     <section class="space-y-6">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📐 Résolution Physique & Formulations Coques Minces</h2>
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">Résolution Physique & Formulations Coques Minces</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Formulations théoriques -->
         <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
-          <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">🔄 Sollicitation Critique de Compression</h3>
+          <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">Sollicitation Critique de Compression</h3>
           <p class="text-sm text-slate-600 text-justify">
             Pour un cylindre mince soumis à une charge axiale pure, la contrainte critique de compression élastique théorique (formule classique de Donnell-Wan-Loo) s'exprime par :
           </p>
@@ -279,7 +275,7 @@
             $$\sigma_{cr} = \frac{E}{\sqrt{3(1-\nu^2)}} \frac{t}{R}$$
           </div>
           <p class="text-xs text-slate-500 text-justify">
-            En appliquant nos données ($E = 200\text{ GPa}$, $\nu = 0,28$, $t = 0,01\text{ m}$ et $R = 2,0\text{ m}$), nous calculons une contrainte limite de flambement théorique de :
+            En appliquant nos données (E = 200 GPa, nu = 0,28, t = 0,01 m et R = 2,0 m), nous calculons une contrainte limite de flambement théorique de :
           </p>
           <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 my-2 text-center font-mono font-bold text-cyan-600 text-sm">
             $$\sigma_{cr} \approx 602,7 \text{ MPa}$$
@@ -291,13 +287,13 @@
 
         <!-- Matrice de sollicitations -->
         <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
-          <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">🌋 Prise en Compte de l'Hydrostatique & Dépression</h3>
+          <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">Prise en Compte de l'Hydrostatique & Dépression</h3>
           <p class="text-sm text-slate-600 text-justify">
             Les charges volumiques et surfaciques s'ajoutent à la matrice géométrique de rigidité globale.
           </p>
           <div class="space-y-3">
             <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
-              <span class="text-xs text-slate-500 block mb-1">Pression Hydrostatique (Vin, $y < 11.5\text{ m}$) :</span>
+              <span class="text-xs text-slate-500 block mb-1">Pression Hydrostatique (Vin, y < 11.5 m) :</span>
               <div class="text-xs font-semibold text-slate-800 font-mono">
                 $$P_{hydro}(y) = \rho_{vin} \cdot g \cdot (11,5 - y)$$
               </div>
@@ -305,11 +301,8 @@
             </div>
             
             <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
-              <span class="text-xs text-slate-500 block mb-1">Poids Propre (Gravité $-\rho_{acier} \cdot g$) :</span>
-              <div class="text-xs font-semibold text-slate-800 font-mono">
-                $$F_{grav} = -\rho_{acier} \cdot g \cdot A \cdot t$$
-              </div>
-              <p class="text-[10px] text-slate-500 mt-1">Introduit des contraintes de compression axiale maximale en base ($y = 0$).</p>
+              <span class="text-xs text-slate-500 block mb-1">Poids Propre
+              <p class="text-[10px] text-slate-500 mt-1">Introduit des contraintes de compression axiale maximale en base (y = 0).</p>
             </div>
 
             <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
@@ -327,8 +320,7 @@
     <!-- MESH CONVERGENCE STUDY -->
     <section class="space-y-6">
       <div class="border-b border-slate-100 pb-3">
-        <span class="text-xs text-blue-600 font-bold uppercase tracking-widest font-mono">Contrôle Qualité & Métrologie Numérique</span>
-        <h2 class="text-2xl font-bold text-slate-900 mt-1">📈 Étude Rétroactive de Convergence de Maillage</h2>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Étude Rétroactive de Convergence de Maillage</h2>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -359,7 +351,7 @@
 
     <!-- COMPARATIVE CASE TABLE -->
     <section class="space-y-6">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📋 Matrice Comparative des Scénarios de Flambement</h2>
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">Matrice Comparative des Scénarios de Flambement</h2>
       <div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-sm">
         <table class="w-full text-left border-collapse">
           <thead>
@@ -459,31 +451,27 @@
 
     <!-- ENGINEERING SOLUTIONS -->
     <section class="space-y-6">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">💡 Recommandations Technologiques & Dimensionnement</h2>
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">Recommandations Technologiques & Dimensionnement</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
-          <div class="text-2xl">💍</div>
           <h3 class="font-bold text-slate-900 text-sm">Raidisseurs Circonférentiels</h3>
           <p class="text-xs text-slate-600 leading-relaxed text-justify">
             L'ajout d'anneaux de raidissement horizontaux (U-beams ou cornières) sur la paroi extérieure de la zone de dôme sec permet de briser le lobe de flambement radial critique provoqué par la dépression.
           </p>
         </div>
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
-          <div class="text-2xl">🔩</div>
           <h3 class="font-bold text-slate-900 text-sm">Raidisseurs Verticaux</h3>
           <p class="text-xs text-slate-600 leading-relaxed text-justify">
             L'implantation de nervures longitudinales internes limite la flexion locale et supporte une partie de la compression axiale générée par le poids propre conséquent du fluide et du toit métallique.
           </p>
         </div>
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
-          <div class="text-2xl">⚙️</div>
           <h3 class="font-bold text-slate-900 text-sm">Dispositifs Anti-Vide</h3>
           <p class="text-xs text-slate-600 leading-relaxed text-justify">
             La perte critique constatée au Cas 7 ($\lambda = 23$) impose l'installation obligatoire de soupapes casse-vide mécaniques redondantes pour empêcher toute dépression interne accidentelle d'excéder 0,05 bar.
           </p>
         </div>
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm">
-          <div class="text-2xl">📐</div>
           <h3 class="font-bold text-slate-900 text-sm">Surépaisseur Locale</h3>
           <p class="text-xs text-slate-600 leading-relaxed text-justify">
             Plutôt que d'épaissir uniformément la cuve (économiquement non rentable), une surépaisseur de tôle locale de 15 mm au raccord cylindre/toit résout efficacement l'instabilité induite par la modélisation du dôme.
@@ -504,7 +492,7 @@
         </p>
       </div>
       <a href="rapport_flambement (1).pdf" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition px-6 py-3 rounded-lg shadow-lg shadow-emerald-600/10 hover:shadow-emerald-600/20 flex items-center gap-2 whitespace-nowrap">
-        📄 Consulter le PDF Complet
+        Consulter le PDF Complet
       </a>
     </section>
 
