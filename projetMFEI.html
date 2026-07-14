@@ -581,13 +581,13 @@
       }
 
       if (collapsed) {
-        statusText.innerText = "⚠️ Effondrement ! Fontaine détectée. Le fluide retombe sous son propre poids (vitesse nulle).";
+        statusText.innerText = "Effondrement ! Fontaine détectée. Le fluide retombe sous son propre poids (vitesse nulle).";
         document.getElementById("sim-status").className = "bg-rose-50 text-rose-700 text-xs p-3 rounded-lg border border-rose-100 flex items-start gap-2";
       } else if (neckingDetected) {
-        statusText.innerText = "🔮 Striction (necking) observée ! La densité extrêmement faible de l'éjectat provoque un rétrécissement initial du panache.";
+        statusText.innerText = "Striction (necking) observée ! La densité extrêmement faible de l'éjectat provoque un rétrécissement initial du panache.";
         document.getElementById("sim-status").className = "bg-amber-50 text-amber-700 text-xs p-3 rounded-lg border border-amber-100 flex items-start gap-2";
       } else {
-        statusText.innerText = "💡 Calcul stable. Le panache s'élève de manière saine en s'élargissant linéairement.";
+        statusText.innerText = "Calcul stable. Le panache s'élève de manière saine en s'élargissant linéairement.";
         document.getElementById("sim-status").className = "bg-blue-50 text-blue-700 text-xs p-3 rounded-lg border border-blue-100 flex items-start gap-2";
       }
 
