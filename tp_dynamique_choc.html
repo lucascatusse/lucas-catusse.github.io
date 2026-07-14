@@ -41,8 +41,8 @@
           Analyse transitoire par solveur explicite d'un cycle de charge-décharge sur éprouvette cylindrique. Confrontation de modèles élastiques et viscoélastiques de Maxwell-Kelvin sous HyperMesh & HyperCrash.
         </p>
         <div class="flex flex-wrap gap-4 mt-6 text-sm text-slate-400">
-          <span class="flex items-center gap-1">🏫 Polytech Lyon — 5e Année Mécanique</span>
-          <span class="flex items-center gap-1">⏱️ Analyse Explicite RADIOSS</span>
+          <span class="flex items-center gap-1">Polytech Lyon — 5e Année Mécanique</span>
+          <span class="flex items-center gap-1">Analyse Explicite RADIOSS</span>
         </div>
       </div>
       <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/50 hover:text-white transition px-5 py-2.5 rounded-lg font-semibold flex items-center gap-2 shadow-lg">
@@ -57,7 +57,7 @@
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
       <div class="lg:col-span-8 space-y-5">
         <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-          ⚡ Problématique Physique, Objectifs & Contexte Industriel
+          Problématique Physique, Objectifs & Contexte Industriel
         </h2>
         <p class="text-slate-600 text-justify">
           Dans les secteurs aéronautique, automobile et ferroviaire, les élastomères (caoutchoucs naturels ou synthétiques) sont massivement employés comme amortisseurs vibratoires, butées de fin de course ou silentblocs de protection. Soumis à des impacts sévères ou à des charges transitoires cycliques, ces matériaux se caractérisent par un comportement mécanique hautement non linéaire, dépendant du temps (viscosité) et fortement amortissant. Prédire numériquement avec précision la part d'énergie dissipée en chaleur est indispensable pour éviter la ruine précoce des structures et garantir la sécurité des systèmes lors d'un crash.
@@ -114,7 +114,7 @@
     <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm space-y-8">
       <div class="border-b border-slate-100 pb-4">
         <span class="text-xs text-violet-600 font-bold uppercase tracking-widest">Maillage & Algorithmes sous HyperMesh</span>
-        <h2 class="text-2xl font-bold text-slate-900 mt-1">🛠️ Stratégie Numérique & Contrôle du Verrouillage Volumique</h2>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Stratégie Numérique & Contrôle du Verrouillage Volumique</h2>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -128,13 +128,13 @@
           <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2">
             <h4 class="font-bold text-violet-600">Méthodologie adoptée pour éradiquer le blocage :</h4>
             <p class="text-xs">
-              1. **Maillage Quads initial :** Génération d'un maillage surfacique régulier composé uniquement de quadrilatères de haute qualité (pas de triangles dégénérés) sur la section plane du quart de cylindre.
+              1. Maillage Quads initial : Génération d'un maillage surfacique régulier composé uniquement de quadrilatères de haute qualité (pas de triangles dégénérés) sur la section plane du quart de cylindre.
             </p>
             <p class="text-xs">
-              2. **Extrusion verticale en HEXA8 :** Extrusion guidée de cette face selon l'axe longitudinal pour générer des briques hexagonales régulières à 8 nœuds (HEXA8) avec point d'intégration sélectif.
+              2. Extrusion verticale en HEXA8 : Extrusion guidée de cette face selon l'axe longitudinal pour générer des briques hexagonales régulières à 8 nœuds (HEXA8) avec point d'intégration sélectif.
             </p>
             <p class="text-xs">
-              3. **Avantages mécaniques :** Cette structure de maillage permet une excellente découple entre les déformations déviatoriques (cisaillement) et volumiques (pression hydrostatique), garantissant un calcul exempt de verrouillage.
+              3. Avantages mécaniques : Cette structure de maillage permet une excellente découple entre les déformations déviatoriques (cisaillement) et volumiques (pression hydrostatique), garantissant un calcul exempt de verrouillage.
             </p>
           </div>
         </div>
@@ -193,12 +193,12 @@
     </section>
 
     <section class="space-y-6">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">📐 Formulations Physique & Équations Fondamentales</h2>
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">Formulations Physique & Équations Fondamentales</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Modèle Élastique Linéaire de Hooke -->
         <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
-          <h3 class="font-bold text-violet-600 text-lg flex items-center gap-2">🔄 Élastique Linéaire (Loi de Hooke)</h3>
+          <h3 class="font-bold text-violet-600 text-lg flex items-center gap-2">Élastique Linéaire (Loi de Hooke)</h3>
           <p class="text-sm text-slate-500 text-justify">
             La contrainte normale \(\sigma_{zz}\) est directement proportionnelle à la déformation \(\epsilon_{zz}\) appliquée, de façon instantanée et entièrement réversible (aucune dissipation d'énergie).
           </p>
@@ -226,7 +226,7 @@
 
         <!-- Modèle Viscoélastique de Maxwell-Kelvin -->
         <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm">
-          <h3 class="font-bold text-indigo-600 text-lg flex items-center gap-2">⏳ Viscoélastique (Intégrale de Boltzmann)</h3>
+          <h3 class="font-bold text-indigo-600 text-lg flex items-center gap-2">Viscoélastique (Intégrale de Boltzmann)</h3>
           <p class="text-sm text-slate-500 text-justify">
             La contrainte dépend de l'histoire temporelle complète de la déformation via une fonction noyau de relaxation à mémoire amortissante.
           </p>
@@ -257,7 +257,7 @@
     <section class="space-y-6">
       <div class="border-b border-slate-100 pb-4">
         <span class="text-xs text-violet-600 font-bold uppercase tracking-widest">Matrice comparative</span>
-        <h2 class="text-2xl font-bold text-slate-900 mt-1">📋 Matrice Comparative des Scénarios Simulés sous RADIOSS</h2>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Matrice Comparative des Scénarios Simulés sous RADIOSS</h2>
       </div>
       <div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-sm">
         <table class="w-full text-left border-collapse">
@@ -317,7 +317,7 @@
     <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm space-y-6">
       <div class="border-b border-slate-100 pb-4">
         <span class="text-xs text-violet-600 font-bold uppercase tracking-widest">Bilan de l'étude</span>
-        <h2 class="text-2xl font-bold text-slate-900 mt-1">✨ Synthèse & Conclusions du Projet</h2>
+        <h2 class="text-2xl font-bold text-slate-900 mt-1">Synthèse & Conclusions du Projet</h2>
       </div>
       
       <p class="text-slate-600 text-justify text-sm leading-relaxed">
@@ -326,21 +326,21 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-violet-50/50 border border-violet-100 p-5 rounded-xl space-y-2">
-          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">📈 Dépendance au Temps</h4>
+          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">Dépendance au Temps</h4>
           <p class="text-xs text-slate-600 leading-relaxed text-justify">
             La loi viscoélastique de Boltzmann a mis en évidence la forte dépendance au temps du caoutchouc. Une sollicitation rapide engendre une rigidité initiale plus élevée et un pic de contrainte accru par rapport à une charge lente, validant la sensibilité au taux de déformation (<em>strain-rate sensitivity</em>).
           </p>
         </div>
 
         <div class="bg-violet-50/50 border border-violet-100 p-5 rounded-xl space-y-2">
-          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">🔥 Amortissement & Énergie</h4>
+          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">Amortissement & Énergie</h4>
           <p class="text-xs text-slate-600 leading-relaxed text-justify">
             La quantification de la boucle d'hystérésis démontre que l'amortissement mécanique est directement piloté par le frottement visqueux interne. Contrairement au modèle élastique réversible, l'énergie résiduelle accumulée est intégralement convertie en chaleur, servant de base pour dimensionner des organes de sécurité de crash.
           </p>
         </div>
 
         <div class="bg-violet-50/50 border border-violet-100 p-5 rounded-xl space-y-2">
-          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">⚙️ Maîtrise Numérique</h4>
+          <h4 class="font-bold text-violet-900 text-sm flex items-center gap-2">Maîtrise Numérique</h4>
           <p class="text-xs text-slate-600 leading-relaxed text-justify">
             La transition d'une modélisation automatique à un maillage structuré en briques hexagonales (HEXA8) s'avère payante. Elle a éliminé de manière rigoureuse le blocage hydrostatique volumique induit par la quasi-incompressibilité du matériau (\(\nu \to 0.5\)), sans générer de déformations de sablier parasites.
           </p>
@@ -353,25 +353,21 @@
     </section>
 
     <section class="space-y-6">
-      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">🎯 Compétences d'Ingénierie Capitalisées</h2>
+      <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">Compétences d'Ingénierie Capitalisées</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-          <div class="text-2xl text-violet-500">🧪</div>
           <h3 class="font-bold text-slate-900">Rhéologie des Élastomères</h3>
           <p class="text-xs text-slate-600">Compréhension avancée des lois dépendant du temps (modèles Maxwell-Kelvin), de la viscoélasticité et de l'amortissement d'hystérésis.</p>
         </div>
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-          <div class="text-2xl text-violet-500">💻</div>
           <h3 class="font-bold text-slate-900">Pre-Processing Altair</h3>
           <p class="text-xs text-slate-600">Mise en données sous HyperMesh et HyperCrash. Maîtrise des conditions aux limites complexes et des liaisons rigides (Rigid Bodies).</p>
         </div>
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-          <div class="text-2xl text-violet-500">🏎️</div>
           <h3 class="font-bold text-slate-900">Dynamique Rapide Explicite</h3>
           <p class="text-xs text-slate-600">Résolution temporelle sous RADIOSS, gestion du pas de temps critique stable (CFL) et surveillance énergétique globale.</p>
         </div>
         <div class="bg-white border border-slate-200/80 p-6 rounded-xl space-y-3 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-          <div class="text-2xl text-violet-500">🛡️</div>
           <h3 class="font-bold text-slate-900">Diagnostic Numérique</h3>
           <p class="text-xs text-slate-600">Inhibition du verrouillage volumique par maillage brique HEXA8 et maîtrise absolue de l'énergie de Hourglass parasite.</p>
         </div>
@@ -388,7 +384,7 @@
         </p>
       </div>
       <a href="Dymanique_choc.pdf" download class="bg-violet-600 hover:bg-violet-500 text-white font-semibold transition px-6 py-3 rounded-lg shadow-lg shadow-violet-600/10 hover:shadow-violet-600/20 flex items-center justify-center gap-2 whitespace-nowrap">
-        📄 Télécharger Dymanique_choc.pdf
+        Télécharger Dymanique_choc.pdf
       </a>
     </section>
 
