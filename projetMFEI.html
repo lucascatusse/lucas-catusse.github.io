@@ -57,7 +57,7 @@
           Résumé & Problématique
         </h2>
         <p class="text-slate-600 text-justify">
-          Ce projet de fin d'études explore la dynamique turbulente des panaches (<em>plumes</em>) et fontaines. L'enjeu principal est de quantifier les limites de l'approximation classique de <strong>Boussinesq</strong> (qui considère les variations de densité négligeables sauf dans le terme de flottabilité : \(\Delta\rho = \rho_a - \rho_p \ll \rho_a\)) lorsque le fluide éjecté présente de forts contrastes de densité avec son environnement.
+          Ce projet a pour but d'explorer la dynamique turbulente des panaches (<em>plumes</em>) et fontaines. L'enjeu principal est de quantifier les limites de l'approximation classique de <strong>Boussinesq</strong> (qui considère les variations de densité négligeables sauf dans le terme de flottabilité : \(\Delta\rho = \rho_a - \rho_p \ll \rho_a\)) lorsque le fluide éjecté présente de forts contrastes de densité avec son environnement.
         </p>
         <p class="text-slate-600 text-justify">
           Pour s'affranchir de cette limite dans les régimes fortement instables (rapport de densité supérieur à 5), nous avons intégré la formulation non-linéaire complète des équations de Navier-Stokes. Un modèle d'entraînement de masse corrigé (\(u_e = \alpha \langle w \rangle \sqrt{\rho/\rho_a}\)) a été couplé aux équations de conservation de volume, de masse et d'impulsion, résolues par des algorithmes numériques de premier ordre (Euler Explicite) et de quatrième ordre (Runge-Kutta 4) sous Python.
