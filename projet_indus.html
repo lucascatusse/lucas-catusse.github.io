@@ -32,18 +32,19 @@
     <div class="relative max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
       <div class="max-w-3xl">
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Projet Industriel R&D</span>
-          <span class="bg-teal-500/10 text-teal-400 border border-teal-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Aérodynamique CFD</span>
+          <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Projet Industriel</span>
+          <span class="bg-teal-500/10 text-teal-400 border border-teal-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Aérodynamique et CFD</span>
+          <span class="bg-teal-500/10 text-teal-400 border border-teal-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Ansys Fluent</span>
+          <span class="bg-teal-500/10 text-teal-400 border border-teal-500/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Creo Parametric</span>
         </div>
         <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
           Design & Performance d'une <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">Éolienne Hybride</span> à Axe Vertical
         </h1>
         <p class="mt-4 text-slate-300 text-lg max-w-2xl">
-          Analyse d'écoulements transitoires complexes sous Ansys Fluent et conception d'un rotor hybride Darrieus-Savonius optimisé pour l'auto-démarrage.
+          Analyse d'écoulements transitoires sous Ansys Fluent et conception d'un rotor hybride Darrieus-Savonius optimisé pour l'auto-démarrage.
         </p>
         <div class="flex flex-wrap gap-4 mt-6 text-sm text-slate-400">
-          <span class="flex items-center gap-1">Polytech Lyon — Département Mécanique</span>
-          <span class="flex items-center gap-1">Validation CFD Ansys Fluent</span>
+          <span class="flex items-center gap-1">Polytech Lyon</span>
         </div>
       </div>
       <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/50 hover:text-white transition px-5 py-2.5 rounded-lg font-semibold flex items-center gap-2 shadow-lg">
@@ -84,7 +85,7 @@
         </div>
         
         <p class="text-slate-600 text-justify">
-          Pour s'affranchir de ce compromis historique, ce projet étudie un <strong>concept hybride coaxial imbriqué</strong>. Au centre du système, un petit rotor Savonius à deux godets capte les brises initiales pour initier instantanément la rotation de l'arbre commun. Une fois que la turbine acquiert une vitesse de rotation suffisante, la portance s'établit sur les trois pales Darrieus périphériques, qui prennent alors le relais pour exploiter pleinement l'énergie cinétique du vent à haut rendement.
+          Pour s'affranchir de ce compromis historique, ce projet étudie un <strong>concept hybride coaxial</strong>. Au centre du système, un petit rotor Savonius à deux godets capte les brises initiales pour initier instantanément la rotation de l'arbre commun. Une fois que la turbine acquiert une vitesse de rotation suffisante, la portance s'établit sur les trois pales Darrieus périphériques, qui prennent alors le relais pour exploiter pleinement l'énergie cinétique du vent à haut rendement.
         </p>
       </div>
       
@@ -157,11 +158,8 @@
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-4">
         <div>
           <span class="text-xs text-emerald-600 font-bold uppercase tracking-widest">Soufflerie Numérique Virtuelle</span>
-          <h2 class="text-2xl font-bold text-slate-900">Simulateur Aérodynamique en Temps Réel</h2>
+          <h2 class="text-2xl font-bold text-slate-900">Simulateur Aérodynamique Intéractive</h2>
         </div>
-        <p class="text-xs text-slate-500 max-w-sm text-left md:text-right">
-          Visualisez l'écoulement du fluide, le sillage de vitesse et la physique du rotor hybride sous différents régimes de vent et de vitesse de rotation.
-        </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -263,7 +261,6 @@
           <span class="text-xs text-rose-600 font-bold uppercase tracking-widest">Analyse Critique & Découverte R&D</span>
           <h2 class="text-2xl font-bold text-slate-900 mt-1">Le Phénomène de "Bouchon Aérodynamique"</h2>
         </div>
-        <span class="bg-rose-50 text-rose-700 border border-rose-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Dysfonctionnement à Haut TSR</span>
       </div>
       
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -407,7 +404,6 @@
     <!-- MESHING & CFD NUMERICAL SOLUTION -->
     <section class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm space-y-6">
       <div class="space-y-4">
-        <span class="text-xs text-teal-600 font-bold uppercase tracking-widest">Stratégie Numérique de Maillage</span>
         <h2 class="text-2xl font-bold text-slate-900">Optimisation et Robustesse de Maillage</h2>
         <p class="text-slate-600 text-sm text-justify">
           La simulation transitoire à maillage tournant (<strong>Sliding Mesh</strong>) est particulièrement exigeante en ressources de calcul, car elle nécessite d'actualiser les coordonnées nodales de la zone tournante fluide-solide à chaque pas de temps. Le modèle CAO initial issu de Creo Parametric générait originellement un maillage non structuré de plus de <strong>3 000 000 d'éléments</strong>, rendant les calculs physiques incompatibles avec des contraintes de temps industrielles.
@@ -597,17 +593,17 @@
       if (tsr > 3.2) {
         solverStatus.className = "bg-rose-50 text-rose-800 text-xs p-3.5 rounded-lg border border-rose-100 flex gap-2";
         statusTitle.className = "font-bold text-rose-900";
-        statusTitle.innerText = "🚨 Bouchon Aérodynamique Actif";
+        statusTitle.innerText = "Bouchon Aérodynamique Actif";
         statusDesc.innerText = "La rotation du Savonius central est trop rapide. L'éolienne dévie le vent et consomme de l'énergie (Cp < 0).";
       } else if (tsr < 0.6) {
         solverStatus.className = "bg-amber-50 text-amber-800 text-xs p-3.5 rounded-lg border border-amber-100 flex gap-2";
         statusTitle.className = "font-bold text-amber-900";
-        statusTitle.innerText = "🪘 Régime Savonius Dominant";
+        statusTitle.innerText = "Régime Savonius Dominant";
         statusDesc.innerText = "Couple de démarrage élevé. Idéal pour s'affranchir de l'inertie initiale des pales Darrieus.";
       } else {
         solverStatus.className = "bg-emerald-50 text-emerald-800 text-xs p-3.5 rounded-lg border border-emerald-100 flex gap-2";
         statusTitle.className = "font-bold text-emerald-900";
-        statusTitle.innerText = "🪶 Régime Darrieus Dominant";
+        statusTitle.innerText = "Régime Darrieus Dominant";
         statusDesc.innerText = "Rendement maximal atteint. Les pales profilées convertissent efficacement la portance en couple.";
       }
 
